@@ -6,9 +6,15 @@ interface NavbarProps {
   currentView: 'translator' | 'desk' | 'docs';
   onViewChange: (view: 'translator' | 'desk' | 'docs') => void;
   onOpenModelCard: () => void;
+  onOpenVideoPitchStudio: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentView, onViewChange, onOpenModelCard }) => {
+export const Navbar: React.FC<NavbarProps> = ({ 
+  currentView, 
+  onViewChange, 
+  onOpenModelCard,
+  onOpenVideoPitchStudio
+}) => {
   const { language, toggleLanguage, setLanguage, t } = useLanguage();
 
   return (
@@ -139,6 +145,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onViewChange, onOpe
             >
               <Cpu className="w-3.5 h-3.5 text-aurora-rose shrink-0" />
               <span>93.4%</span>
+            </button>
+
+            {/* 180s Video Pitch Studio Button */}
+            <button
+              onClick={onOpenVideoPitchStudio}
+              className="flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-gradient-to-r from-royal-700 via-royal-600 to-aurora-rose hover:opacity-95 text-white text-xs font-mono font-bold border border-aurora-rose/40 transition shadow-md shadow-aurora-rose/20"
+              title="180-Second Video Pitch Studio & Script Teleprompter"
+            >
+              <Video className="w-3.5 h-3.5 text-white shrink-0 animate-pulse" />
+              <span className="hidden sm:inline">{t('ভিডিও পিচ', '180s Pitch')}</span>
             </button>
           </div>
 

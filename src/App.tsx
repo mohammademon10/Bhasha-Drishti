@@ -4,12 +4,14 @@ import { LiveTranslatorView } from './components/LiveTranslatorView';
 import { SmartHospitalDeskView } from './components/SmartHospitalDeskView';
 import { DocsPortalView } from './components/DocsPortalView';
 import { ModelInspectorModal } from './components/ModelInspectorModal';
+import { VideoPitchModal } from './components/VideoPitchModal';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { ShieldCheck, Heart, Github, Stethoscope, Sparkles } from 'lucide-react';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState<'translator' | 'desk' | 'docs'>('translator');
   const [isModelModalOpen, setIsModelModalOpen] = useState<boolean>(false);
+  const [isVideoPitchModalOpen, setIsVideoPitchModalOpen] = useState<boolean>(false);
   const { t } = useLanguage();
 
   // Sync with browser URL path
@@ -46,6 +48,7 @@ function AppContent() {
         currentView={currentView}
         onViewChange={handleViewChange}
         onOpenModelCard={() => setIsModelModalOpen(true)}
+        onOpenVideoPitchStudio={() => setIsVideoPitchModalOpen(true)}
       />
 
       {/* Main Content Viewport */}
@@ -59,6 +62,16 @@ function AppContent() {
       <ModelInspectorModal 
         isOpen={isModelModalOpen}
         onClose={() => setIsModelModalOpen(false)}
+      />
+
+      {/* 180s Video Pitch Studio Modal */}
+      <VideoPitchModal 
+        isOpen={isVideoPitchModalOpen}
+        onClose={() => setIsVideoPitchModalOpen(false)}
+        onNavigateView={(view) => {
+          handleViewChange(view);
+          setIsVideoPitchModalOpen(false);
+        }}
       />
 
       {/* High-Contrast Clinical Footer */}
