@@ -7,23 +7,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        slate: {
-          850: '#151f33',
-          900: '#0f172a',
-          950: '#070c18',
+        space: {
+          950: '#060913',
+          900: '#0B1120',
+          850: '#10192E',
+          800: '#17233F',
+          700: '#23335A',
         },
-        clinical: {
-          bg: '#0F172A',
-          card: '#1E293B',
-          cardHover: '#283548',
-          border: '#334155',
+        electric: {
+          cyan: '#00F0FF',
+          teal: '#00E5BE',
           emerald: '#10B981',
-          teal: '#14B8A6',
-          cyan: '#06B6D4',
+          indigo: '#6366F1',
+          purple: '#8B5CF6',
           amber: '#F59E0B',
-          rose: '#EF4444',
-          text: '#F8FAFC',
-          muted: '#94A3B8',
+          rose: '#F43F5E',
         }
       },
       fontFamily: {
@@ -31,14 +29,19 @@ export default {
         sans: ['"Inter"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
+      boxShadow: {
+        'glow-cyan': '0 0 25px rgba(0, 240, 255, 0.25)',
+        'glow-emerald': '0 0 25px rgba(16, 185, 129, 0.25)',
+        'glow-indigo': '0 0 25px rgba(99, 102, 241, 0.25)',
+      },
       animation: {
-        'pulse-fast': 'pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'soundwave': 'soundwave 1s ease-in-out infinite alternate',
+        'pulse-subtle': 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'soundwave': 'soundwave 0.8s ease-in-out infinite alternate',
       },
       keyframes: {
         soundwave: {
           '0%': { height: '4px' },
-          '100%': { height: '24px' }
+          '100%': { height: '26px' }
         }
       }
     },

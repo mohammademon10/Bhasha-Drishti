@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, Cpu, ShieldCheck, CheckCircle2, Layers, Activity } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ModelInspectorModalProps {
   isOpen: boolean;
@@ -7,26 +8,29 @@ interface ModelInspectorModalProps {
 }
 
 export const ModelInspectorModal: React.FC<ModelInspectorModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 shadow-2xl space-y-5 text-xs text-slate-300 font-mono">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-space-950/80 backdrop-blur-md animate-fadeIn">
+      <div className="glass-panel border border-white/20 rounded-3xl max-w-2xl w-full p-6 shadow-2xl space-y-5 text-xs text-slate-300 font-mono">
         
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-          <div className="flex items-center space-x-2.5">
-            <div className="p-2 rounded-xl bg-teal-500/10 text-teal-400 border border-teal-500/20">
+        <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
+          <div className="flex items-center space-x-3">
+            <div className="p-2.5 rounded-2xl bg-electric-cyan/20 text-electric-cyan border border-electric-cyan/30">
               <Cpu className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-sm font-bold text-white font-sans">Bhasha Drishti Model Card & In-Memory Pipeline</h2>
-              <span className="text-[11px] text-teal-400">Release: v0.4.2-bdslw60 | Quantized ONNX & PyTorch</span>
+              <h2 className="text-sm font-bold text-white font-sans">
+                {t('ভাষা দৃষ্টি মডেল কার্ড ও পাইপলাইন স্পেক্স', 'Bhasha Drishti Model Card & In-Memory Pipeline')}
+              </h2>
+              <span className="text-[11px] text-electric-teal">Release: v0.4.2-bdslw60 | Quantized ONNX & PyTorch</span>
             </div>
           </div>
           <button 
             onClick={onClose}
-            className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition"
+            className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-400 hover:text-white transition"
           >
             <X className="w-4 h-4" />
           </button>
@@ -34,76 +38,76 @@ export const ModelInspectorModal: React.FC<ModelInspectorModalProps> = ({ isOpen
 
         {/* Tensor Geometry & Hyperparameters */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          <div className="p-3 rounded-xl bg-slate-950 border border-slate-800">
-            <span className="text-slate-500 block text-[10px]">TENSOR INPUT SHAPE</span>
-            <span className="text-sm font-bold text-emerald-400">[40, 42, 3]</span>
-            <span className="text-[10px] text-slate-400 block mt-0.5">40 Frames × 42 Points × XYZ</span>
+          <div className="p-3.5 rounded-2xl bg-space-950/80 border border-white/[0.08]">
+            <span className="text-slate-400 block text-[10px]">TENSOR SHAPE</span>
+            <span className="text-sm font-bold text-electric-cyan">[40, 42, 3]</span>
+            <span className="text-[10px] text-slate-400 block mt-0.5">40 Frames × 42 Pts</span>
           </div>
 
-          <div className="p-3 rounded-xl bg-slate-950 border border-slate-800">
-            <span className="text-slate-500 block text-[10px]">HELD-OUT ACCURACY</span>
-            <span className="text-sm font-bold text-teal-300">93.4% Top-1</span>
+          <div className="p-3.5 rounded-2xl bg-space-950/80 border border-white/[0.08]">
+            <span className="text-slate-400 block text-[10px]">TOP-1 ACCURACY</span>
+            <span className="text-sm font-bold text-electric-teal">93.4%</span>
             <span className="text-[10px] text-slate-400 block mt-0.5">Macro-F1: 0.928</span>
           </div>
 
-          <div className="p-3 rounded-xl bg-slate-950 border border-slate-800">
-            <span className="text-slate-500 block text-[10px]">TOTAL SLA BUDGET</span>
-            <span className="text-sm font-bold text-cyan-400">238ms</span>
-            <span className="text-[10px] text-slate-400 block mt-0.5">Target: &lt; 300ms SLA</span>
+          <div className="p-3.5 rounded-2xl bg-space-950/80 border border-white/[0.08]">
+            <span className="text-slate-400 block text-[10px]">LATENCY SLA</span>
+            <span className="text-sm font-bold text-electric-indigo">238ms</span>
+            <span className="text-[10px] text-slate-400 block mt-0.5">&lt; 300ms SLA Pass</span>
           </div>
 
-          <div className="p-3 rounded-xl bg-slate-950 border border-slate-800">
-            <span className="text-slate-500 block text-[10px]">NORMALIZATION</span>
+          <div className="p-3.5 rounded-2xl bg-space-950/80 border border-white/[0.08]">
+            <span className="text-slate-400 block text-[10px]">NORMALIZATION</span>
             <span className="text-xs font-bold text-white">Wrist Root Anchor</span>
-            <span className="text-[10px] text-slate-400 block mt-0.5">Scale & Invariance</span>
+            <span className="text-[10px] text-slate-400 block mt-0.5">Scale Invariant</span>
           </div>
 
-          <div className="p-3 rounded-xl bg-slate-950 border border-slate-800">
-            <span className="text-slate-500 block text-[10px]">CONFIDENCE GATE</span>
-            <span className="text-xs font-bold text-amber-400">&gt; 0.80 Softmax</span>
-            <span className="text-[10px] text-slate-400 block mt-0.5">Abstain on Ambiguity</span>
+          <div className="p-3.5 rounded-2xl bg-space-950/80 border border-white/[0.08]">
+            <span className="text-slate-400 block text-[10px]">CONFIDENCE GATE</span>
+            <span className="text-xs font-bold text-electric-amber">&gt; 0.80 Softmax</span>
+            <span className="text-[10px] text-slate-400 block mt-0.5">Abstain on Noise</span>
           </div>
 
-          <div className="p-3 rounded-xl bg-slate-950 border border-slate-800">
-            <span className="text-slate-500 block text-[10px]">PRIVACY ASSURANCE</span>
-            <span className="text-xs font-bold text-emerald-400">RAM Ephemeral</span>
-            <span className="text-[10px] text-slate-400 block mt-0.5">Zero Biometric Storage</span>
+          <div className="p-3.5 rounded-2xl bg-space-950/80 border border-white/[0.08]">
+            <span className="text-slate-400 block text-[10px]">PRIVACY ASSURANCE</span>
+            <span className="text-xs font-bold text-electric-teal">Zero-Retention</span>
+            <span className="text-[10px] text-slate-400 block mt-0.5">RAM Ephemeral</span>
           </div>
         </div>
 
         {/* Live Architectural Pipeline Verification */}
-        <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
-          <span className="text-slate-400 font-semibold block text-[11px]">
-            Inference Pipeline Stages:
+        <div className="p-4 rounded-2xl bg-space-950/80 border border-white/[0.08] space-y-2">
+          <span className="text-slate-300 font-semibold block text-[11px]">
+            Inference Pipeline Stages (238ms Total):
           </span>
           <div className="space-y-1.5 text-[11px]">
-            <div className="flex items-center justify-between p-1.5 rounded bg-slate-900 border border-slate-850">
-              <span className="text-emerald-400 font-bold">Stage 1: MediaPipe 3D Landmark Extractor</span>
-              <span className="text-slate-400">18ms (X, Y, Z, Visibility)</span>
+            <div className="flex items-center justify-between p-2 rounded-xl bg-space-900 border border-white/[0.06]">
+              <span className="text-electric-cyan font-bold">Stage 1: MediaPipe 3D Landmark Extractor</span>
+              <span className="text-slate-300">18ms (X, Y, Z, Visibility)</span>
             </div>
-            <div className="flex items-center justify-between p-1.5 rounded bg-slate-900 border border-slate-850">
-              <span className="text-cyan-400 font-bold">Stage 2: PyTorch CNN-BiLSTM Spatio-Temporal Classifier</span>
-              <span className="text-slate-400">65ms (BdSLW60 60 Classes)</span>
+            <div className="flex items-center justify-between p-2 rounded-xl bg-space-900 border border-white/[0.06]">
+              <span className="text-electric-indigo font-bold">Stage 2: PyTorch CNN-BiLSTM Classifier</span>
+              <span className="text-slate-300">65ms (BdSLW60 60 Classes)</span>
             </div>
-            <div className="flex items-center justify-between p-1.5 rounded bg-slate-900 border border-slate-850">
-              <span className="text-purple-400 font-bold">Stage 3: pgvector Hybrid RAG + bhasha-drishti-bdsl-mcp</span>
-              <span className="text-slate-400">110ms (Grammar Reconstruction)</span>
+            <div className="flex items-center justify-between p-2 rounded-xl bg-space-900 border border-white/[0.06]">
+              <span className="text-purple-300 font-bold">Stage 3: pgvector Hybrid RAG + bhasha-drishti-bdsl-mcp</span>
+              <span className="text-slate-300">110ms (Grammar Refinement)</span>
             </div>
-            <div className="flex items-center justify-between p-1.5 rounded bg-slate-900 border border-slate-850">
-              <span className="text-teal-400 font-bold">Stage 4: Natural Bengali TTS Audio Synthesis</span>
-              <span className="text-slate-400">45ms (Web Speech bn-BD)</span>
+            <div className="flex items-center justify-between p-2 rounded-xl bg-space-900 border border-white/[0.06]">
+              <span className="text-electric-teal font-bold">Stage 4: Bengali Universal Speech Synthesizer</span>
+              <span className="text-slate-300">45ms (Dual-Engine Audio)</span>
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between pt-2 border-t border-slate-800 text-[11px]">
-          <span className="text-slate-500">Team Tensor_Titan • SmartHospital Challenge</span>
+        <div className="flex items-center justify-between pt-2 border-t border-white/[0.08] text-[11px]">
+          <span className="text-slate-400">Team Tensor_Titan • Lead: MD. Emon Hossain</span>
           <button
             onClick={onClose}
-            className="px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-sans text-xs transition"
+            className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-sans text-xs transition"
           >
-            Close Inspector
+            {t('বন্ধ করুন', 'Close')}
           </button>
         </div>
 
