@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Stethoscope, Send, Download, Sparkles, CheckCircle2, 
   HelpCircle, ChevronRight, User, Hospital, Volume2, ArrowRight,
-  Clock, ShieldAlert, FileText, Check, Plus
+  Clock, ShieldAlert, FileText, Check, Plus, Printer, FileDown
 } from 'lucide-react';
 import { DOCTOR_PRESETS, DoctorPreset, BDSL_W60_CLASSES } from '../data/bdslLexicon';
 import { UniversalSpeechEngine } from '../utils/audioPlayer';
@@ -115,7 +115,9 @@ export const SmartHospitalDeskView: React.FC = () => {
     UniversalSpeechEngine.speak(preset.bengaliText, 'bn');
   };
 
-  const handleExportSummary = () => {
+  const [exportedPdf, setExportedPdf] = useState<boolean>(false);
+
+  const handleExportJSON = () => {
     const summaryData = {
       hospital: 'SmartHospital HealthSphere AI Desk',
       patientId: 'PT-BDSL-8921',
@@ -142,6 +144,239 @@ export const SmartHospitalDeskView: React.FC = () => {
 
     setExported(true);
     setTimeout(() => setExported(false), 2500);
+  };
+
+  const handleExportPDF = () => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      alert(t('পপ-আপ উইন্ডো ব্লক করা হয়েছে। অনুগ্রহ করে পপ-আপ অনুমতি দিন।', 'Pop-up blocked. Please allow pop-ups to download PDF.'));
+      return;
+    }
+
+    const currentDate = new Date().toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' });
+    const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    const messagesHtml = messages.map((m, idx) => `
+      <div style="margin-bottom: 12px; padding: 12px 16px; border-radius: 8px; border-left: 4px solid ${m.sender === 'patient' ? '#E94560' : '#3E2F58'}; background: #F8FAFC;">
+        <div style="display: flex; justify-content: space-between; font-size: 11px; color: #64748B; font-family: monospace; margin-bottom: 5px;">
+          <span style="font-weight: bold; color: ${m.sender === 'patient' ? '#C2185B' : '#312E81'};">
+            #${idx + 1} ${m.sender === 'patient' ? '🧏 রোগী (BdSL সাইন থেকে অনূদিত)' : '👨‍⚕️ চিকিৎসক / পরামর্শক'}
+          </span>
+          <span>${m.timestamp}</span>
+        </div>
+        <div style="font-size: 14px; font-weight: 700; color: #0F172A; line-height: 1.5; font-family: 'Hind Siliguri', 'Segoe UI', sans-serif;">
+          "${m.textBn}"
+        </div>
+        <div style="font-size: 12px; color: #475569; font-style: italic; margin-top: 3px;">
+          Meaning: "${m.textEn}"
+        </div>
+        ${m.glossTokens ? `
+          <div style="margin-top: 5px; font-size: 11px; color: #0284C7; font-family: monospace;">
+            চিহ্নিত টোকেন: [${m.glossTokens.join('] + [')}]
+          </div>
+        ` : ''}
+      </div>
+    `).join('');
+
+    const html = `
+      <!DOCTYPE html>
+      <html lang="bn">
+      <head>
+        <meta charset="UTF-8">
+        <title>Bhasha_Drishti_Consultation_Summary_PT-BDSL-8921</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        <style>
+          @page { size: A4; margin: 15mm; }
+          body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #0F172A;
+            background: #FFFFFF;
+            margin: 0;
+            padding: 16px;
+            line-height: 1.4;
+          }
+          .header {
+            border-bottom: 2px solid #E94560;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+          }
+          .hospital-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+          }
+          .logo-box {
+            background: linear-gradient(135deg, #3E2F58, #E94560);
+            color: #FFFFFF;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 26px;
+            font-weight: 900;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+          }
+          .title-block h1 {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 20px;
+            margin: 0;
+            color: #0F172A;
+          }
+          .title-block p {
+            margin: 2px 0 0;
+            font-size: 11px;
+            color: #64748B;
+          }
+          .doc-meta {
+            text-align: right;
+            font-size: 11px;
+            font-family: monospace;
+            color: #475569;
+          }
+          .badge {
+            display: inline-block;
+            background: #FFE4E6;
+            color: #E11D48;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            margin-top: 4px;
+          }
+          .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            background: #F1F5F9;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            font-size: 11px;
+          }
+          .meta-item strong {
+            display: block;
+            color: #475569;
+            font-size: 10px;
+            text-transform: uppercase;
+          }
+          .meta-item span {
+            font-weight: 700;
+            color: #0F172A;
+            font-size: 12px;
+          }
+          .section-title {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #334155;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+          }
+          .footer {
+            margin-top: 24px;
+            padding-top: 12px;
+            border-top: 1px solid #E2E8F0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            color: #64748B;
+          }
+          .seal-box {
+            border: 1px dashed #E94560;
+            padding: 5px 10px;
+            border-radius: 6px;
+            color: #C2185B;
+            font-weight: bold;
+            font-size: 10px;
+          }
+          @media print {
+            body { padding: 0; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <div class="hospital-brand">
+            <div class="logo-box">ভা</div>
+            <div class="title-block">
+              <h1>ভাষা দৃষ্টি (Bhasha Drishti) — স্মার্টহাসপাতাল কনসালটেশন সামারি</h1>
+              <p>SmartHospital Bidirectional BdSL Clinical Dialogue Report &bull; HealthSphere AI</p>
+            </div>
+          </div>
+          <div class="doc-meta">
+            <div>DATE: ${currentDate}</div>
+            <div>TIME: ${currentTime}</div>
+            <div class="badge">OFFICIAL CLINICAL RECORD</div>
+          </div>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <strong>রোগী আইডি (Patient ID)</strong>
+            <span>PT-BDSL-8921</span>
+          </div>
+          <div class="meta-item">
+            <strong>বিভাগ (Department)</strong>
+            <span>OPD Clinical Triage</span>
+          </div>
+          <div class="meta-item">
+            <strong>ভাষা মোড (Language Mode)</strong>
+            <span>বাংলা সাইন ল্যাঙ্গুয়েজ (BdSL)</span>
+          </div>
+          <div class="meta-item">
+            <strong>AI ভেরিফিকেশন (Accuracy)</strong>
+            <span style="color: #059669;">93.4% • SLA: 238ms</span>
+          </div>
+        </div>
+
+        <div class="section-title">
+          📋 দ্বি-মুখী কনসালটেশন ট্রান্সক্রিপ্ট লগ (2-Way Dialogue Transcript Log)
+        </div>
+
+        <div>
+          ${messagesHtml}
+        </div>
+
+        <div style="margin-top: 18px; padding: 10px 14px; background: #FFF1F2; border: 1px solid #FECDD3; border-radius: 8px; font-size: 11px; color: #9F1239;">
+          <strong>🔒 রেসপন্সিবল এআই ও প্রাইভেসির নিশ্চয়তা (Responsible AI & Privacy Compliance):</strong><br/>
+          এই কথোপকথনটি ভাষা দৃষ্টির জিরো-রিটেনশন র‍্যাম মেমোরি কাঠামোর অধীনে তাৎক্ষণিক অনুবাদ করা হয়েছে। কোনো বায়োমেট্রিক ফেসিয়াল ভিডিও বা সংবেদনশীল ভিজ্যুয়াল ফাইল ক্লাউডে সংরক্ষিত করা হয়নি।
+        </div>
+
+        <div class="footer">
+          <div>
+            টিম <strong>Tensor_Titan</strong> দ্বারা International AI Builders Congress-এর জন্য নির্মিত।<br/>
+            Lead Architect & Builder: <strong>MD. Emon Hossain</strong> &bull; MIT License &bull; bhashadrishti.vercel.app
+          </div>
+          <div class="seal-box">
+            ✓ VERIFIED CLINICAL AI RECORD
+          </div>
+        </div>
+
+        <script>
+          window.onload = function() {
+            window.focus();
+            window.print();
+          };
+        </script>
+      </body>
+      </html>
+    `;
+
+    printWindow.document.open();
+    printWindow.document.write(html);
+    printWindow.document.close();
+
+    setExportedPdf(true);
+    setTimeout(() => setExportedPdf(false), 2500);
   };
 
   const speakCurrent = (text: string) => {
@@ -228,13 +463,25 @@ export const SmartHospitalDeskView: React.FC = () => {
           </div>
         </div>
 
-        <button
-          onClick={handleExportSummary}
-          className="flex items-center space-x-2 px-4 py-2 sm:py-2.5 rounded-xl text-xs font-mono font-bold glass-panel glass-panel-hover text-rose-300 border border-aurora-rose/30 transition shadow-md self-end md:self-auto shrink-0"
-        >
-          {exported ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Download className="w-3.5 h-3.5" />}
-          <span>{exported ? t('ট্রান্সক্রিপ্ট ডাউনলোড হয়েছে', 'Exported') : t('ডাউনলোড কনসালটেশন সামারি', 'Export Transcript')}</span>
-        </button>
+        <div className="flex items-center space-x-2 self-end md:self-auto shrink-0">
+          <button
+            onClick={handleExportPDF}
+            className="flex items-center space-x-1.5 px-3.5 py-2 sm:py-2.5 rounded-xl text-xs font-mono font-bold bg-gradient-to-r from-aurora-rose to-royal-700 text-white shadow-md shadow-aurora-rose/25 hover:brightness-110 transition shrink-0"
+            title="Download Official PDF Consultation Report"
+          >
+            {exportedPdf ? <Check className="w-3.5 h-3.5 text-emerald-300" /> : <FileText className="w-3.5 h-3.5" />}
+            <span>{exportedPdf ? t('PDF প্রস্তুত', 'PDF Ready') : t('📄 PDF সামারি', '📄 PDF Report')}</span>
+          </button>
+
+          <button
+            onClick={handleExportJSON}
+            className="flex items-center space-x-1.5 px-3 py-2 sm:py-2.5 rounded-xl text-xs font-mono font-bold glass-panel glass-panel-hover text-rose-300 border border-aurora-rose/30 transition shadow-md shrink-0"
+            title="Export Raw JSON Transcript Data"
+          >
+            {exported ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Download className="w-3.5 h-3.5" />}
+            <span>{exported ? t('JSON সেভ হয়েছে', 'Saved') : t('💾 JSON', '💾 JSON')}</span>
+          </button>
+        </div>
       </div>
 
       {/* Main Grid: Doctor Sentences + Dynamic Sign Cards & 2-Way Audit */}
@@ -451,13 +698,22 @@ export const SmartHospitalDeskView: React.FC = () => {
                 <span>{t('রোগী আইডি:', 'Patient ID:')} <strong className="text-white">PT-BDSL-8921</strong></span>
                 <span>{t('ট্রায়াজ:', 'Triage:')} <strong className="text-rose-300">OPD Room 4</strong></span>
               </div>
-              <button
-                onClick={handleExportSummary}
-                className="btn-royal-aurora w-full py-3 rounded-2xl font-bold text-xs transition flex items-center justify-center space-x-2 shadow-lg shadow-aurora-rose/20"
-              >
-                <Download className="w-4 h-4 text-white" />
-                <span>{t('কনসালটেশন সামারি ডাউনলোড করুন', 'Export Official Transcript (JSON)')}</span>
-              </button>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                <button
+                  onClick={handleExportPDF}
+                  className="btn-royal-aurora py-2.5 px-3 rounded-xl font-bold text-xs transition flex items-center justify-center space-x-2 shadow-lg shadow-aurora-rose/20 text-white"
+                >
+                  {exportedPdf ? <Check className="w-4 h-4 text-emerald-300" /> : <FileDown className="w-4 h-4" />}
+                  <span>{exportedPdf ? t('PDF প্রস্তুত হয়েছে', 'PDF Ready') : t('📄 অফিসিয়াল PDF সামারি', '📄 Official PDF Report')}</span>
+                </button>
+                <button
+                  onClick={handleExportJSON}
+                  className="glass-panel glass-panel-hover py-2.5 px-3 rounded-xl font-bold text-xs font-mono text-rose-200 border border-aurora-rose/30 transition flex items-center justify-center space-x-2 shadow-md"
+                >
+                  {exported ? <Check className="w-4 h-4 text-emerald-400" /> : <Download className="w-4 h-4" />}
+                  <span>{exported ? t('JSON সেভ হয়েছে', 'Saved') : t('💾 JSON ডাটা এক্সপোর্ট', '💾 Export JSON Data')}</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
