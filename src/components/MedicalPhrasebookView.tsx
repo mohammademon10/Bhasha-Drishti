@@ -272,17 +272,17 @@ export const MedicalPhrasebookView: React.FC<MedicalPhrasebookViewProps> = ({ on
     <div className="space-y-6 animate-fade-in">
 
       {/* Top Banner */}
-      <div className="glass-panel rounded-3xl p-6 border border-teal-500/20 bg-gradient-to-r from-navy-900 to-navy-850 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="glass-panel rounded-3xl p-6 border border-crimson-800/30 bg-gradient-to-r from-obsidian-950 via-obsidian-900 to-obsidian-850 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
-            <span className="p-2 rounded-xl bg-teal-500/10 text-teal-400">
+            <span className="p-2 rounded-xl bg-crimson-900/30 text-crimson-400">
               <Stethoscope className="w-5 h-5" />
             </span>
-            <h1 className="text-xl sm:text-2xl font-bold text-white font-bengali">
+            <h1 className="text-xl sm:text-2xl font-bold text-offwhite-100 font-bengali">
               {t('হাসপাতাল ক্লিনিক্যাল কমিউনিকেশন ফ্রেজবুক', 'Hospital Clinical Phrasebook')}
             </h1>
           </div>
-          <p className="text-xs sm:text-sm text-slate-300">
+          <p className="text-xs sm:text-sm text-offwhite-300">
             {t(
               'ডাক্তার ও স্বাস্থ্যকর্মীদের জন্য প্রস্তুতকৃত জরুরি ট্রায়াজ, ওপিডি প্রশ্নমালা ও ওষুধের নিয়মাবলীর দ্বৈত ভাষার নির্দেশিকা।',
               'Bilingual hospital communication bank categorized by emergency triage, clinical inquiries, and nursing instructions.'
@@ -290,41 +290,41 @@ export const MedicalPhrasebookView: React.FC<MedicalPhrasebookViewProps> = ({ on
           </p>
         </div>
 
-        <div className="flex items-center space-x-2 text-xs font-mono text-teal-300 px-3 py-1.5 rounded-xl bg-navy-800 border border-teal-500/30">
+        <div className="flex items-center space-x-2 text-xs font-mono text-crimson-300 px-3 py-1.5 rounded-xl bg-obsidian-850 border border-crimson-800/40">
           <span>{HOSPITAL_PHRASES.length} {t('ক্লিনিক্যাল বাক্য সংরক্ষিত', 'Phrases Indexed')}</span>
         </div>
       </div>
 
       {/* Search & Filters */}
-      <div className="glass-panel rounded-2xl p-4 border border-white/5 space-y-4">
+      <div className="glass-panel rounded-2xl p-4 border border-crimson-800/20 space-y-4">
         <div className="flex flex-col sm:flex-row items-center gap-3">
           <div className="relative flex-1 w-full">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-offwhite-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t('বাক্য বা বিভাগ অনুযায়ী খুঁজুন (যেমন: শ্বাসকষ্ট, এলার্জি, ওষুধ)...', 'Search phrases or department (e.g. pain, allergy, dosage)...')}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-navy-950 border border-navy-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-teal-500 transition font-sans"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-obsidian-950 border border-crimson-800/40 text-sm text-offwhite-100 placeholder-offwhite-400 focus:outline-none focus:border-crimson-600 transition font-sans"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-offwhite-400 hover:text-offwhite-100"
               >
                 <X className="w-4 h-4" />
               </button>
             )}
           </div>
 
-          <div className="text-xs font-mono text-slate-400 shrink-0">
+          <div className="text-xs font-mono text-offwhite-400 shrink-0">
             {t(`মোট: ${filteredPhrases.length}টি বাক্য`, `Showing: ${filteredPhrases.length}`)}
           </div>
         </div>
 
         {/* Category Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1">
-          <span className="text-xs font-mono text-slate-500 flex items-center gap-1 shrink-0">
+          <span className="text-xs font-mono text-offwhite-400 flex items-center gap-1 shrink-0">
             <Filter className="w-3.5 h-3.5" />
             <span>{t('বিভাগ:', 'Section:')}</span>
           </span>
@@ -334,8 +334,8 @@ export const MedicalPhrasebookView: React.FC<MedicalPhrasebookViewProps> = ({ on
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1.5 rounded-xl text-xs font-medium transition whitespace-nowrap ${
                 selectedCategory === cat
-                  ? 'bg-teal-500 text-white font-bold shadow-md shadow-teal-500/20'
-                  : 'bg-navy-800 text-slate-400 hover:text-white hover:bg-navy-750'
+                  ? 'bg-gradient-to-r from-crimson-800 to-crimson-600 text-offwhite-100 font-bold shadow-md shadow-crimson-800/25'
+                  : 'bg-obsidian-850 text-offwhite-300 hover:text-offwhite-100 hover:bg-obsidian-800 border border-crimson-800/20'
               }`}
             >
               {cat === 'All' ? t('সবগুলো', 'All') : cat}
@@ -356,8 +356,8 @@ export const MedicalPhrasebookView: React.FC<MedicalPhrasebookViewProps> = ({ on
               key={phrase.id}
               className={`glass-panel rounded-2xl p-4 sm:p-5 border transition-all flex flex-col justify-between space-y-3 ${
                 phrase.urgency === 'Emergency'
-                  ? 'border-rose-500/40 bg-gradient-to-br from-navy-900 to-rose-950/20'
-                  : 'border-white/5 hover:border-teal-500/30'
+                  ? 'border-crimson-600/50 bg-gradient-to-br from-obsidian-900 to-crimson-950/40 shadow-lg shadow-crimson-950/50'
+                  : 'border-crimson-800/25 hover:border-crimson-600/40'
               }`}
             >
               <div className="space-y-2">
@@ -365,21 +365,21 @@ export const MedicalPhrasebookView: React.FC<MedicalPhrasebookViewProps> = ({ on
                   <div className="flex items-center space-x-2">
                     <span className={`text-[10px] font-mono px-2 py-0.5 rounded-md font-bold uppercase border ${
                       phrase.urgency === 'Emergency'
-                        ? 'bg-rose-500/20 text-rose-300 border-rose-500/40 animate-pulse'
+                        ? 'bg-crimson-900/60 text-crimson-200 border-crimson-600 animate-pulse'
                         : phrase.urgency === 'Priority'
-                        ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
-                        : 'bg-teal-500/15 text-teal-300 border-teal-500/30'
+                        ? 'bg-amber-950/40 text-amber-300 border-amber-700/40'
+                        : 'bg-obsidian-850 text-offwhite-200 border-crimson-800/30'
                     }`}>
                       {phrase.urgency}
                     </span>
-                    <span className="text-[11px] font-mono text-slate-400">
+                    <span className="text-[11px] font-mono text-offwhite-400">
                       {phrase.category}
                     </span>
                   </div>
 
                   <button
                     onClick={() => toggleFavorite(phrase.id)}
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-amber-400 transition"
+                    className="p-1.5 rounded-lg text-offwhite-400 hover:text-amber-400 transition"
                     title={isFav ? 'Remove Favorite' : 'Save as Favorite'}
                   >
                     <Star className={`w-4 h-4 ${isFav ? 'fill-amber-400 text-amber-400' : ''}`} />
@@ -387,18 +387,18 @@ export const MedicalPhrasebookView: React.FC<MedicalPhrasebookViewProps> = ({ on
                 </div>
 
                 <div className="space-y-1">
-                  <p className="text-base sm:text-lg font-bold text-white font-bengali leading-snug">
+                  <p className="text-base sm:text-lg font-bold text-offwhite-100 font-bengali leading-snug">
                     "{phrase.bengaliText}"
                   </p>
-                  <p className="text-xs text-slate-400 italic font-sans">
+                  <p className="text-xs text-offwhite-400 italic font-sans">
                     "{phrase.englishText}"
                   </p>
                 </div>
               </div>
 
               {/* Action Buttons Bar */}
-              <div className="flex items-center justify-between pt-2 border-t border-navy-700/50">
-                <span className="text-[11px] font-mono text-slate-400 truncate max-w-[140px]">
+              <div className="flex items-center justify-between pt-2 border-t border-crimson-800/30">
+                <span className="text-[11px] font-mono text-offwhite-400 truncate max-w-[140px]">
                   {phrase.department}
                 </span>
 
@@ -407,8 +407,8 @@ export const MedicalPhrasebookView: React.FC<MedicalPhrasebookViewProps> = ({ on
                     onClick={() => handleSpeak(phrase)}
                     className={`p-2 rounded-xl text-xs font-mono transition flex items-center space-x-1 ${
                       isSpeaking 
-                        ? 'bg-teal-500 text-white animate-pulse' 
-                        : 'bg-navy-800 hover:bg-navy-700 text-slate-300 hover:text-white'
+                        ? 'bg-crimson-800 text-offwhite-100 animate-pulse' 
+                        : 'bg-obsidian-850 hover:bg-obsidian-800 text-offwhite-300 hover:text-offwhite-100 border border-crimson-800/30'
                     }`}
                     title={t('উচ্চারণ শুনুন', 'Listen Audio')}
                   >
@@ -418,7 +418,7 @@ export const MedicalPhrasebookView: React.FC<MedicalPhrasebookViewProps> = ({ on
 
                   <button
                     onClick={() => handleCopy(phrase)}
-                    className="p-2 rounded-xl bg-navy-800 hover:bg-navy-700 text-slate-300 hover:text-white transition flex items-center space-x-1 text-xs font-mono"
+                    className="p-2 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-offwhite-300 hover:text-offwhite-100 border border-crimson-800/30 transition flex items-center space-x-1 text-xs font-mono"
                     title={t('কপি করুন', 'Copy')}
                   >
                     {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
@@ -427,7 +427,7 @@ export const MedicalPhrasebookView: React.FC<MedicalPhrasebookViewProps> = ({ on
 
                   <button
                     onClick={() => onNavigate('desk')}
-                    className="p-2 rounded-xl btn-teal-primary text-white transition flex items-center space-x-1 text-xs font-bold font-mono"
+                    className="p-2 rounded-xl btn-crimson text-offwhite-100 transition flex items-center space-x-1 text-xs font-bold font-mono"
                     title={t('ডাক্তার ডেস্কে পাঠান', 'Send to 2-Way Desk')}
                   >
                     <Send className="w-3.5 h-3.5" />

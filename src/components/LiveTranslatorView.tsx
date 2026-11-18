@@ -136,25 +136,25 @@ export const LiveTranslatorView: React.FC = () => {
         ctx.fillRect(0, 0, width, height);
         ctx.restore();
       } else {
-        // High-Fidelity Clinical Hospital Consultation Room with Royal Aurora Ambience
+        // High-Fidelity Clinical Consultation Room in Black (#0B0B0B) & Crimson Red (#8B0D1A)
         const roomGrad = ctx.createLinearGradient(0, 0, 0, height);
-        roomGrad.addColorStop(0, '#1A0F2A'); // Deep royal violet ceiling
-        roomGrad.addColorStop(0.55, '#120A1E'); // Soft hospital consultation wall
-        roomGrad.addColorStop(0.82, '#0B0613'); // Clinical desk boundary
-        roomGrad.addColorStop(1, '#06030A'); // Floor
+        roomGrad.addColorStop(0, '#160E10'); // Deep charcoal/crimson ambient ceiling
+        roomGrad.addColorStop(0.55, '#100C0E'); // Consultation wall
+        roomGrad.addColorStop(0.82, '#0B0B0B'); // Clinical desk boundary
+        roomGrad.addColorStop(1, '#070707'); // Floor
         ctx.fillStyle = roomGrad;
         ctx.fillRect(0, 0, width, height);
 
-        // Soft Radial Aurora Backlight Behind Avatar
+        // Soft Radial Crimson Backlight Behind Avatar
         const backGlow = ctx.createRadialGradient(width / 2, height * 0.36, 30, width / 2, height * 0.36, 260);
-        backGlow.addColorStop(0, 'rgba(233, 69, 96, 0.18)'); // Aurora rose glow
-        backGlow.addColorStop(0.45, 'rgba(62, 47, 88, 0.25)'); // Royal purple glow
+        backGlow.addColorStop(0, 'rgba(139, 13, 26, 0.25)'); // Crimson red #8B0D1A glow
+        backGlow.addColorStop(0.45, 'rgba(43, 34, 37, 0.35)'); // Deep charcoal glow
         backGlow.addColorStop(1, 'transparent');
         ctx.fillStyle = backGlow;
         ctx.fillRect(0, 0, width, height);
 
         // Architectural Hospital Wall Horizon
-        ctx.strokeStyle = 'rgba(233, 69, 96, 0.1)';
+        ctx.strokeStyle = 'rgba(139, 13, 26, 0.2)';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(0, height * 0.78);
@@ -167,25 +167,25 @@ export const LiveTranslatorView: React.FC = () => {
         const monitorW = 140;
         const monitorH = 54;
 
-        ctx.fillStyle = 'rgba(22, 13, 35, 0.9)';
-        ctx.strokeStyle = 'rgba(233, 69, 96, 0.3)';
+        ctx.fillStyle = 'rgba(18, 14, 16, 0.95)';
+        ctx.strokeStyle = 'rgba(139, 13, 26, 0.45)';
         ctx.lineWidth = 1;
         ctx.roundRect(monitorX, monitorY, monitorW, monitorH, 8);
         ctx.fill();
         ctx.stroke();
 
         // Monitor Header: ECG and Heart Rate
-        ctx.fillStyle = '#FF5E7E';
+        ctx.fillStyle = '#C71B2F';
         ctx.font = '700 9px "JetBrains Mono"';
         ctx.fillText('ECG 78 BPM', monitorX + 10, monitorY + 14);
 
         // Monitor Confidence Score
-        ctx.fillStyle = '#E94560';
+        ctx.fillStyle = '#F5F2ED';
         ctx.font = '700 9px "JetBrains Mono"';
         ctx.fillText(`CONF: ${activePreset.confidence}%`, monitorX + 76, monitorY + 14);
 
         // Animated ECG wave line
-        ctx.strokeStyle = '#E94560';
+        ctx.strokeStyle = '#8B0D1A';
         ctx.lineWidth = 1.5;
         ctx.beginPath();
         const ecgY = monitorY + 32;
@@ -201,7 +201,7 @@ export const LiveTranslatorView: React.FC = () => {
         ctx.stroke();
 
         // Monitor Subtitle
-        ctx.fillStyle = '#A78BFA';
+        ctx.fillStyle = '#D5CEC3';
         ctx.font = '600 8px "JetBrains Mono"';
         ctx.fillText(`MediaPipe 3D: Active (${fps} FPS)`, monitorX + 10, monitorY + 47);
       }
@@ -308,12 +308,12 @@ export const LiveTranslatorView: React.FC = () => {
       // 3. RENDER REALISTIC ANATOMICAL HUMAN CLINICAL SIGNER
       // ==========================================
 
-      // A. Natural Human Torso (Curved Anatomical Form, NOT a flat trapezoid!)
+      // A. Natural Human Torso (Curved Anatomical Form in Charcoal Obsidian & Crimson Accent)
       const torsoGrad = ctx.createLinearGradient(cx - 100, cy + 30, cx + 100, height);
-      torsoGrad.addColorStop(0, '#3E2F58'); // Signature Royal Plum
-      torsoGrad.addColorStop(0.35, '#312447');
-      torsoGrad.addColorStop(0.7, '#221832');
-      torsoGrad.addColorStop(1, '#150E20');
+      torsoGrad.addColorStop(0, '#5A0811'); // Deep Crimson Plum
+      torsoGrad.addColorStop(0.35, '#2B1A1E');
+      torsoGrad.addColorStop(0.7, '#1B1416');
+      torsoGrad.addColorStop(1, '#0F0B0C');
       ctx.fillStyle = torsoGrad;
 
       // Realistic anatomical body contour with shoulders, armpits, and waist taper
@@ -337,16 +337,16 @@ export const LiveTranslatorView: React.FC = () => {
       ctx.closePath();
       ctx.fill();
 
-      // Chest 3D Volumetric Lighting (Subtle pectoral/chest highlights)
+      // Chest 3D Volumetric Lighting (Subtle pectoral/chest highlights in Crimson)
       const chestLight = ctx.createRadialGradient(cx, cy + 85 + breath, 10, cx, cy + 85 + breath, 90);
-      chestLight.addColorStop(0, 'rgba(233, 69, 96, 0.14)');
-      chestLight.addColorStop(0.6, 'rgba(62, 47, 88, 0.12)');
+      chestLight.addColorStop(0, 'rgba(139, 13, 26, 0.2)');
+      chestLight.addColorStop(0.6, 'rgba(18, 14, 16, 0.15)');
       chestLight.addColorStop(1, 'transparent');
       ctx.fillStyle = chestLight;
       ctx.fill();
 
-      // Scrub V-Neck Collar with Elegant Royal Aurora Trim (#E94560)
-      ctx.strokeStyle = '#E94560';
+      // Scrub V-Neck Collar with Elegant Crimson Trim (#8B0D1A)
+      ctx.strokeStyle = '#8B0D1A';
       ctx.lineWidth = 2.5;
       ctx.lineCap = 'round';
       ctx.beginPath();
@@ -356,7 +356,7 @@ export const LiveTranslatorView: React.FC = () => {
       ctx.stroke();
 
       // Dark Inner Shirt under V-neck
-      ctx.fillStyle = '#1A1126';
+      ctx.fillStyle = '#110D0E';
       ctx.beginPath();
       ctx.moveTo(cx - 22, cy + 30 + breath * 0.6);
       ctx.lineTo(cx, cy + 72 + breath);
@@ -367,17 +367,17 @@ export const LiveTranslatorView: React.FC = () => {
       // Scrub Left Chest Pocket with Doctor ID Badge
       const pocketX = leftShoulder.x + 32;
       const pocketY = cy + 90 + breath;
-      ctx.fillStyle = '#2A1D3D';
-      ctx.strokeStyle = 'rgba(233, 69, 96, 0.35)';
+      ctx.fillStyle = '#22191C';
+      ctx.strokeStyle = 'rgba(139, 13, 26, 0.45)';
       ctx.lineWidth = 1.2;
       ctx.roundRect(pocketX, pocketY, 28, 34, 4);
       ctx.fill();
       ctx.stroke();
 
-      // ID Card Photo & Hospital Details
-      ctx.fillStyle = '#FFFFFF';
+      // ID Card Photo & Hospital Details in Off-White & Crimson
+      ctx.fillStyle = '#F5F2ED';
       ctx.fillRect(pocketX + 4, pocketY + 5, 20, 14);
-      ctx.fillStyle = '#E94560';
+      ctx.fillStyle = '#8B0D1A';
       ctx.fillRect(pocketX + 4, pocketY + 22, 20, 4);
       // Mini photo avatar on ID card
       ctx.fillStyle = '#3E2F58';
@@ -768,20 +768,20 @@ export const LiveTranslatorView: React.FC = () => {
         ctx.beginPath();
         ctx.arc(pt.x, pt.y, 6, 0, Math.PI * 2);
         ctx.fill();
-        // Inner core
-        ctx.fillStyle = '#E94560';
+        // Inner core in Crimson Red (#8B0D1A)
+        ctx.fillStyle = '#8B0D1A';
         ctx.beginPath();
         ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
         ctx.fill();
-        ctx.strokeStyle = '#FFFFFF';
+        ctx.strokeStyle = '#F5F2ED';
         ctx.lineWidth = 1;
         ctx.stroke();
       });
 
-      // Hand holographic tracking points
+      // Hand holographic tracking points in Crimson & Off-White spectrum
       const drawHoloHand = (wrist: { x: number; y: number }, isRight: boolean) => {
         const factor = isRight ? 1 : -1;
-        const fingerColors = ['#E94560', '#FF5E7E', '#8B5CF6', '#9D4EDD', '#00F0FF'];
+        const fingerColors = ['#8B0D1A', '#A81423', '#C71B2F', '#E0263C', '#F5F2ED'];
 
         for (let f = 0; f < 5; f++) {
           const angle = -0.85 + f * 0.42;
@@ -801,7 +801,7 @@ export const LiveTranslatorView: React.FC = () => {
             const py = wrist.y - Math.cos(angle * factor) * segDist;
             ctx.lineTo(px, py);
 
-            ctx.fillStyle = '#FFFFFF';
+            ctx.fillStyle = '#F5F2ED';
             ctx.fillRect(px - 1, py - 1, 2, 2);
             prevX = px;
             prevY = py;
@@ -819,9 +819,9 @@ export const LiveTranslatorView: React.FC = () => {
       drawHoloHand(leftWrist, false);
       drawHoloHand(rightWrist, true);
 
-      // Top-Left Clean HUD Badge (Glass Pill)
-      ctx.fillStyle = 'rgba(22, 13, 35, 0.85)';
-      ctx.strokeStyle = 'rgba(233, 69, 96, 0.3)';
+      // Top-Left Clean HUD Badge (Glass Pill in Obsidian #0B0B0B & Crimson #8B0D1A)
+      ctx.fillStyle = 'rgba(18, 14, 16, 0.9)';
+      ctx.strokeStyle = 'rgba(139, 13, 26, 0.45)';
       ctx.lineWidth = 1;
       ctx.roundRect(16, 16, 215, 26, 6);
       ctx.fill();
@@ -833,7 +833,7 @@ export const LiveTranslatorView: React.FC = () => {
       ctx.arc(28, 29, 3.5, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.fillStyle = '#FFFFFF';
+      ctx.fillStyle = '#F5F2ED';
       ctx.font = '700 10px "JetBrains Mono"';
       ctx.fillText(`3D AI TRACKER: 42 LANDMARKS`, 38, 33);
 

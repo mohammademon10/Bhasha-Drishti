@@ -192,7 +192,7 @@ export const SessionHistoryView: React.FC = () => {
     }
 
     const messagesHtml = session.dialogue.map((d, idx) => `
-      <div style="margin-bottom: 12px; padding: 12px 14px; border-radius: 8px; border-left: 4px solid ${d.speaker === 'patient' ? '#20B6A5' : '#182C47'}; background: #F8FAFC;">
+      <div style="margin-bottom: 12px; padding: 12px 14px; border-radius: 8px; border-left: 4px solid ${d.speaker === 'patient' ? '#8B0D1A' : '#181415'}; background: #FAF8F5;">
         <div style="display: flex; justify-content: space-between; font-size: 11px; color: #64748B; font-family: monospace; margin-bottom: 4px;">
           <strong>#${idx + 1} ${d.speaker === 'patient' ? '🧏 রোগী (BdSL অনুবাদ)' : '👨‍⚕️ চিকিৎসক / পরামর্শক'}</strong>
           <span>${d.timestamp}</span>
@@ -203,7 +203,7 @@ export const SessionHistoryView: React.FC = () => {
         <div style="font-size: 11px; color: #475569; font-style: italic; margin-top: 2px;">
           Meaning: "${d.textEn}"
         </div>
-        ${d.tokens ? `<div style="font-size: 10px; color: #0D9488; font-family: monospace; margin-top: 4px;">Tokens: [${d.tokens.join('] [')}]</div>` : ''}
+        ${d.tokens ? `<div style="font-size: 10px; color: #8B0D1A; font-family: monospace; margin-top: 4px;">Tokens: [${d.tokens.join('] [')}]</div>` : ''}
       </div>
     `).join('');
 
@@ -217,16 +217,16 @@ export const SessionHistoryView: React.FC = () => {
         <style>
           @page { size: A4; margin: 15mm; }
           body { font-family: 'Inter', sans-serif; color: #0F172A; margin: 0; padding: 15px; }
-          .header { border-bottom: 2px solid #20B6A5; padding-bottom: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; }
-          .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; background: #F1F5F9; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 11px; }
+          .header { border-bottom: 2px solid #8B0D1A; padding-bottom: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; }
+          .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; background: #F5F2ED; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 11px; border: 1px solid rgba(139, 13, 26, 0.2); }
           .footer { margin-top: 20px; padding-top: 10px; border-top: 1px solid #E2E8F0; font-size: 10px; color: #64748B; display: flex; justify-content: space-between; }
         </style>
       </head>
       <body>
         <div class="header">
           <div>
-            <h1 style="margin: 0; font-family: 'Hind Siliguri'; font-size: 20px;">ভাষা দৃষ্টি — ক্লিনিক্যাল কনসালটেশন রিপোর্ট</h1>
-            <p style="margin: 2px 0 0; font-size: 11px; color: #64748B;">SmartHospital Bidirectional BdSL Translation Audit • HealthSphere AI</p>
+            <h1 style="margin: 0; font-family: 'Hind Siliguri'; font-size: 20px; color: #0B0B0B;">ভাষা দৃষ্টি — ক্লিনিক্যাল কনসালটেশন রিপোর্ট</h1>
+            <p style="margin: 2px 0 0; font-size: 11px; color: #8B0D1A; font-weight: bold;">SmartHospital Bidirectional BdSL Translation Audit • HealthSphere AI</p>
           </div>
           <div style="text-align: right; font-size: 11px; font-family: monospace;">
             <div>SESSION: ${session.id}</div>
@@ -238,7 +238,7 @@ export const SessionHistoryView: React.FC = () => {
           <div><strong>PATIENT ID:</strong><br/>${session.patientId}</div>
           <div><strong>DEPARTMENT:</strong><br/>${session.department}</div>
           <div><strong>DURATION:</strong><br/>${session.duration}</div>
-          <div><strong>AI ACCURACY:</strong><br/><span style="color: #059669;">93.4% • 238ms SLA</span></div>
+          <div><strong>AI ACCURACY:</strong><br/><span style="color: #8B0D1A; font-weight: bold;">93.4% • 238ms SLA</span></div>
         </div>
 
         <div>${messagesHtml}</div>
@@ -249,7 +249,7 @@ export const SessionHistoryView: React.FC = () => {
 
         <div class="footer">
           <div>Team Tensor_Titan • Lead Architect: MD. Emon Hossain • bhashadrishti.vercel.app</div>
-          <div style="font-weight: bold; color: #0D9488;">✓ VERIFIED CLINICAL RECORD</div>
+          <div style="font-weight: bold; color: #8B0D1A;">✓ VERIFIED CLINICAL RECORD</div>
         </div>
 
         <script>
@@ -279,17 +279,17 @@ export const SessionHistoryView: React.FC = () => {
     <div className="space-y-6 animate-fade-in">
 
       {/* Top Banner */}
-      <div className="glass-panel rounded-3xl p-6 border border-teal-500/20 bg-gradient-to-r from-navy-900 to-navy-850 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="glass-panel rounded-3xl p-6 border border-crimson-800/30 bg-gradient-to-r from-obsidian-950 via-obsidian-900 to-obsidian-850 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
-            <span className="p-2 rounded-xl bg-teal-500/10 text-teal-400">
+            <span className="p-2 rounded-xl bg-crimson-900/30 text-crimson-400">
               <History className="w-5 h-5" />
             </span>
-            <h1 className="text-xl sm:text-2xl font-bold text-white font-bengali">
+            <h1 className="text-xl sm:text-2xl font-bold text-offwhite-100 font-bengali">
               {t('ক্লিনিক্যাল কনসালটেশন সেশন হিস্ট্রি', 'Consultation Session History')}
             </h1>
           </div>
-          <p className="text-xs sm:text-sm text-slate-300">
+          <p className="text-xs sm:text-sm text-offwhite-300">
             {t(
               'হাসপাতালে সম্পাদিত বধির রোগীর ট্রায়াজ সেশন লগ, ট্রান্সক্রিপ্ট ও প্রিন্ট-রেডি মেডিকেল রিপোর্ট।',
               'Archive of hospital triage sessions, bilingual transcripts, and printable clinical records.'
@@ -297,34 +297,34 @@ export const SessionHistoryView: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center space-x-2 text-xs font-mono text-emerald-400 px-3.5 py-2 rounded-xl bg-navy-800 border border-emerald-500/30">
+        <div className="flex items-center space-x-2 text-xs font-mono text-emerald-400 px-3.5 py-2 rounded-xl bg-obsidian-850 border border-emerald-500/30">
           <ShieldCheck className="w-4 h-4" />
           <span>{t('জিরো-রিটেনশন প্রাইভেসির নিশ্চয়তা', 'Zero-Retention RAM Policy')}</span>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="glass-panel rounded-2xl p-4 border border-white/5 space-y-4">
+      <div className="glass-panel rounded-2xl p-4 border border-crimson-800/20 space-y-4">
         <div className="flex flex-col sm:flex-row items-center gap-3">
           <div className="relative flex-1 w-full">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-offwhite-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t('সেশন আইডি, রোগী আইডি বা উপসর্গ দিয়ে খুঁজুন...', 'Search by Session ID, Patient ID, symptoms...')}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-navy-950 border border-navy-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-teal-500 transition font-sans"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-obsidian-950 border border-crimson-800/40 text-sm text-offwhite-100 placeholder-offwhite-400 focus:outline-none focus:border-crimson-600 transition font-sans"
             />
           </div>
 
-          <div className="text-xs font-mono text-slate-400 shrink-0">
+          <div className="text-xs font-mono text-offwhite-400 shrink-0">
             {t(`মোট সেশন: ${filteredSessions.length}টি`, `Total Sessions: ${filteredSessions.length}`)}
           </div>
         </div>
 
         {/* Department Filters */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1">
-          <span className="text-xs font-mono text-slate-500 flex items-center gap-1 shrink-0">
+          <span className="text-xs font-mono text-offwhite-400 flex items-center gap-1 shrink-0">
             <Filter className="w-3.5 h-3.5" />
             <span>{t('বিভাগ:', 'Department:')}</span>
           </span>
@@ -334,8 +334,8 @@ export const SessionHistoryView: React.FC = () => {
               onClick={() => setSelectedDept(dept)}
               className={`px-3 py-1.5 rounded-xl text-xs font-medium transition whitespace-nowrap ${
                 selectedDept === dept
-                  ? 'bg-teal-500 text-white font-bold shadow-md shadow-teal-500/20'
-                  : 'bg-navy-800 text-slate-400 hover:text-white hover:bg-navy-750'
+                  ? 'bg-gradient-to-r from-crimson-800 to-crimson-600 text-offwhite-100 font-bold shadow-md shadow-crimson-800/25'
+                  : 'bg-obsidian-850 text-offwhite-300 hover:text-offwhite-100 hover:bg-obsidian-800 border border-crimson-800/20'
               }`}
             >
               {dept === 'All' ? t('সকল বিভাগ', 'All Departments') : dept}
@@ -345,11 +345,11 @@ export const SessionHistoryView: React.FC = () => {
       </div>
 
       {/* Sessions Table */}
-      <div className="glass-panel rounded-3xl p-5 border border-white/5 space-y-3 overflow-hidden">
+      <div className="glass-panel rounded-3xl p-5 border border-crimson-800/25 space-y-3 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-sans">
             <thead>
-              <tr className="border-b border-navy-700 text-slate-400 font-mono">
+              <tr className="border-b border-crimson-800/40 text-offwhite-400 font-mono">
                 <th className="py-3 px-4 font-semibold">{t('সেশন আইডি', 'Session ID')}</th>
                 <th className="py-3 px-4 font-semibold">{t('তারিখ ও সময়', 'Date & Time')}</th>
                 <th className="py-3 px-4 font-semibold">{t('স্থায়িত্ব', 'Duration')}</th>
@@ -358,30 +358,30 @@ export const SessionHistoryView: React.FC = () => {
                 <th className="py-3 px-4 font-semibold text-right">{t('অ্যাকশন', 'Actions')}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-navy-700/50">
+            <tbody className="divide-y divide-crimson-800/20">
               {filteredSessions.map((s) => (
-                <tr key={s.id} className="hover:bg-navy-800/40 transition">
-                  <td className="py-3.5 px-4 font-mono font-bold text-white">
+                <tr key={s.id} className="hover:bg-obsidian-850/60 transition">
+                  <td className="py-3.5 px-4 font-mono font-bold text-offwhite-100">
                     <div className="flex flex-col">
                       <span>{s.id}</span>
-                      <span className="text-[10px] text-teal-400 font-normal">{s.patientId}</span>
+                      <span className="text-[10px] text-crimson-400 font-normal">{s.patientId}</span>
                     </div>
                   </td>
-                  <td className="py-3.5 px-4 text-slate-300 font-mono">
+                  <td className="py-3.5 px-4 text-offwhite-300 font-mono">
                     <div>{s.date}</div>
-                    <div className="text-[10px] text-slate-500">{s.time}</div>
+                    <div className="text-[10px] text-offwhite-400">{s.time}</div>
                   </td>
-                  <td className="py-3.5 px-4 text-slate-400 font-mono">
+                  <td className="py-3.5 px-4 text-offwhite-400 font-mono">
                     {s.duration}
                   </td>
-                  <td className="py-3.5 px-4 text-slate-200">
+                  <td className="py-3.5 px-4 text-offwhite-200">
                     {s.department}
                   </td>
                   <td className="py-3.5 px-4">
                     <span className={`text-[10px] font-mono px-2 py-0.5 rounded-md font-semibold border ${
                       s.status === 'Completed'
-                        ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
-                        : 'bg-rose-500/15 text-rose-300 border-rose-500/30'
+                        ? 'bg-emerald-950/40 text-emerald-300 border-emerald-700/40'
+                        : 'bg-crimson-900/50 text-crimson-200 border-crimson-600'
                     }`}>
                       {s.status}
                     </span>
@@ -390,21 +390,21 @@ export const SessionHistoryView: React.FC = () => {
                     <div className="flex items-center justify-end space-x-1.5">
                       <button
                         onClick={() => setSelectedSession(s)}
-                        className="p-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-teal-400 transition"
+                        className="p-1.5 rounded-lg bg-obsidian-850 hover:bg-obsidian-800 text-crimson-400 border border-crimson-800/30 transition"
                         title={t('ট্রান্সক্রিপ্ট দেখুন', 'View Transcript')}
                       >
                         <Eye className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handlePrintPDF(s)}
-                        className="p-1.5 rounded-lg bg-navy-800 hover:bg-navy-700 text-rose-300 transition"
+                        className="p-1.5 rounded-lg bg-obsidian-850 hover:bg-obsidian-800 text-crimson-300 border border-crimson-800/30 transition"
                         title={t('PDF সামারি প্রিন্ট করুন', 'Print PDF Summary')}
                       >
                         <FileDown className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteSession(s.id)}
-                        className="p-1.5 rounded-lg bg-navy-800 hover:bg-rose-900/50 text-slate-500 hover:text-rose-400 transition"
+                        className="p-1.5 rounded-lg bg-obsidian-850 hover:bg-crimson-950/80 text-offwhite-400 hover:text-crimson-300 border border-crimson-800/30 transition"
                         title={t('মুছে ফেলুন', 'Delete Record')}
                       >
                         <Trash2 className="w-4 h-4" />
@@ -420,24 +420,24 @@ export const SessionHistoryView: React.FC = () => {
 
       {/* Transcript Detail Modal */}
       {selectedSession && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fade-in">
-          <div className="glass-panel rounded-3xl p-6 sm:p-7 max-w-2xl w-full border border-teal-500/30 space-y-5 bg-navy-900 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
+          <div className="glass-panel rounded-3xl p-6 sm:p-7 max-w-2xl w-full border border-crimson-800/40 space-y-5 bg-obsidian-900 shadow-2xl relative max-h-[90vh] overflow-y-auto">
             
             <button
               onClick={() => setSelectedSession(null)}
-              className="absolute top-5 right-5 p-2 rounded-full bg-navy-800 text-slate-400 hover:text-white hover:bg-navy-700 transition"
+              className="absolute top-5 right-5 p-2 rounded-full bg-obsidian-850 text-offwhite-400 hover:text-offwhite-100 hover:bg-obsidian-800 transition"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div>
-              <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-teal-500/15 text-teal-300 border border-teal-500/30 font-bold uppercase">
+              <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-crimson-900/30 text-crimson-300 border border-crimson-700/40 font-bold uppercase">
                 {selectedSession.id} • {selectedSession.patientId}
               </span>
-              <h2 className="text-xl font-bold text-white font-bengali pt-1">
+              <h2 className="text-xl font-bold text-offwhite-100 font-bengali pt-1">
                 {t('কনসালটেশন ট্রান্সক্রিপ্ট বিবরণী', 'Clinical Consultation Transcript')}
               </h2>
-              <div className="flex items-center space-x-3 text-xs text-slate-400 font-mono mt-0.5">
+              <div className="flex items-center space-x-3 text-xs text-offwhite-400 font-mono mt-0.5">
                 <span>{selectedSession.date}</span>
                 <span>•</span>
                 <span>{selectedSession.department}</span>
@@ -453,30 +453,30 @@ export const SessionHistoryView: React.FC = () => {
                     key={i}
                     className={`p-3.5 rounded-2xl border space-y-1.5 ${
                       isPatient 
-                        ? 'bg-navy-950/80 border-teal-500/30 mr-4' 
-                        : 'bg-navy-800/80 border-navy-700 ml-4'
+                        ? 'bg-obsidian-950/90 border-crimson-700/40 mr-4' 
+                        : 'bg-obsidian-850/90 border-crimson-800/30 ml-4'
                     }`}
                   >
                     <div className="flex items-center justify-between text-[11px] font-mono">
-                      <span className={isPatient ? 'text-teal-400 font-bold flex items-center gap-1' : 'text-slate-300 font-bold flex items-center gap-1'}>
+                      <span className={isPatient ? 'text-crimson-400 font-bold flex items-center gap-1' : 'text-offwhite-200 font-bold flex items-center gap-1'}>
                         {isPatient ? <User className="w-3.5 h-3.5" /> : <Stethoscope className="w-3.5 h-3.5" />}
                         <span>{isPatient ? t('রোগীর ইশারা (BdSL অনুবাদ)', 'Patient (BdSL Translated)') : t('চিকিৎসকের বার্তা', 'Physician Message')}</span>
                       </span>
-                      <span className="text-slate-500">{msg.timestamp}</span>
+                      <span className="text-offwhite-400">{msg.timestamp}</span>
                     </div>
 
-                    <p className="text-sm font-bold text-white font-bengali">
+                    <p className="text-sm font-bold text-offwhite-100 font-bengali">
                       "{msg.textBn}"
                     </p>
-                    <p className="text-xs text-slate-400 italic">
+                    <p className="text-xs text-offwhite-400 italic">
                       "{msg.textEn}"
                     </p>
 
                     {msg.tokens && (
                       <div className="flex items-center gap-1 pt-1">
-                        <span className="text-[10px] text-slate-500 font-mono">Tokens:</span>
+                        <span className="text-[10px] text-offwhite-400 font-mono">Tokens:</span>
                         {msg.tokens.map((tok, idx) => (
-                          <span key={idx} className="text-[10px] px-1.5 py-0.2 rounded bg-navy-900 text-teal-300 font-mono">
+                          <span key={idx} className="text-[10px] px-1.5 py-0.2 rounded bg-obsidian-850 text-crimson-300 border border-crimson-800/30 font-mono">
                             [{tok}]
                           </span>
                         ))}
@@ -488,7 +488,7 @@ export const SessionHistoryView: React.FC = () => {
             </div>
 
             {/* Bottom Actions */}
-            <div className="flex items-center justify-between pt-3 border-t border-navy-700">
+            <div className="flex items-center justify-between pt-3 border-t border-crimson-800/30">
               <span className="text-xs font-mono text-emerald-400 flex items-center gap-1">
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Zero-Retention RAM Policy Enforced</span>
@@ -497,14 +497,14 @@ export const SessionHistoryView: React.FC = () => {
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() => handlePrintPDF(selectedSession)}
-                  className="flex items-center space-x-1.5 px-4 py-2 rounded-xl btn-teal-primary text-xs font-bold font-sans transition shadow-md"
+                  className="flex items-center space-x-1.5 px-4 py-2 rounded-xl btn-crimson text-xs font-bold font-sans transition shadow-md"
                 >
                   <FileText className="w-3.5 h-3.5" />
                   <span>{t('অফিসিয়াল PDF রিপোর্ট', 'Download PDF Report')}</span>
                 </button>
                 <button
                   onClick={() => handleExportJSON(selectedSession)}
-                  className="flex items-center space-x-1.5 px-3 py-2 rounded-xl bg-navy-800 hover:bg-navy-750 text-slate-300 hover:text-white text-xs font-mono border border-navy-700 transition"
+                  className="flex items-center space-x-1.5 px-3 py-2 rounded-xl btn-obsidian-secondary text-offwhite-300 hover:text-offwhite-100 text-xs font-mono transition"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>JSON</span>

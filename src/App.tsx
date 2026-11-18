@@ -64,7 +64,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-navy-950 bg-mesh-glow text-slate-100 flex font-sans selection:bg-teal-500 selection:text-white">
+    <div className="min-h-screen bg-obsidian-900 bg-mesh-glow text-offwhite-100 flex font-sans selection:bg-crimson-800 selection:text-offwhite-100">
       
       {/* 1. Collapsible Desktop Sidebar + Mobile Drawer */}
       <NavigationSidebar 
@@ -101,19 +101,19 @@ function AppContent() {
         </main>
 
         {/* Clinical Clean Footer */}
-        <footer className="bg-navy-900 border-t border-navy-700/60 py-6 px-4 sm:px-6 lg:px-8 text-xs text-slate-400 mt-auto">
+        <footer className="bg-obsidian-950 border-t border-crimson-800/30 py-6 px-4 sm:px-6 lg:px-8 text-xs text-offwhite-400 mt-auto">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
             
             <div className="flex flex-col items-center md:items-start space-y-0.5">
               <div className="flex items-center space-x-2">
-                <span className="font-bold text-white font-bengali text-sm">
+                <span className="font-bold text-offwhite-100 font-bengali text-sm">
                   ভাষা দৃষ্টি (Bhasha-Drishti)
                 </span>
-                <span className="px-2 py-0.2 rounded-full bg-teal-500/15 text-teal-300 font-mono text-[10px] border border-teal-500/30">
+                <span className="px-2 py-0.2 rounded-full bg-crimson-900/40 text-crimson-300 font-mono text-[10px] border border-crimson-700/50">
                   SmartHospital AI
                 </span>
               </div>
-              <p className="text-slate-400 text-center md:text-left text-[11px]">
+              <p className="text-offwhite-400 text-center md:text-left text-[11px]">
                 {t(
                   'টিম Tensor_Titan দ্বারা International AI Builders Congress (CloudCamp Bangladesh)-এর জন্য নির্মিত।',
                   'Engineered by Team Tensor_Titan for International AI Builders Congress (CloudCamp Bangladesh).'
@@ -122,21 +122,21 @@ function AppContent() {
             </div>
 
             <div className="flex items-center space-x-3">
-              <div className="text-[11px] font-mono text-slate-400 hidden sm:block">
-                Lead Builder: <strong className="text-teal-400">MD. Emon Hossain</strong>
+              <div className="text-[11px] font-mono text-offwhite-400 hidden sm:block">
+                Lead Builder: <strong className="text-crimson-400">MD. Emon Hossain</strong>
               </div>
               <a
                 href="https://github.com/mohammademon10/Bhasha-Drishti"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-navy-800 hover:bg-navy-750 text-white transition font-mono border border-navy-700"
+                className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-offwhite-100 transition font-mono border border-crimson-800/30"
               >
-                <Github className="w-3.5 h-3.5 text-white" />
+                <Github className="w-3.5 h-3.5 text-offwhite-100" />
                 <span>GitHub</span>
               </a>
               <button
                 onClick={() => handleViewChange('docs')}
-                className="px-3 py-1.5 rounded-xl bg-navy-800 hover:bg-navy-750 text-teal-300 transition font-mono border border-teal-500/30"
+                className="px-3 py-1.5 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-crimson-300 transition font-mono border border-crimson-800/40"
               >
                 /docs
               </button>

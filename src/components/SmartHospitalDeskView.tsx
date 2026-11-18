@@ -157,9 +157,9 @@ export const SmartHospitalDeskView: React.FC = () => {
     const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     const messagesHtml = messages.map((m, idx) => `
-      <div style="margin-bottom: 12px; padding: 12px 16px; border-radius: 8px; border-left: 4px solid ${m.sender === 'patient' ? '#E94560' : '#3E2F58'}; background: #F8FAFC;">
+      <div style="margin-bottom: 12px; padding: 12px 16px; border-radius: 8px; border-left: 4px solid ${m.sender === 'patient' ? '#8B0D1A' : '#181415'}; background: #F8FAFC;">
         <div style="display: flex; justify-content: space-between; font-size: 11px; color: #64748B; font-family: monospace; margin-bottom: 5px;">
-          <span style="font-weight: bold; color: ${m.sender === 'patient' ? '#C2185B' : '#312E81'};">
+          <span style="font-weight: bold; color: ${m.sender === 'patient' ? '#8B0D1A' : '#181415'};">
             #${idx + 1} ${m.sender === 'patient' ? '🧏 রোগী (BdSL সাইন থেকে অনূদিত)' : '👨‍⚕️ চিকিৎসক / পরামর্শক'}
           </span>
           <span>${m.timestamp}</span>
@@ -198,7 +198,7 @@ export const SmartHospitalDeskView: React.FC = () => {
             line-height: 1.4;
           }
           .header {
-            border-bottom: 2px solid #E94560;
+            border-bottom: 2px solid #8B0D1A;
             padding-bottom: 12px;
             margin-bottom: 16px;
             display: flex;
@@ -211,8 +211,8 @@ export const SmartHospitalDeskView: React.FC = () => {
             gap: 12px;
           }
           .logo-box {
-            background: linear-gradient(135deg, #3E2F58, #E94560);
-            color: #FFFFFF;
+            background: linear-gradient(135deg, #0B0B0B, #8B0D1A);
+            color: #F5F2ED;
             font-family: 'Hind Siliguri', sans-serif;
             font-size: 26px;
             font-weight: 900;
@@ -243,8 +243,8 @@ export const SmartHospitalDeskView: React.FC = () => {
           }
           .badge {
             display: inline-block;
-            background: #FFE4E6;
-            color: #E11D48;
+            background: #FDE4E7;
+            color: #8B0D1A;
             font-weight: bold;
             padding: 2px 8px;
             border-radius: 12px;
@@ -406,10 +406,10 @@ export const SmartHospitalDeskView: React.FC = () => {
 
         {type === 'pointing' && (
           <g strokeWidth="2.5" strokeLinecap="round">
-            <line x1="50" y1="45" x2="50" y2="15" stroke="#E94560" strokeWidth="3" />
-            <circle cx="50" cy="15" r="3" fill="#E94560" />
-            <path d="M42 55 Q 38 48 45 48" stroke="#64748B" />
-            <path d="M58 55 Q 62 48 55 48" stroke="#64748B" />
+            <line x1="50" y1="45" x2="50" y2="15" stroke="#8B0D1A" strokeWidth="3" />
+            <circle cx="50" cy="15" r="3" fill="#8B0D1A" />
+            <path d="M42 55 Q 38 48 45 48" stroke="#8A8275" />
+            <path d="M58 55 Q 62 48 55 48" stroke="#8A8275" />
           </g>
         )}
 
@@ -418,20 +418,20 @@ export const SmartHospitalDeskView: React.FC = () => {
         )}
 
         {type === 'two_hands_cross' && (
-          <g strokeWidth="2.5" strokeLinecap="round" stroke="#F59E0B">
+          <g strokeWidth="2.5" strokeLinecap="round" stroke="#D97706">
             <line x1="30" y1="30" x2="70" y2="70" />
             <line x1="70" y1="30" x2="30" y2="70" />
           </g>
         )}
 
         {type === 'chest_touch' && (
-          <g strokeWidth="2" stroke="#E94560">
-            <circle cx="50" cy="50" r="18" fill="rgba(233,69,96,0.15)" />
-            <path d="M42 48 Q 50 40 58 48 Q 50 62 42 48" fill="#E94560" />
+          <g strokeWidth="2" stroke="#8B0D1A">
+            <circle cx="50" cy="50" r="18" fill="rgba(139,13,26,0.18)" />
+            <path d="M42 48 Q 50 40 58 48 Q 50 62 42 48" fill="#8B0D1A" />
           </g>
         )}
 
-        <path d="M50 82 L 56 88 L 44 88 Z" fill="#E94560" />
+        <path d="M50 82 L 56 88 L 44 88 Z" fill="#8B0D1A" />
       </svg>
     );
   };

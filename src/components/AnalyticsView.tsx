@@ -16,7 +16,7 @@ export const AnalyticsView: React.FC = () => {
       valueEn: '93.4%',
       desc: 'BdSLW60 ৬০টি ক্লিনিক্যাল ক্লাসের উপর পরীক্ষিত',
       badge: 'Benchmark',
-      badgeColor: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+      badgeColor: 'bg-crimson-900/30 text-crimson-300 border-crimson-700/40'
     },
     {
       labelBn: 'ম্যাক্রো এফ১-স্কোর',
@@ -25,7 +25,7 @@ export const AnalyticsView: React.FC = () => {
       valueEn: '0.912',
       desc: 'ভারসাম্যপূর্ণ নির্ভুলতা ও উচ্চ রিকল হার',
       badge: 'Balanced',
-      badgeColor: 'bg-teal-500/15 text-teal-300 border-teal-500/30'
+      badgeColor: 'bg-crimson-900/40 text-offwhite-200 border-crimson-700/40'
     },
     {
       labelBn: 'এন্ড-টু-এন্ড ল্যাটেন্সি',
@@ -34,7 +34,7 @@ export const AnalyticsView: React.FC = () => {
       valueEn: '238ms',
       desc: 'আন্তর্জাতিক <৩০০ms SLA বাজেটের চেয়ে দ্রুত',
       badge: 'Strict SLA Pass',
-      badgeColor: 'bg-blue-500/15 text-blue-300 border-blue-500/30'
+      badgeColor: 'bg-emerald-950/40 text-emerald-300 border-emerald-700/40'
     },
     {
       labelBn: 'ফলস পজিটিভ হ্যালুসিনেশন',
@@ -43,15 +43,15 @@ export const AnalyticsView: React.FC = () => {
       valueEn: '< 0.5%',
       desc: '০.৮০ কনফিডেন্স অ্যাবস্টেনশন গেট দ্বারা সুরক্ষিত',
       badge: 'Protected',
-      badgeColor: 'bg-purple-500/15 text-purple-300 border-purple-500/30'
+      badgeColor: 'bg-crimson-950/60 text-crimson-300 border-crimson-800/40'
     }
   ];
 
   const latencyBreakdown = [
-    { stage: 'WebRTC Ingestion & Buffering', ms: 18, pct: '7.5%', color: 'bg-teal-500' },
-    { stage: 'MediaPipe 3D Keypoint Extraction', ms: 65, pct: '27.3%', color: 'bg-emerald-500' },
-    { stage: 'PyTorch CNN-BiLSTM Classifier', ms: 110, pct: '46.2%', color: 'bg-blue-500' },
-    { stage: 'Edge Bengali Speech Synthesizer', ms: 45, pct: '19.0%', color: 'bg-purple-500' }
+    { stage: 'WebRTC Ingestion & Buffering', ms: 18, pct: '7.5%', color: 'bg-crimson-800' },
+    { stage: 'MediaPipe 3D Keypoint Extraction', ms: 65, pct: '27.3%', color: 'bg-crimson-700' },
+    { stage: 'PyTorch CNN-BiLSTM Classifier', ms: 110, pct: '46.2%', color: 'bg-crimson-600' },
+    { stage: 'Edge Bengali Speech Synthesizer', ms: 45, pct: '19.0%', color: 'bg-crimson-500' }
   ];
 
   const categoryAccuracies = [
@@ -73,17 +73,17 @@ export const AnalyticsView: React.FC = () => {
     <div className="space-y-6 animate-fade-in">
 
       {/* Top Banner */}
-      <div className="glass-panel rounded-3xl p-6 border border-teal-500/20 bg-gradient-to-r from-navy-900 to-navy-850 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="glass-panel rounded-3xl p-6 border border-crimson-800/30 bg-gradient-to-r from-obsidian-950 via-obsidian-900 to-obsidian-850 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
-            <span className="p-2 rounded-xl bg-teal-500/10 text-teal-400">
+            <span className="p-2 rounded-xl bg-crimson-900/30 text-crimson-400">
               <BarChart3 className="w-5 h-5" />
             </span>
-            <h1 className="text-xl sm:text-2xl font-bold text-white font-bengali">
+            <h1 className="text-xl sm:text-2xl font-bold text-offwhite-100 font-bengali">
               {t('এআই মডেল কার্যকারিতা ও এসএলএ পারফরম্যান্স অ্যানালিটিক্স', 'AI Model Performance & SLA Analytics')}
             </h1>
           </div>
-          <p className="text-xs sm:text-sm text-slate-300">
+          <p className="text-xs sm:text-sm text-offwhite-300">
             {t(
               'BdSLW60 ক্লিনিক্যাল বেঞ্চমার্কে মূল্যায়িত নিউরাল নেটওয়ার্কের বৈজ্ঞানিক নির্ভুলতা ও প্রসেসিং ল্যাটেন্সি পরিমাপ।',
               'Rigorous scientific evaluation on the 12,400-clip BdSLW60 benchmark dataset with 238ms latency budget.'
@@ -91,8 +91,8 @@ export const AnalyticsView: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center space-x-2 text-xs font-mono text-purple-300 px-3.5 py-1.5 rounded-xl bg-navy-800 border border-purple-500/30">
-          <Award className="w-4 h-4 text-purple-400" />
+        <div className="flex items-center space-x-2 text-xs font-mono text-crimson-300 px-3.5 py-1.5 rounded-xl bg-obsidian-850 border border-crimson-800/40">
+          <Award className="w-4 h-4 text-crimson-400" />
           <span>{t('গবেষণা-গ্রেড বেঞ্চমার্ক ডাটা', 'Research Benchmark Verified')}</span>
         </div>
       </div>
@@ -100,20 +100,20 @@ export const AnalyticsView: React.FC = () => {
       {/* 4 Core Performance Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         {coreMetrics.map((m, idx) => (
-          <div key={idx} className="glass-panel rounded-2xl p-5 border border-white/5 space-y-3">
+          <div key={idx} className="glass-panel rounded-2xl p-5 border border-crimson-800/20 space-y-3">
             <div className="flex items-center justify-between">
               <span className={`text-[10px] font-mono px-2 py-0.5 rounded-md font-semibold border ${m.badgeColor}`}>
                 {m.badge}
               </span>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono">
+              <div className="text-2xl sm:text-3xl font-extrabold text-offwhite-100 font-mono">
                 {t(m.value, m.valueEn)}
               </div>
-              <div className="text-xs font-bold text-slate-300 font-sans mt-0.5">
+              <div className="text-xs font-bold text-offwhite-300 font-sans mt-0.5">
                 {t(m.labelBn, m.labelEn)}
               </div>
-              <div className="text-[11px] text-slate-400 font-sans mt-1">
+              <div className="text-[11px] text-offwhite-400 font-sans mt-1">
                 {m.desc}
               </div>
             </div>
@@ -122,40 +122,40 @@ export const AnalyticsView: React.FC = () => {
       </div>
 
       {/* 238ms Latency SLA Budget Visualizer */}
-      <div className="glass-panel rounded-3xl p-6 border border-white/5 space-y-5">
+      <div className="glass-panel rounded-3xl p-6 border border-crimson-800/25 space-y-5">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <div>
-            <h2 className="text-base font-bold text-white font-bengali flex items-center gap-2">
-              <Zap className="w-4 h-4 text-teal-400" />
+            <h2 className="text-base font-bold text-offwhite-100 font-bengali flex items-center gap-2">
+              <Zap className="w-4 h-4 text-crimson-400" />
               <span>{t('এন্ড-টু-এন্ড ল্যাটেন্সি বাজেট ব্রেকডাউন (Strict <300ms SLA)', 'End-to-End Latency SLA Budget (238ms Total)')}</span>
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-offwhite-400 mt-0.5">
               {t('ক্যামেরা ফ্রেম ইনজেশন থেকে বাংলা অডিও স্পিচ আউটপুট পর্যন্ত প্রক্রিয়াকরণ সময়।', 'Step-by-step frame ingestion to synthesized Bengali speech audio budget.')}
             </p>
           </div>
-          <div className="text-xs font-mono font-bold text-emerald-400 px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30">
+          <div className="text-xs font-mono font-bold text-emerald-400 px-3 py-1 rounded-lg bg-emerald-950/40 border border-emerald-700/40">
             TOTAL: 238ms / 300ms SLA [PASS]
           </div>
         </div>
 
         {/* Stacked Progress Bar */}
-        <div className="w-full h-5 rounded-full bg-navy-950 p-1 flex overflow-hidden border border-navy-700">
-          <div style={{ width: '7.5%' }} className="bg-teal-500 h-full rounded-l-full" title="WebRTC 18ms" />
-          <div style={{ width: '27.3%' }} className="bg-emerald-500 h-full" title="MediaPipe 65ms" />
-          <div style={{ width: '46.2%' }} className="bg-blue-500 h-full" title="BiLSTM 110ms" />
-          <div style={{ width: '19.0%' }} className="bg-purple-500 h-full rounded-r-full" title="TTS 45ms" />
+        <div className="w-full h-5 rounded-full bg-obsidian-950 p-1 flex overflow-hidden border border-crimson-800/40">
+          <div style={{ width: '7.5%' }} className="bg-crimson-800 h-full rounded-l-full" title="WebRTC 18ms" />
+          <div style={{ width: '27.3%' }} className="bg-crimson-700 h-full" title="MediaPipe 65ms" />
+          <div style={{ width: '46.2%' }} className="bg-crimson-600 h-full" title="BiLSTM 110ms" />
+          <div style={{ width: '19.0%' }} className="bg-crimson-500 h-full rounded-r-full" title="TTS 45ms" />
         </div>
 
         {/* Legend */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
           {latencyBreakdown.map((item, idx) => (
-            <div key={idx} className="p-3 rounded-xl bg-navy-950 border border-navy-700/60 space-y-1">
+            <div key={idx} className="p-3 rounded-xl bg-obsidian-950 border border-crimson-800/30 space-y-1">
               <div className="flex items-center space-x-2">
                 <span className={`w-3 h-3 rounded-full ${item.color}`} />
-                <span className="text-xs font-bold text-white font-mono">{item.ms}ms</span>
-                <span className="text-[10px] text-slate-400 font-mono">({item.pct})</span>
+                <span className="text-xs font-bold text-offwhite-100 font-mono">{item.ms}ms</span>
+                <span className="text-[10px] text-offwhite-400 font-mono">({item.pct})</span>
               </div>
-              <div className="text-[11px] text-slate-300 leading-tight">
+              <div className="text-[11px] text-offwhite-300 leading-tight">
                 {item.stage}
               </div>
             </div>
@@ -167,9 +167,9 @@ export const AnalyticsView: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Left 6 Cols: Category Accuracy Bar Chart */}
-        <div className="lg:col-span-6 glass-panel rounded-3xl p-6 border border-white/5 space-y-4">
-          <h2 className="text-base font-bold text-white font-bengali flex items-center gap-2">
-            <Activity className="w-4 h-4 text-teal-400" />
+        <div className="lg:col-span-6 glass-panel rounded-3xl p-6 border border-crimson-800/25 space-y-4">
+          <h2 className="text-base font-bold text-offwhite-100 font-bengali flex items-center gap-2">
+            <Activity className="w-4 h-4 text-crimson-400" />
             <span>{t('ক্লিনিক্যাল সাইন ক্যাটাগরিভিত্তিক নির্ভুলতা', 'Accuracy by Clinical Sign Category')}</span>
           </h2>
 
@@ -177,16 +177,16 @@ export const AnalyticsView: React.FC = () => {
             {categoryAccuracies.map((cat, idx) => (
               <div key={idx} className="space-y-1">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-200 font-sans font-medium">{cat.category}</span>
+                  <span className="text-offwhite-200 font-sans font-medium">{cat.category}</span>
                   <div className="flex items-center space-x-2 font-mono">
-                    <span className="text-teal-400 font-bold">{cat.acc}%</span>
-                    <span className="text-[10px] text-slate-500">({cat.samples})</span>
+                    <span className="text-crimson-400 font-bold">{cat.acc}%</span>
+                    <span className="text-[10px] text-offwhite-400">({cat.samples})</span>
                   </div>
                 </div>
-                <div className="w-full h-2 rounded-full bg-navy-950 overflow-hidden border border-navy-700/60">
+                <div className="w-full h-2 rounded-full bg-obsidian-950 overflow-hidden border border-crimson-800/30">
                   <div 
                     style={{ width: `${cat.acc}%` }}
-                    className="h-full bg-gradient-to-r from-teal-500 to-emerald-400 rounded-full"
+                    className="h-full bg-gradient-to-r from-crimson-800 to-crimson-500 rounded-full"
                   />
                 </div>
               </div>
@@ -195,10 +195,10 @@ export const AnalyticsView: React.FC = () => {
         </div>
 
         {/* Right 6 Cols: Model Context Protocol (FastMCP) Tools Telemetry */}
-        <div className="lg:col-span-6 glass-panel rounded-3xl p-6 border border-white/5 space-y-4">
+        <div className="lg:col-span-6 glass-panel rounded-3xl p-6 border border-crimson-800/25 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-bold text-white font-bengali flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-blue-400" />
+            <h2 className="text-base font-bold text-offwhite-100 font-bengali flex items-center gap-2">
+              <Cpu className="w-4 h-4 text-crimson-400" />
               <span>{t('FastMCP টুল কলিং ও সার্ভার মেমোরি', 'FastMCP Tool Calling Telemetry')}</span>
             </h2>
             <span className="text-[10px] font-mono text-emerald-400">Error Rate: 0.12%</span>
@@ -207,23 +207,23 @@ export const AnalyticsView: React.FC = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-mono">
               <thead>
-                <tr className="border-b border-navy-700 text-slate-400">
+                <tr className="border-b border-crimson-800/40 text-offwhite-400">
                   <th className="py-2.5 px-3 font-semibold">Tool Name</th>
                   <th className="py-2.5 px-3 font-semibold">Total Invocations</th>
                   <th className="py-2.5 px-3 font-semibold">Latency</th>
                   <th className="py-2.5 px-3 font-semibold text-right">Reliability</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-navy-700/50">
+              <tbody className="divide-y divide-crimson-800/20">
                 {mcpTools.map((t, idx) => (
-                  <tr key={idx} className="hover:bg-navy-800/40 transition">
-                    <td className="py-2.5 px-3 text-teal-300 font-bold">
+                  <tr key={idx} className="hover:bg-obsidian-850/60 transition">
+                    <td className="py-2.5 px-3 text-crimson-300 font-bold">
                       {t.tool}
                     </td>
-                    <td className="py-2.5 px-3 text-slate-300">
+                    <td className="py-2.5 px-3 text-offwhite-200">
                       {t.calls}
                     </td>
-                    <td className="py-2.5 px-3 text-slate-400">
+                    <td className="py-2.5 px-3 text-offwhite-400">
                       {t.latency}
                     </td>
                     <td className="py-2.5 px-3 text-right text-emerald-400 font-bold">
@@ -235,8 +235,8 @@ export const AnalyticsView: React.FC = () => {
             </table>
           </div>
 
-          <div className="p-3 rounded-xl bg-navy-950 border border-navy-700 text-[11px] text-slate-300 flex items-center space-x-2">
-            <ShieldCheck className="w-4 h-4 text-teal-400 shrink-0" />
+          <div className="p-3 rounded-xl bg-obsidian-950 border border-crimson-800/30 text-[11px] text-offwhite-300 flex items-center space-x-2">
+            <ShieldCheck className="w-4 h-4 text-crimson-400 shrink-0" />
             <span>
               {t('প্রোডাকশন-গ্রেড FastMCP সার্ভার সকল পাইপলাইন টাস্ককে বিচ্ছিন্ন স্যান্ডবক্সে এক্সিকিউট করে।', 'Production FastMCP server sandboxes all keypoint and audio pipeline tools.')}
             </span>

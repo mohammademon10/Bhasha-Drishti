@@ -8,10 +8,10 @@
 </p>
 
 <p align="center">
-  <a href="https://bhashadrishti.vercel.app"><img src="https://img.shields.io/badge/Live%20Demo-Vercel-E94560?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo on Vercel" /></a>
-  <a href="#-visual-system-architecture--diagrams"><img src="https://img.shields.io/badge/Architecture-Mermaid%20Diagrams-3E2F58?style=for-the-badge&logo=diagramsdotnet&logoColor=white" alt="Architecture Diagrams" /></a>
-  <a href="docs/"><img src="https://img.shields.io/badge/Docs%20Portal-15%20Specifications-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white" alt="Docs Portal" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-F59E0B?style=for-the-badge" alt="License MIT" /></a>
+  <a href="https://bhashadrishti.vercel.app"><img src="https://img.shields.io/badge/Live%20Demo-Vercel-8B0D1A?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo on Vercel" /></a>
+  <a href="#-visual-system-architecture--diagrams"><img src="https://img.shields.io/badge/Architecture-Mermaid%20Diagrams-0B0B0B?style=for-the-badge&logo=diagramsdotnet&logoColor=white" alt="Architecture Diagrams" /></a>
+  <a href="docs/"><img src="https://img.shields.io/badge/Docs%20Portal-15%20Specifications-8B0D1A?style=for-the-badge&logo=markdown&logoColor=white" alt="Docs Portal" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/Palette-Clean%20%E2%80%A2%20Premium%20%E2%80%A2%20Timeless-0B0B0B?style=for-the-badge" alt="Clean Premium Timeless" /></a>
 </p>
 
 ---
@@ -57,10 +57,10 @@ The following flowchart illustrates how Bhasha Drishti seamlessly bridges patien
 
 ```mermaid
 flowchart TD
-    classDef patient fill:#2A1436,stroke:#E94560,stroke-width:2px,color:#FFFFFF;
-    classDef cv fill:#1E142D,stroke:#FF5E7E,stroke-width:2px,color:#FFFFFF;
-    classDef ml fill:#25173B,stroke:#8B5CF6,stroke-width:2px,color:#FFFFFF;
-    classDef doctor fill:#1A112A,stroke:#F59E0B,stroke-width:2px,color:#FFFFFF;
+    classDef patient fill:#181415,stroke:#8B0D1A,stroke-width:2px,color:#F5F2ED;
+    classDef cv fill:#120F10,stroke:#C71B2F,stroke-width:2px,color:#F5F2ED;
+    classDef ml fill:#201A1C,stroke:#8B0D1A,stroke-width:2px,color:#F5F2ED;
+    classDef doctor fill:#0B0B0B,stroke:#F5F2ED,stroke-width:2px,color:#F5F2ED;
 
     subgraph DEAF_PATIENT["1. Deaf / Hard-of-Hearing Patient (Signing)"]
         P1["BdSL Gestures In Front of Camera"]:::patient
@@ -110,8 +110,8 @@ Detailed tensor transformation pipeline from raw pixels to word gloss prediction
 
 ```mermaid
 flowchart LR
-    classDef nodeStyle fill:#1C112C,stroke:#E94560,stroke-width:2px,color:#FFFFFF;
-    classDef latencyStyle fill:#2A1436,stroke:#FF5E7E,stroke-width:1.5px,color:#FFD1DC;
+    classDef nodeStyle fill:#181415,stroke:#8B0D1A,stroke-width:2px,color:#F5F2ED;
+    classDef latencyStyle fill:#120F10,stroke:#C71B2F,stroke-width:1.5px,color:#F5F2ED;
 
     A["Raw RGB Video Frame (640x480 @ 30 FPS)"]:::nodeStyle --> B["MediaPipe Holistic Landmark Detector"]:::nodeStyle
     B --> C["42 3D Keypoints (X, Y, Z, Visibility)"]:::nodeStyle
@@ -131,10 +131,10 @@ Our custom Model Context Protocol (`bhasha-drishti-bdsl-mcp`) server exposes 4 t
 
 ```mermaid
 flowchart TD
-    classDef client fill:#1C112C,stroke:#E94560,stroke-width:2px,color:#FFFFFF;
-    classDef mcp fill:#25173B,stroke:#C084FC,stroke-width:2px,color:#FFFFFF;
-    classDef tools fill:#3E2F58,stroke:#FF5E7E,stroke-width:2px,color:#FFFFFF;
-    classDef store fill:#140C20,stroke:#F59E0B,stroke-width:2px,color:#FFFFFF;
+    classDef client fill:#181415,stroke:#8B0D1A,stroke-width:2px,color:#F5F2ED;
+    classDef mcp fill:#201A1C,stroke:#C71B2F,stroke-width:2px,color:#F5F2ED;
+    classDef tools fill:#2B2225,stroke:#8B0D1A,stroke-width:2px,color:#F5F2ED;
+    classDef store fill:#120F10,stroke:#F5F2ED,stroke-width:2px,color:#F5F2ED;
 
     subgraph CLIENT_HOSTS["MCP Clients & Runtime Hosts"]
         C1["React Frontend (Edge Web App)"]:::client

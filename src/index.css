@@ -4,78 +4,91 @@
 
 @layer base {
   body {
-    background-color: #0A0F1D;
-    color: #F8FAFC;
+    background-color: #0B0B0B;
+    color: #F5F2ED;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    background-color: #8B0D1A;
+    color: #F5F2ED;
   }
 }
 
-/* Ambient Radial Mesh Background in Clinical Navy & Teal */
+/* Ambient Radial Mesh Background in Black (#0B0B0B) & Crimson Red (#8B0D1A) */
 .bg-mesh-glow {
+  background-color: #0B0B0B;
   background-image: 
-    radial-gradient(at 10% 10%, rgba(32, 182, 165, 0.08) 0px, transparent 40%),
-    radial-gradient(at 90% 15%, rgba(24, 44, 71, 0.45) 0px, transparent 50%),
-    radial-gradient(at 50% 90%, rgba(13, 148, 136, 0.06) 0px, transparent 60%),
-    radial-gradient(at 20% 80%, rgba(24, 44, 71, 0.35) 0px, transparent 45%);
+    radial-gradient(at 10% 10%, rgba(139, 13, 26, 0.28) 0px, transparent 45%),
+    radial-gradient(at 90% 15%, rgba(199, 27, 47, 0.18) 0px, transparent 50%),
+    radial-gradient(at 50% 90%, rgba(139, 13, 26, 0.22) 0px, transparent 55%),
+    radial-gradient(at 25% 75%, rgba(82, 7, 15, 0.35) 0px, transparent 40%);
 }
 
-/* Clinical SaaS Panel & Card Utility */
+/* Premium Obsidian Glass Card Utility */
 .glass-panel {
-  background: rgba(16, 24, 40, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(18, 14, 16, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(139, 13, 26, 0.24);
+  color: #F5F2ED;
 }
 
 .glass-panel-hover:hover {
-  background: rgba(20, 32, 52, 0.95);
-  border-color: rgba(32, 182, 165, 0.35);
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+  background: rgba(28, 22, 25, 0.95);
+  border-color: rgba(199, 27, 47, 0.45);
+  box-shadow: 0 10px 32px -4px rgba(139, 13, 26, 0.28);
 }
 
-/* Primary Clinical Action Button (Teal Gradient / Solid) */
-.btn-teal-primary {
-  background: linear-gradient(135deg, #0D9488 0%, #20B6A5 100%);
-  color: #ffffff;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 10px rgba(32, 182, 165, 0.25);
-}
-
-.btn-teal-primary:hover {
-  opacity: 0.95;
-  box-shadow: 0 4px 16px rgba(32, 182, 165, 0.4);
-  transform: translateY(-1px);
-}
-
-/* Legacy button mapping for existing components */
+/* Primary Crimson Red Button (#8B0D1A) */
+.btn-crimson,
+.btn-teal-primary,
 .btn-royal-aurora {
-  background: linear-gradient(135deg, #182C47 0%, #0D9488 100%);
-  color: #ffffff;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, #8B0D1A 0%, #C71B2F 100%);
+  color: #F5F2ED;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 3px 14px rgba(139, 13, 26, 0.35);
+  border: 1px solid rgba(245, 242, 237, 0.12);
 }
 
+.btn-crimson:hover,
+.btn-teal-primary:hover,
 .btn-royal-aurora:hover {
-  opacity: 0.95;
-  box-shadow: 0 4px 16px rgba(32, 182, 165, 0.35);
+  opacity: 0.96;
+  box-shadow: 0 6px 22px rgba(199, 27, 47, 0.45);
   transform: translateY(-1px);
 }
 
-/* Custom Scrollbars */
+/* Secondary Button in Obsidian with Crimson Border */
+.btn-obsidian-secondary {
+  background: #181415;
+  color: #F5F2ED;
+  border: 1px solid rgba(139, 13, 26, 0.35);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-obsidian-secondary:hover {
+  background: #251E21;
+  border-color: #8B0D1A;
+  color: #FFFFFF;
+}
+
+/* Custom Scrollbars in Black & Crimson Theme */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0F1D;
+  background: #0B0B0B;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #182C47;
+  background: #2B2225;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(139, 13, 26, 0.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #20B6A5;
+  background: #8B0D1A;
 }

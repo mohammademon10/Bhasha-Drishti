@@ -41,18 +41,18 @@ export const DocsPortalView: React.FC = () => {
     <div className="space-y-6">
 
       {/* Top Header Banner: Dynamic & Sleek */}
-      <div className="glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-xl border border-aurora-rose/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
+      <div className="glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-xl border border-crimson-800/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
         <div>
           <div className="flex items-center space-x-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-aurora-rose/15 text-rose-300 border border-aurora-rose/30 text-[11px] font-mono font-bold">
+            <span className="px-2.5 py-0.5 rounded-full bg-crimson-900/30 text-crimson-300 border border-crimson-700/40 text-[11px] font-mono font-bold">
               Official Whitepaper & Specs
             </span>
-            <span className="text-xs text-slate-400 font-mono">CloudCamp Bangladesh</span>
+            <span className="text-xs text-offwhite-400 font-mono">CloudCamp Bangladesh</span>
           </div>
-          <h1 className="text-base sm:text-lg font-bold text-white mt-1 font-bengali tracking-tight">
+          <h1 className="text-base sm:text-lg font-bold text-offwhite-100 mt-1 font-bengali tracking-tight">
             Bhasha Drishti (ভাষা দৃষ্টি) — {t('টেকনিক্যাল ডকুমেন্টেশন ও জাজ পোর্টাল', 'Technical Documentation & Judge Portal')}
           </h1>
-          <p className="text-xs sm:text-sm text-slate-300 font-sans mt-0.5">
+          <p className="text-xs sm:text-sm text-offwhite-300 font-sans mt-0.5">
             {t(
               'সম্পূর্ণ সিস্টেম আর্কিটেকচার, BdSLW60 ডেটাসেট বেঞ্চমার্ক, কাস্টম MCP সার্ভার টুলস ও রেসপন্সিবল এআই গভর্ন্যান্স।',
               'End-to-end system architecture, BdSLW60 benchmarks, custom MCP server specifications, and Responsible AI governance.'
@@ -60,19 +60,19 @@ export const DocsPortalView: React.FC = () => {
           </p>
         </div>
 
-        <span className="px-3.5 py-1.5 rounded-xl bg-royal-850 border border-aurora-rose/30 text-xs font-mono text-rose-300 font-bold self-end md:self-auto shrink-0">
+        <span className="px-3.5 py-1.5 rounded-xl bg-obsidian-850 border border-crimson-800/40 text-xs font-mono text-crimson-300 font-bold self-end md:self-auto shrink-0">
           100% Faithful Specs
         </span>
       </div>
 
-      {/* Sub-Navigation Tabs: Fluid, Single-Line, Dynamic in Royal Aurora */}
-      <div className="flex items-center space-x-1.5 p-1.5 glass-panel rounded-2xl border border-aurora-rose/15 overflow-x-auto scrollbar-none">
+      {/* Sub-Navigation Tabs */}
+      <div className="flex items-center space-x-1.5 p-1.5 glass-panel rounded-2xl border border-crimson-800/30 overflow-x-auto scrollbar-none">
         <button
           onClick={() => setActiveTab('architecture')}
           className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
             activeTab === 'architecture' 
-              ? 'bg-gradient-to-r from-royal-700 via-royal-600 to-aurora-rose text-white font-bold shadow-md shadow-aurora-rose/20' 
-              : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
+              ? 'bg-gradient-to-r from-crimson-800 to-crimson-600 text-offwhite-100 font-bold shadow-md shadow-crimson-800/25' 
+              : 'text-offwhite-400 hover:text-offwhite-100 hover:bg-obsidian-850'
           }`}
         >
           <Layers className="w-3.5 h-3.5 shrink-0" />
@@ -263,41 +263,41 @@ export const DocsPortalView: React.FC = () => {
               <span className="text-[11px] text-slate-400 font-mono">3D keypoints vs 1080p video</span>
             </div>
 
-            <div className="p-5 rounded-3xl glass-panel border border-white/10">
-              <span className="text-xs font-mono text-slate-400">Macro F1-Score</span>
-              <p className="text-3xl font-extrabold text-purple-400 font-mono mt-1">0.928</p>
-              <span className="text-[11px] text-slate-400 font-mono">60 dynamic BdSL classes</span>
+            <div className="p-5 rounded-3xl glass-panel border border-crimson-800/30">
+              <span className="text-xs font-mono text-offwhite-400">Macro F1-Score</span>
+              <p className="text-3xl font-extrabold text-crimson-400 font-mono mt-1">0.928</p>
+              <span className="text-[11px] text-offwhite-400 font-mono">60 dynamic BdSL classes</span>
             </div>
           </div>
 
-          <div className="glass-panel rounded-3xl p-6 shadow-xl space-y-4 border border-white/10">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <Database className="w-5 h-5 text-electric-cyan" />
+          <div className="glass-panel rounded-3xl p-6 shadow-xl space-y-4 border border-crimson-800/30">
+            <h2 className="text-lg font-bold text-offwhite-100 flex items-center gap-2">
+              <Database className="w-5 h-5 text-crimson-400" />
               <span>Research Dataset Provenance & Mapping</span>
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {RESEARCH_DATASETS.map((ds, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-space-950/80 border border-white/[0.08] space-y-2">
+                <div key={i} className="p-4 rounded-2xl bg-obsidian-950 border border-crimson-800/30 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-white font-mono">{ds.name}</span>
+                    <span className="text-sm font-bold text-offwhite-100 font-mono">{ds.name}</span>
                     <a 
                       href={ds.url} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-xs text-electric-cyan hover:underline flex items-center gap-1 font-mono"
+                      className="text-xs text-crimson-400 hover:underline flex items-center gap-1 font-mono"
                     >
                       <span>Citation</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 text-xs font-mono text-slate-300">
-                    <div>Classes: <strong className="text-electric-teal">{ds.classesCount}</strong></div>
-                    <div>Samples: <strong className="text-electric-cyan">{ds.samples}</strong></div>
-                    <div>Signers: <strong className="text-purple-300">{ds.signers}</strong></div>
+                  <div className="grid grid-cols-2 gap-2 text-xs font-mono text-offwhite-300">
+                    <div>Classes: <strong className="text-crimson-300">{ds.classesCount}</strong></div>
+                    <div>Samples: <strong className="text-offwhite-100">{ds.samples}</strong></div>
+                    <div>Signers: <strong className="text-crimson-400">{ds.signers}</strong></div>
                     <div>Sign Type: <strong className="text-amber-300">{ds.signType}</strong></div>
                   </div>
-                  <p className="text-xs text-slate-400 pt-1 border-t border-white/[0.06]">
+                  <p className="text-xs text-offwhite-400 pt-1 border-t border-crimson-800/20">
                     <strong>Role in Build:</strong> {ds.role}
                   </p>
                 </div>
@@ -427,12 +427,12 @@ export const DocsPortalView: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-5 rounded-3xl bg-space-950/80 border border-white/[0.08] space-y-2.5">
-              <span className="w-8 h-8 rounded-xl bg-electric-rose/20 text-rose-300 border border-rose-500/40 flex items-center justify-center font-bold text-xs">
+            <div className="p-5 rounded-3xl bg-obsidian-950 border border-crimson-800/30 space-y-2.5">
+              <span className="w-8 h-8 rounded-xl bg-crimson-900/40 text-crimson-300 border border-crimson-700/50 flex items-center justify-center font-bold text-xs">
                 03
               </span>
-              <h3 className="text-sm font-bold text-white">Clinical Boundaries (No Interpreter Replacement)</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <h3 className="text-sm font-bold text-offwhite-100">Clinical Boundaries (No Interpreter Replacement)</h3>
+              <p className="text-xs text-offwhite-400 leading-relaxed">
                 Bhasha Drishti is engineered for routine hospital service interactions (reception triage, appointment scheduling, pharmacy instructions). It is strictly prohibited as the sole communication channel for high-stakes surgical consent or emergency legal matters.
               </p>
             </div>
