@@ -138,55 +138,72 @@ export const LiveTranslatorView: React.FC = () => {
       } else {
         // High-Fidelity Clinical Hospital Consultation Room with Royal Aurora Ambience
         const roomGrad = ctx.createLinearGradient(0, 0, 0, height);
-        roomGrad.addColorStop(0, '#1C122C'); // Deep plum ceiling
-        roomGrad.addColorStop(0.55, '#140D20'); // Consultation wall
-        roomGrad.addColorStop(0.8, '#0F0918'); // Desk level
-        roomGrad.addColorStop(1, '#08040C'); // Hospital floor
+        roomGrad.addColorStop(0, '#1A0F2A'); // Deep royal violet ceiling
+        roomGrad.addColorStop(0.55, '#120A1E'); // Soft hospital consultation wall
+        roomGrad.addColorStop(0.82, '#0B0613'); // Clinical desk boundary
+        roomGrad.addColorStop(1, '#06030A'); // Floor
         ctx.fillStyle = roomGrad;
         ctx.fillRect(0, 0, width, height);
 
         // Soft Radial Aurora Backlight Behind Avatar
-        const backGlow = ctx.createRadialGradient(width / 2, height * 0.38, 20, width / 2, height * 0.38, 240);
-        backGlow.addColorStop(0, 'rgba(233, 69, 96, 0.22)'); // Aurora rose glow
-        backGlow.addColorStop(0.45, 'rgba(62, 47, 88, 0.28)'); // Royal purple glow
+        const backGlow = ctx.createRadialGradient(width / 2, height * 0.36, 30, width / 2, height * 0.36, 260);
+        backGlow.addColorStop(0, 'rgba(233, 69, 96, 0.18)'); // Aurora rose glow
+        backGlow.addColorStop(0.45, 'rgba(62, 47, 88, 0.25)'); // Royal purple glow
         backGlow.addColorStop(1, 'transparent');
         ctx.fillStyle = backGlow;
         ctx.fillRect(0, 0, width, height);
 
-        // Architectural Hospital Wall Dividing Line & Soft Perspective Grid
-        ctx.strokeStyle = 'rgba(233, 69, 96, 0.12)';
+        // Architectural Hospital Wall Horizon
+        ctx.strokeStyle = 'rgba(233, 69, 96, 0.1)';
         ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.moveTo(0, height * 0.76);
-        ctx.lineTo(width, height * 0.76);
+        ctx.moveTo(0, height * 0.78);
+        ctx.lineTo(width, height * 0.78);
         ctx.stroke();
 
-        // Medical Telemetry Monitor Glow in Top-Right Corner
-        ctx.fillStyle = 'rgba(23, 14, 38, 0.85)';
-        ctx.strokeStyle = 'rgba(233, 69, 96, 0.25)';
+        // Medical Telemetry Monitor Glow in Top-Right Corner (Fixed, Clean, Non-Overlapping Layout)
+        const monitorX = width - 156;
+        const monitorY = 16;
+        const monitorW = 140;
+        const monitorH = 54;
+
+        ctx.fillStyle = 'rgba(22, 13, 35, 0.9)';
+        ctx.strokeStyle = 'rgba(233, 69, 96, 0.3)';
         ctx.lineWidth = 1;
-        ctx.roundRect(width - 150, 18, 130, 48, 8);
+        ctx.roundRect(monitorX, monitorY, monitorW, monitorH, 8);
         ctx.fill();
         ctx.stroke();
 
-        // Mini ECG wave inside monitor
+        // Monitor Header: ECG and Heart Rate
+        ctx.fillStyle = '#FF5E7E';
+        ctx.font = '700 9px "JetBrains Mono"';
+        ctx.fillText('ECG 78 BPM', monitorX + 10, monitorY + 14);
+
+        // Monitor Confidence Score
+        ctx.fillStyle = '#E94560';
+        ctx.font = '700 9px "JetBrains Mono"';
+        ctx.fillText(`CONF: ${activePreset.confidence}%`, monitorX + 76, monitorY + 14);
+
+        // Animated ECG wave line
         ctx.strokeStyle = '#E94560';
         ctx.lineWidth = 1.5;
         ctx.beginPath();
-        const ecgY = 42;
-        const startX = width - 140;
+        const ecgY = monitorY + 32;
+        const startX = monitorX + 8;
         ctx.moveTo(startX, ecgY);
-        for (let i = 0; i < 110; i += 10) {
-          const phase = (step * 8 + i) % 60;
+        for (let i = 0; i < 124; i += 8) {
+          const phase = (step * 8 + i) % 64;
           let yOffset = 0;
-          if (phase > 20 && phase < 26) yOffset = -12;
-          else if (phase >= 26 && phase < 32) yOffset = 8;
+          if (phase > 18 && phase < 24) yOffset = -10;
+          else if (phase >= 24 && phase < 30) yOffset = 7;
           ctx.lineTo(startX + i, ecgY + yOffset);
         }
         ctx.stroke();
-        ctx.fillStyle = '#FF5E7E';
-        ctx.font = '700 9px "JetBrains Mono"';
-        ctx.fillText('ECG 78 BPM', width - 140, 31);
+
+        // Monitor Subtitle
+        ctx.fillStyle = '#A78BFA';
+        ctx.font = '600 8px "JetBrains Mono"';
+        ctx.fillText(`MediaPipe 3D: Active (${fps} FPS)`, monitorX + 10, monitorY + 47);
       }
 
       // 2. Realistic 3D Human Avatar Kinematics
@@ -195,24 +212,24 @@ export const LiveTranslatorView: React.FC = () => {
       const gType = activePreset.simulatedLandmarkType;
 
       // Natural breathing and postural micro-sway
-      const breath = Math.sin(step * 2.8) * 3.5;
-      const chestExpansion = Math.sin(step * 2.8) * 2;
+      const breath = Math.sin(step * 2.8) * 3;
+      const chestExpansion = Math.sin(step * 2.8) * 1.5;
       const microSwayX = Math.cos(step * 1.4) * 1.5;
 
       // Head position
       let headX = cx + microSwayX;
-      let headY = cy - 44 + breath * 0.6;
+      let headY = cy - 42 + breath * 0.5;
       let headTilt = 0;
 
-      // Base Shoulders
-      let leftShoulder = { x: cx - 100 + microSwayX * 0.4, y: cy + 48 + breath };
-      let rightShoulder = { x: cx + 100 + microSwayX * 0.4, y: cy + 48 + breath };
+      // Shoulders with realistic anatomical span
+      let leftShoulder = { x: cx - 96 + microSwayX * 0.3, y: cy + 46 + breath };
+      let rightShoulder = { x: cx + 96 + microSwayX * 0.3, y: cy + 46 + breath };
 
       // Default resting arm positions
-      let leftElbow = { x: cx - 130, y: cy + 135 };
-      let rightElbow = { x: cx + 130, y: cy + 135 };
-      let leftWrist = { x: cx - 90, y: cy + 195 };
-      let rightWrist = { x: cx + 90, y: cy + 195 };
+      let leftElbow = { x: cx - 118, y: cy + 128 };
+      let rightElbow = { x: cx + 118, y: cy + 128 };
+      let leftWrist = { x: cx - 88, y: cy + 185 };
+      let rightWrist = { x: cx + 88, y: cy + 185 };
 
       // Gesture-Specific Articulation
       let facialEmotion = 'neutral';
@@ -222,433 +239,498 @@ export const LiveTranslatorView: React.FC = () => {
       if (gType === 'head_pain') {
         facialEmotion = 'pain';
         headTilt = 0.08; // Head tilted in pain
-        headX += 6;
+        headX += 5;
         headY += 2;
-        // Right hand touches temple with gentle throbbing
-        const throb = Math.sin(step * 10) * 2.5;
-        rightElbow = { x: cx + 115, y: cy + 65 };
-        rightWrist = { x: cx + 48 + throb, y: headY - 8 + throb };
+        // Right hand touches temple with gentle pulsing
+        const throb = Math.sin(step * 10) * 2;
+        rightElbow = { x: cx + 105, y: cy + 62 };
+        rightWrist = { x: headX + 44 + throb, y: headY - 10 + throb };
         rightHandPose = 'touching_temple';
-        // Left hand rests lightly near abdomen
-        leftElbow = { x: cx - 105, y: cy + 135 };
-        leftWrist = { x: cx - 75, y: cy + 180 };
+        // Left hand rests lightly near lower torso
+        leftElbow = { x: cx - 102, y: cy + 130 };
+        leftWrist = { x: cx - 74, y: cy + 180 };
       } else if (gType === 'emergency_breath') {
         facialEmotion = 'distressed';
         // Rapid respiratory heave
-        const heavyBreath = Math.sin(step * 7) * 7;
-        headY += heavyBreath * 0.5;
-        leftShoulder.y += heavyBreath * 0.9;
-        rightShoulder.y += heavyBreath * 0.9;
+        const heavyBreath = Math.sin(step * 7) * 6;
+        headY += heavyBreath * 0.4;
+        leftShoulder.y += heavyBreath * 0.8;
+        rightShoulder.y += heavyBreath * 0.8;
         // Both hands clutching upper chest
-        leftElbow = { x: cx - 85, y: cy + 115 };
-        rightElbow = { x: cx + 85, y: cy + 115 };
-        leftWrist = { x: cx - 36, y: cy + 70 + heavyBreath };
-        rightWrist = { x: cx + 36, y: cy + 70 - heavyBreath * 0.5 };
+        leftElbow = { x: cx - 80, y: cy + 110 };
+        rightElbow = { x: cx + 80, y: cy + 110 };
+        leftWrist = { x: cx - 34, y: cy + 66 + heavyBreath };
+        rightWrist = { x: cx + 34, y: cy + 66 - heavyBreath * 0.4 };
         leftHandPose = 'clutching';
         rightHandPose = 'clutching';
       } else if (gType === 'medicine_time') {
         facialEmotion = 'inquiring';
-        // Left hand holds imaginary pill bottle/cup
-        leftElbow = { x: cx - 95, y: cy + 140 };
-        leftWrist = { x: cx - 50, y: cy + 135 };
+        // Left hand holds open cupped palm forward
+        leftElbow = { x: cx - 92, y: cy + 135 };
+        leftWrist = { x: cx - 48, y: cy + 130 };
         leftHandPose = 'cup_palm';
         // Right hand brings pill toward mouth with rhythmic trajectory
-        const pinchMotion = Math.sin(step * 3.5) * 12;
-        rightElbow = { x: cx + 95, y: cy + 118 };
-        rightWrist = { x: cx + 22, y: headY + 34 + pinchMotion };
+        const pinchMotion = Math.sin(step * 3.5) * 10;
+        rightElbow = { x: cx + 90, y: cy + 114 };
+        rightWrist = { x: cx + 20, y: headY + 34 + pinchMotion };
         rightHandPose = 'pinch_pill';
       } else if (gType === 'bp_check') {
         facialEmotion = 'neutral';
         // Left arm held forward
-        leftElbow = { x: cx - 115, y: cy + 135 };
-        leftWrist = { x: cx - 80, y: cy + 175 };
+        leftElbow = { x: cx - 110, y: cy + 130 };
+        leftWrist = { x: cx - 78, y: cy + 170 };
         leftHandPose = 'open';
         // Right hand wrapped around left bicep
         const cuffFeel = Math.sin(step * 3.5) * 2;
-        rightElbow = { x: cx + 25, y: cy + 138 };
-        rightWrist = { x: cx - 95 + cuffFeel, y: cy + 72 + cuffFeel };
+        rightElbow = { x: cx + 22, y: cy + 132 };
+        rightWrist = { x: cx - 94 + cuffFeel, y: cy + 70 + cuffFeel };
         rightHandPose = 'wrap_arm';
       } else if (gType === 'thank_you') {
         facialEmotion = 'smile';
         // Right hand moves smoothly forward from chin in standard BdSL "Dhonnobad"
-        const sweep = Math.sin(step * 2.8) * 28;
-        rightElbow = { x: cx + 95, y: cy + 125 };
-        rightWrist = { x: cx + 32 + sweep, y: headY + 38 + sweep * 0.45 };
+        const sweep = Math.sin(step * 2.8) * 26;
+        rightElbow = { x: cx + 92, y: cy + 120 };
+        rightWrist = { x: cx + 28 + sweep, y: headY + 36 + sweep * 0.4 };
         rightHandPose = 'flat_salute';
-        leftElbow = { x: cx - 120, y: cy + 138 };
-        leftWrist = { x: cx - 80, y: cy + 190 };
+        leftElbow = { x: cx - 115, y: cy + 134 };
+        leftWrist = { x: cx - 78, y: cy + 185 };
       } else {
         // Noise / Unrecognized
         facialEmotion = 'confused';
-        const jitter = (Math.random() - 0.5) * 16;
-        leftWrist = { x: cx - 75 + jitter, y: cy + 145 + jitter };
-        rightWrist = { x: cx + 75 + jitter, y: cy + 145 + jitter };
+        const jitter = (Math.random() - 0.5) * 14;
+        leftWrist = { x: cx - 72 + jitter, y: cy + 142 + jitter };
+        rightWrist = { x: cx + 72 + jitter, y: cy + 142 + jitter };
       }
 
       ctx.save();
 
       // ==========================================
-      // 3. RENDER REALISTIC 3D CLINICAL ANATOMY
+      // 3. RENDER REALISTIC ANATOMICAL HUMAN CLINICAL SIGNER
       // ==========================================
 
-      // A. Torso / Medical Scrubs in Royal Aurora Theme (#3E2F58 & #E94560)
-      const scrubGrad = ctx.createLinearGradient(cx - 120, cy, cx + 120, height);
-      scrubGrad.addColorStop(0, '#3E2F58'); // Signature Royal Plum
-      scrubGrad.addColorStop(0.45, '#2D1F42');
-      scrubGrad.addColorStop(0.85, '#1E142D');
-      scrubGrad.addColorStop(1, '#120B1C');
-      ctx.fillStyle = scrubGrad;
+      // A. Natural Human Torso (Curved Anatomical Form, NOT a flat trapezoid!)
+      const torsoGrad = ctx.createLinearGradient(cx - 100, cy + 30, cx + 100, height);
+      torsoGrad.addColorStop(0, '#3E2F58'); // Signature Royal Plum
+      torsoGrad.addColorStop(0.35, '#312447');
+      torsoGrad.addColorStop(0.7, '#221832');
+      torsoGrad.addColorStop(1, '#150E20');
+      ctx.fillStyle = torsoGrad;
 
+      // Realistic anatomical body contour with shoulders, armpits, and waist taper
       ctx.beginPath();
-      ctx.moveTo(leftShoulder.x - 10, leftShoulder.y);
-      // Soft clavicle dip
-      ctx.quadraticCurveTo(cx, cy + 30 + breath, rightShoulder.x + 10, rightShoulder.y);
-      ctx.lineTo(rightShoulder.x + 40 + chestExpansion, height);
-      ctx.lineTo(leftShoulder.x - 40 - chestExpansion, height);
+      // Start at left neck base
+      ctx.moveTo(cx - 24, cy + 28 + breath * 0.6);
+      // Left shoulder slope
+      ctx.lineTo(leftShoulder.x, leftShoulder.y);
+      // Left armpit contour
+      ctx.quadraticCurveTo(cx - 80, cy + 90 + breath, cx - 72, cy + 160);
+      // Left waist down to bottom
+      ctx.quadraticCurveTo(cx - 70, height - 60, cx - 82, height);
+      // Bottom edge
+      ctx.lineTo(cx + 82, height);
+      // Right waist up to armpit
+      ctx.quadraticCurveTo(cx + 70, height - 60, cx + 72, cy + 160);
+      // Right armpit contour
+      ctx.quadraticCurveTo(cx + 80, cy + 90 + breath, rightShoulder.x, rightShoulder.y);
+      // Right shoulder slope to right neck base
+      ctx.lineTo(cx + 24, cy + 28 + breath * 0.6);
       ctx.closePath();
       ctx.fill();
 
-      // Scrub V-Neck Collar with Vibrant Aurora Rose Trim (#E94560)
+      // Chest 3D Volumetric Lighting (Subtle pectoral/chest highlights)
+      const chestLight = ctx.createRadialGradient(cx, cy + 85 + breath, 10, cx, cy + 85 + breath, 90);
+      chestLight.addColorStop(0, 'rgba(233, 69, 96, 0.14)');
+      chestLight.addColorStop(0.6, 'rgba(62, 47, 88, 0.12)');
+      chestLight.addColorStop(1, 'transparent');
+      ctx.fillStyle = chestLight;
+      ctx.fill();
+
+      // Scrub V-Neck Collar with Elegant Royal Aurora Trim (#E94560)
       ctx.strokeStyle = '#E94560';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
       ctx.beginPath();
-      ctx.moveTo(leftShoulder.x + 38, leftShoulder.y - 2);
-      ctx.lineTo(cx, cy + 74 + breath);
-      ctx.lineTo(rightShoulder.x - 38, rightShoulder.y - 2);
+      ctx.moveTo(cx - 26, cy + 28 + breath * 0.6);
+      ctx.lineTo(cx, cy + 78 + breath);
+      ctx.lineTo(cx + 26, cy + 28 + breath * 0.6);
       ctx.stroke();
 
-      // Scrub Chest Pocket with ID Badge
-      ctx.fillStyle = '#2A1C3E';
-      ctx.strokeStyle = 'rgba(233, 69, 96, 0.4)';
-      ctx.lineWidth = 1.5;
-      ctx.roundRect(leftShoulder.x + 28, cy + 90 + breath, 30, 36, 4);
+      // Dark Inner Shirt under V-neck
+      ctx.fillStyle = '#1A1126';
+      ctx.beginPath();
+      ctx.moveTo(cx - 22, cy + 30 + breath * 0.6);
+      ctx.lineTo(cx, cy + 72 + breath);
+      ctx.lineTo(cx + 22, cy + 30 + breath * 0.6);
+      ctx.closePath();
+      ctx.fill();
+
+      // Scrub Left Chest Pocket with Doctor ID Badge
+      const pocketX = leftShoulder.x + 32;
+      const pocketY = cy + 90 + breath;
+      ctx.fillStyle = '#2A1D3D';
+      ctx.strokeStyle = 'rgba(233, 69, 96, 0.35)';
+      ctx.lineWidth = 1.2;
+      ctx.roundRect(pocketX, pocketY, 28, 34, 4);
       ctx.fill();
       ctx.stroke();
 
-      // Hospital ID Card Clip & Photo Area
+      // ID Card Photo & Hospital Details
       ctx.fillStyle = '#FFFFFF';
-      ctx.fillRect(leftShoulder.x + 33, cy + 94 + breath, 20, 16);
+      ctx.fillRect(pocketX + 4, pocketY + 5, 20, 14);
       ctx.fillStyle = '#E94560';
-      ctx.fillRect(leftShoulder.x + 33, cy + 112 + breath, 20, 5);
+      ctx.fillRect(pocketX + 4, pocketY + 22, 20, 4);
+      // Mini photo avatar on ID card
+      ctx.fillStyle = '#3E2F58';
+      ctx.beginPath();
+      ctx.arc(pocketX + 14, pocketY + 11, 4, 0, Math.PI * 2);
+      ctx.fill();
 
-      // B. Realistic Stethoscope Draped Around Neck
-      ctx.strokeStyle = '#CBD5E1'; // Metallic binaural curve
+      // Realistic Stethoscope Draped Naturally Over Neck and Chest
+      // Tubing curves naturally over both shoulders down to chest bell
+      ctx.strokeStyle = '#160D20'; // Rubberized tubing
       ctx.lineWidth = 3.5;
       ctx.lineCap = 'round';
       ctx.beginPath();
-      ctx.moveTo(leftShoulder.x + 25, cy + 30 + breath);
-      ctx.quadraticCurveTo(cx, cy + 50 + breath, rightShoulder.x - 25, cy + 30 + breath);
+      // Left tubing loop
+      ctx.moveTo(cx - 22, cy + 32 + breath);
+      ctx.quadraticCurveTo(cx - 48, cy + 75, cx - 12, cy + 138 + breath);
+      // Right tubing loop
+      ctx.moveTo(cx + 22, cy + 32 + breath);
+      ctx.quadraticCurveTo(cx + 48, cy + 75, cx - 12, cy + 138 + breath);
       ctx.stroke();
 
-      // Flexible Stethoscope Tubing (Aubergine/Aurora Dark)
-      ctx.strokeStyle = '#181024';
-      ctx.lineWidth = 4.5;
-      ctx.beginPath();
-      // Left tube hanging down
-      ctx.moveTo(leftShoulder.x + 25, cy + 30 + breath);
-      ctx.bezierCurveTo(leftShoulder.x + 20, cy + 90, leftShoulder.x + 55, cy + 130, cx - 10, cy + 145 + breath);
-      // Right tube connecting to chest piece
-      ctx.moveTo(rightShoulder.x - 25, cy + 30 + breath);
-      ctx.bezierCurveTo(rightShoulder.x - 20, cy + 90, cx + 25, cy + 120, cx - 10, cy + 145 + breath);
-      ctx.stroke();
-
-      // Metallic Chest Piece / Bell
+      // Metallic Stethoscope Chest Piece / Bell
       ctx.fillStyle = '#94A3B8';
+      ctx.strokeStyle = '#CBD5E1';
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.arc(cx - 10, cy + 147 + breath, 8, 0, Math.PI * 2);
+      ctx.arc(cx - 12, cy + 142 + breath, 7.5, 0, Math.PI * 2);
       ctx.fill();
+      ctx.stroke();
       ctx.fillStyle = '#E2E8F0';
       ctx.beginPath();
-      ctx.arc(cx - 10, cy + 147 + breath, 4.5, 0, Math.PI * 2);
+      ctx.arc(cx - 12, cy + 142 + breath, 4, 0, Math.PI * 2);
       ctx.fill();
 
-      // C. Realistic 3D Anatomical Neck
-      const neckGrad = ctx.createLinearGradient(cx - 24, headY, cx + 24, cy + 55);
-      neckGrad.addColorStop(0, '#F6D4BC'); // Light natural skin
-      neckGrad.addColorStop(0.5, '#E2A98A');
-      neckGrad.addColorStop(1, '#C68261'); // Deep shadow below chin
+      // B. Realistic 3D Anatomical Neck
+      const neckGrad = ctx.createLinearGradient(cx - 20, headY + 20, cx + 20, cy + 35);
+      neckGrad.addColorStop(0, '#F5D0B5'); // Natural warm skin
+      neckGrad.addColorStop(0.5, '#E2AB8A');
+      neckGrad.addColorStop(1, '#C88563'); // Soft shadow at clavicle
       ctx.fillStyle = neckGrad;
+
       ctx.beginPath();
-      ctx.moveTo(headX - 20, headY + 28);
-      ctx.lineTo(headX + 20, headY + 28);
-      ctx.lineTo(cx + 25, cy + 54 + breath);
-      ctx.lineTo(cx - 25, cy + 54 + breath);
+      ctx.moveTo(headX - 17, headY + 26);
+      ctx.lineTo(headX + 17, headY + 26);
+      ctx.quadraticCurveTo(cx + 22, cy + 15, cx + 22, cy + 35 + breath * 0.6);
+      ctx.lineTo(cx - 22, cy + 35 + breath * 0.6);
+      ctx.quadraticCurveTo(cx - 22, cy + 15, headX - 17, headY + 26);
       ctx.closePath();
       ctx.fill();
 
-      // Sternocleidomastoid subtle muscle contour
-      ctx.strokeStyle = 'rgba(163, 90, 60, 0.25)';
-      ctx.lineWidth = 2;
+      // Soft ambient shadow under chin
+      ctx.fillStyle = 'rgba(150, 75, 45, 0.22)';
       ctx.beginPath();
-      ctx.moveTo(headX - 12, headY + 30);
-      ctx.lineTo(cx - 8, cy + 50 + breath);
-      ctx.moveTo(headX + 12, headY + 30);
-      ctx.lineTo(cx + 8, cy + 50 + breath);
-      ctx.stroke();
+      ctx.ellipse(headX, headY + 28, 16, 5, 0, 0, Math.PI * 2);
+      ctx.fill();
 
-      // D. Realistic 3D Head Geometry & Facial Features
+      // C. Realistic 3D Human Head Geometry
       ctx.save();
       ctx.translate(headX, headY);
       ctx.rotate(headTilt);
 
-      // Head Base Oval with 3D Volumetric Gradient Lighting
-      const headGrad = ctx.createRadialGradient(-8, -12, 10, 0, 0, 56);
-      headGrad.addColorStop(0, '#FBE8DB'); // Specular highlight on forehead/nose
-      headGrad.addColorStop(0.65, '#E8B699');
-      headGrad.addColorStop(0.9, '#CF8C6C');
-      headGrad.addColorStop(1, '#A9684C'); // Ambient occlusion rim
+      // Anatomical Head Shape (Defined chin, jaw angle, cheekbones)
+      const headGrad = ctx.createRadialGradient(-6, -10, 8, 0, 0, 55);
+      headGrad.addColorStop(0, '#FDF0E6'); // Specular highlight on forehead
+      headGrad.addColorStop(0.65, '#EBB998'); // Warm midtone
+      headGrad.addColorStop(0.88, '#D3916E'); // Contour shadow
+      headGrad.addColorStop(1, '#B06F4D'); // Ambient occlusion edge
       ctx.fillStyle = headGrad;
+
       ctx.beginPath();
-      ctx.ellipse(0, 0, 46, 55, 0, 0, Math.PI * 2);
+      // Chin
+      ctx.moveTo(0, 48);
+      // Right jawline to ear
+      ctx.quadraticCurveTo(24, 46, 36, 26);
+      ctx.quadraticCurveTo(42, 6, 42, -12);
+      // Top of cranium
+      ctx.quadraticCurveTo(42, -50, 0, -50);
+      // Left cranium to ear
+      ctx.quadraticCurveTo(-42, -50, -42, -12);
+      ctx.quadraticCurveTo(-42, 6, -36, 26);
+      // Left jawline to chin
+      ctx.quadraticCurveTo(-24, 46, 0, 48);
+      ctx.closePath();
       ctx.fill();
 
-      // Ears with Inner Cartilage
-      const drawEar = (earX: number, isRight: boolean) => {
-        ctx.fillStyle = '#E2A585';
+      // Natural Human Ears with Realistic Cartilage
+      const drawRealisticEar = (earX: number, isRight: boolean) => {
+        ctx.fillStyle = '#E4A584';
         ctx.beginPath();
-        ctx.ellipse(earX, 4, 8, 14, isRight ? 0.1 : -0.1, 0, Math.PI * 2);
+        ctx.ellipse(earX, 8, 7.5, 13, isRight ? 0.08 : -0.08, 0, Math.PI * 2);
         ctx.fill();
-        ctx.strokeStyle = '#BD7556';
-        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = '#BA7555';
+        ctx.lineWidth = 1.2;
         ctx.beginPath();
-        ctx.arc(earX + (isRight ? -2 : 2), 4, 4, 0, Math.PI * 2);
+        ctx.arc(earX + (isRight ? -2 : 2), 7, 3.5, 0, Math.PI * 2);
         ctx.stroke();
       };
-      drawEar(-47, false);
-      drawEar(47, true);
+      drawRealisticEar(-43, false);
+      drawRealisticEar(43, true);
 
-      // Realistic Layered Hair with Volume & Sheen
-      ctx.fillStyle = '#1A111F'; // Deep ebony-violet hair
+      // Natural Layered Modern Hairstyle (NOT a flat bowl cut!)
+      const hairGrad = ctx.createLinearGradient(0, -55, 0, 10);
+      hairGrad.addColorStop(0, '#2F1E3D');
+      hairGrad.addColorStop(0.6, '#1E1228');
+      hairGrad.addColorStop(1, '#140A1C');
+      ctx.fillStyle = hairGrad;
+
       ctx.beginPath();
-      ctx.arc(0, -14, 49, Math.PI * 0.85, Math.PI * 2.15);
-      ctx.quadraticCurveTo(0, -35, -46, -10);
+      // Top hair volume
+      ctx.moveTo(-44, -14);
+      ctx.bezierCurveTo(-48, -52, -20, -58, 0, -56);
+      ctx.bezierCurveTo(24, -58, 48, -52, 44, -14);
+      // Right sideburn
+      ctx.lineTo(43, 6);
+      ctx.lineTo(39, 4);
+      // Natural textured bangs across forehead
+      ctx.bezierCurveTo(34, -18, 18, -26, 4, -22);
+      ctx.bezierCurveTo(-10, -26, -26, -18, -39, 4);
+      // Left sideburn
+      ctx.lineTo(-43, 6);
+      ctx.closePath();
       ctx.fill();
 
-      // Hair strands / stylish sideburns
-      ctx.strokeStyle = '#2F1E38';
-      ctx.lineWidth = 3;
+      // Subtle hair texture strands with soft sheen
+      ctx.strokeStyle = 'rgba(233, 69, 96, 0.25)';
+      ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.moveTo(-45, -8);
-      ctx.lineTo(-46, 12);
-      ctx.moveTo(45, -8);
-      ctx.lineTo(46, 12);
+      ctx.arc(0, -36, 30, Math.PI * 0.9, Math.PI * 1.8);
       ctx.stroke();
 
-      // Realistic Eyebrows with Emotional Reactivity
-      ctx.strokeStyle = '#32221A';
-      ctx.lineWidth = 3;
+      // Realistic Natural Eyebrows
+      ctx.strokeStyle = '#321E15';
+      ctx.lineWidth = 2.4;
       ctx.lineCap = 'round';
       ctx.beginPath();
       if (facialEmotion === 'pain' || facialEmotion === 'distressed') {
-        // Inner eyebrows pulled up and together (furrowed)
-        ctx.moveTo(-26, -11);
-        ctx.quadraticCurveTo(-14, -18, -6, -15);
-        ctx.moveTo(26, -11);
-        ctx.quadraticCurveTo(14, -18, 6, -15);
+        // Empathetically furrowed
+        ctx.moveTo(-24, -9);
+        ctx.quadraticCurveTo(-14, -15, -6, -12);
+        ctx.moveTo(24, -9);
+        ctx.quadraticCurveTo(14, -15, 6, -12);
       } else if (facialEmotion === 'smile') {
-        // Relaxed arched happy brows
-        ctx.moveTo(-27, -15);
-        ctx.quadraticCurveTo(-15, -20, -6, -16);
-        ctx.moveTo(27, -15);
-        ctx.quadraticCurveTo(15, -20, 6, -16);
+        // Gentle relaxed happy arch
+        ctx.moveTo(-25, -13);
+        ctx.quadraticCurveTo(-15, -18, -6, -14);
+        ctx.moveTo(25, -13);
+        ctx.quadraticCurveTo(15, -18, 6, -14);
       } else {
-        // Natural neutral brows
-        ctx.moveTo(-26, -14);
-        ctx.quadraticCurveTo(-15, -18, -6, -15);
-        ctx.moveTo(26, -14);
-        ctx.quadraticCurveTo(15, -18, 6, -15);
+        // Balanced natural arch
+        ctx.moveTo(-24, -11);
+        ctx.quadraticCurveTo(-14, -16, -6, -13);
+        ctx.moveTo(24, -11);
+        ctx.quadraticCurveTo(14, -16, 6, -13);
       }
       ctx.stroke();
 
-      // Realistic Eyes with Natural Blinking and Iris Glint
+      // Realistic Almond Eyes with Blinking and Specular Catchlight
       const isBlinking = Math.sin(step * 0.75) > 0.96;
       if (isBlinking) {
-        // Closed eyelid slit with natural curve
-        ctx.strokeStyle = '#5E3827';
-        ctx.lineWidth = 2.5;
+        // Natural curved closed eyelid slit
+        ctx.strokeStyle = '#5A3322';
+        ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.moveTo(-25, -2);
-        ctx.quadraticCurveTo(-16, 2, -7, -2);
-        ctx.moveTo(7, -2);
-        ctx.quadraticCurveTo(16, 2, 25, -2);
+        ctx.moveTo(-23, 0);
+        ctx.quadraticCurveTo(-15, 3, -7, 0);
+        ctx.moveTo(7, 0);
+        ctx.quadraticCurveTo(15, 3, 23, 0);
         ctx.stroke();
       } else {
-        // Eye whites (Sclera)
+        // Sclera (Eye whites with subtle shadow)
         ctx.fillStyle = '#F8FAFC';
         ctx.beginPath();
-        ctx.ellipse(-16, -3, 8, 5, 0, 0, Math.PI * 2);
-        ctx.ellipse(16, -3, 8, 5, 0, 0, Math.PI * 2);
+        ctx.ellipse(-15, -1, 7.5, 4.2, 0, 0, Math.PI * 2);
+        ctx.ellipse(15, -1, 7.5, 4.2, 0, 0, Math.PI * 2);
         ctx.fill();
 
-        // Irises (Warm hazel-blue with deep pupil)
+        // Irises with radial depth
         const drawEye = (x: number) => {
-          const irisGrad = ctx.createRadialGradient(x, -3, 1, x, -3, 5);
+          const irisGrad = ctx.createRadialGradient(x, -1, 1, x, -1, 4.2);
           irisGrad.addColorStop(0, '#38BDF8');
           irisGrad.addColorStop(0.7, '#0284C7');
-          irisGrad.addColorStop(1, '#0C4A6E');
+          irisGrad.addColorStop(1, '#082F49');
           ctx.fillStyle = irisGrad;
           ctx.beginPath();
-          ctx.arc(x, -3, 4.2, 0, Math.PI * 2);
+          ctx.arc(x, -1, 3.8, 0, Math.PI * 2);
           ctx.fill();
 
           // Black Pupil
           ctx.fillStyle = '#0F172A';
           ctx.beginPath();
-          ctx.arc(x, -3, 2.2, 0, Math.PI * 2);
+          ctx.arc(x, -1, 1.8, 0, Math.PI * 2);
           ctx.fill();
 
-          // Specular Glint Catchlight
+          // Specular Catchlight
           ctx.fillStyle = '#FFFFFF';
           ctx.beginPath();
-          ctx.arc(x - 1.2, -4.5, 1.2, 0, Math.PI * 2);
+          ctx.arc(x - 1, -2.2, 1, 0, Math.PI * 2);
           ctx.fill();
         };
-        drawEye(-16);
-        drawEye(16);
+        drawEye(-15);
+        drawEye(15);
 
-        // Upper Eyelash Line
-        ctx.strokeStyle = '#2B1A12';
-        ctx.lineWidth = 1.8;
+        // Upper Eyelash Contour
+        ctx.strokeStyle = '#2B170F';
+        ctx.lineWidth = 1.6;
         ctx.beginPath();
-        ctx.moveTo(-25, -3);
-        ctx.quadraticCurveTo(-16, -8, -7, -3);
-        ctx.moveTo(7, -3);
-        ctx.quadraticCurveTo(16, -8, 25, -3);
+        ctx.moveTo(-23, -1);
+        ctx.quadraticCurveTo(-15, -5.5, -7, -1);
+        ctx.moveTo(7, -1);
+        ctx.quadraticCurveTo(15, -5.5, 23, -1);
         ctx.stroke();
       }
 
       // Realistic 3D Nose Bridge & Contours
-      ctx.strokeStyle = '#B87250';
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#B36D4C';
+      ctx.lineWidth = 1.8;
       ctx.lineCap = 'round';
       ctx.beginPath();
-      ctx.moveTo(0, -6);
-      ctx.lineTo(-2, 14);
-      ctx.lineTo(4, 14);
+      ctx.moveTo(0, -4);
+      ctx.lineTo(-1.5, 16);
+      ctx.lineTo(3.5, 16);
       ctx.stroke();
-      // Subtle nostril dots
-      ctx.fillStyle = '#9C5839';
+
+      // Subtle Nostrils
+      ctx.fillStyle = '#8B4E32';
       ctx.beginPath();
-      ctx.arc(-4, 14, 1.4, 0, Math.PI * 2);
-      ctx.arc(4, 14, 1.4, 0, Math.PI * 2);
+      ctx.arc(-3.5, 16.5, 1.2, 0, Math.PI * 2);
+      ctx.arc(3.5, 16.5, 1.2, 0, Math.PI * 2);
       ctx.fill();
 
       // Realistic Mouth & Lips
-      ctx.strokeStyle = '#B95349';
-      ctx.lineWidth = 2.8;
+      ctx.strokeStyle = '#B55248';
+      ctx.lineWidth = 2.4;
       ctx.lineCap = 'round';
       ctx.beginPath();
       if (facialEmotion === 'smile') {
         // Warm friendly smile
-        ctx.arc(0, 22, 12, 0.15, Math.PI - 0.15);
+        ctx.arc(0, 24, 10, 0.15, Math.PI - 0.15);
       } else if (facialEmotion === 'pain') {
-        // Tight pained lips
-        ctx.moveTo(-11, 28);
-        ctx.lineTo(11, 28);
+        // Tight, empathetic pain expression
+        ctx.moveTo(-9, 30);
+        ctx.lineTo(9, 30);
       } else if (facialEmotion === 'distressed') {
         // Slightly parted breathless lips
-        ctx.ellipse(0, 28, 8, 4, 0, 0, Math.PI * 2);
-        ctx.fillStyle = '#6E2822';
+        ctx.ellipse(0, 30, 7, 3.5, 0, 0, Math.PI * 2);
+        ctx.fillStyle = '#6E251F';
         ctx.fill();
       } else {
-        // Natural neutral lips with subtle cupid's bow
-        ctx.arc(0, 25, 9, 0.1, Math.PI - 0.1);
+        // Natural neutral lips with cupid's bow
+        ctx.arc(0, 27, 8, 0.1, Math.PI - 0.1);
       }
       ctx.stroke();
 
       ctx.restore();
 
-      // E. Realistic 3D Arms (Shaded anatomical cylinders with cloth sleeves)
+      // D. Realistic 3D Arms (Continuous Anatomical Form with Scrub Sleeves)
       const drawRealisticArm = (
         p1: { x: number; y: number }, 
         p2: { x: number; y: number }, 
         p3: { x: number; y: number }
       ) => {
-        // Skin Forearm
+        // Natural Skin Forearm (Elbow to Wrist)
         ctx.strokeStyle = '#DE9E7B';
-        ctx.lineWidth = 20;
+        ctx.lineWidth = 16;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.lineTo(p3.x, p3.y);
-        ctx.stroke();
-
-        // Arm inner shadow for 3D depth
-        ctx.strokeStyle = 'rgba(156, 88, 57, 0.35)';
-        ctx.lineWidth = 6;
         ctx.beginPath();
         ctx.moveTo(p2.x, p2.y);
         ctx.lineTo(p3.x, p3.y);
         ctx.stroke();
 
-        // Medical Scrub Sleeves in Royal Plum (#3E2F58)
-        ctx.strokeStyle = '#3E2F58';
-        ctx.lineWidth = 28;
+        // Forearm Subtle Muscle Shadow
+        ctx.strokeStyle = 'rgba(156, 88, 57, 0.3)';
+        ctx.lineWidth = 4;
         ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        const midX = p1.x + (p2.x - p1.x) * 0.55;
-        const midY = p1.y + (p2.y - p1.y) * 0.55;
-        ctx.lineTo(midX, midY);
+        ctx.moveTo(p2.x, p2.y);
+        ctx.lineTo(p3.x, p3.y);
         ctx.stroke();
 
-        // Sleeve cuff rim in Aurora Rose (#E94560)
-        ctx.strokeStyle = '#E94560';
-        ctx.lineWidth = 3;
+        // Upper Arm Skin (Under sleeve)
+        ctx.strokeStyle = '#DE9E7B';
+        ctx.lineWidth = 18;
         ctx.beginPath();
-        ctx.arc(midX, midY, 14, 0, Math.PI * 2);
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+
+        // Medical Scrub Sleeve (Shoulder down to upper bicep)
+        ctx.strokeStyle = '#3E2F58';
+        ctx.lineWidth = 24;
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        const sleeveEndX = p1.x + (p2.x - p1.x) * 0.58;
+        const sleeveEndY = p1.y + (p2.y - p1.y) * 0.58;
+        ctx.lineTo(sleeveEndX, sleeveEndY);
+        ctx.stroke();
+
+        // Clean sleeve hem line in Aurora Rose (#E94560)
+        ctx.strokeStyle = '#E94560';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(sleeveEndX, sleeveEndY, 12, 0, Math.PI * 2);
         ctx.stroke();
       };
 
       drawRealisticArm(leftShoulder, leftElbow, leftWrist);
       drawRealisticArm(rightShoulder, rightElbow, rightWrist);
 
-      // F. Realistic Hands with Articulated Fingers
+      // E. Realistic Hands with Articulated 5 Fingers
       const drawRealisticHand = (wrist: { x: number; y: number }, pose: string, isRight: boolean) => {
         const factor = isRight ? 1 : -1;
 
         // Palm Flesh Base
-        ctx.fillStyle = '#E8AB8B';
+        ctx.fillStyle = '#E6A888';
         ctx.beginPath();
-        ctx.arc(wrist.x, wrist.y, 13, 0, Math.PI * 2);
+        ctx.arc(wrist.x, wrist.y, 11, 0, Math.PI * 2);
         ctx.fill();
 
         // Five Articulated Fingers with Joint Shading
         for (let i = 0; i < 5; i++) {
-          let baseAngle = -1.1 + i * 0.55;
-          let fingerLength = i === 0 ? 18 : i === 2 ? 30 : 25;
+          let baseAngle = -1.0 + i * 0.5;
+          let fingerLength = i === 0 ? 16 : i === 2 ? 26 : 22;
 
           if (pose === 'touching_temple') {
-            fingerLength = 22;
-            baseAngle = -0.5 + i * 0.3;
+            fingerLength = 20;
+            baseAngle = -0.4 + i * 0.28;
           } else if (pose === 'pinch_pill') {
             if (i <= 1) {
               // Thumb and index pinched close
-              fingerLength = 16;
-              baseAngle = -0.2;
+              fingerLength = 15;
+              baseAngle = -0.15;
             }
           } else if (pose === 'flat_salute') {
-            // Held flat in salute
-            baseAngle = -0.7 + i * 0.25;
-            fingerLength = 28;
+            // Straight flat hand in BdSL "Dhonnobad"
+            baseAngle = -0.6 + i * 0.22;
+            fingerLength = 24;
           }
 
           const tipX = wrist.x + Math.sin(baseAngle * factor) * fingerLength;
           const tipY = wrist.y - Math.cos(baseAngle * factor) * fingerLength;
 
           ctx.strokeStyle = '#DE9E7B';
-          ctx.lineWidth = 6;
+          ctx.lineWidth = 5;
           ctx.lineCap = 'round';
           ctx.beginPath();
           ctx.moveTo(wrist.x, wrist.y);
           ctx.lineTo(tipX, tipY);
           ctx.stroke();
 
-          // Knuckle highlight
-          ctx.fillStyle = '#F4CBB3';
+          // Subtle knuckle highlight
+          ctx.fillStyle = '#F2C8B0';
           ctx.beginPath();
-          ctx.arc(wrist.x + (tipX - wrist.x) * 0.5, wrist.y + (tipY - wrist.y) * 0.5, 2.5, 0, Math.PI * 2);
+          ctx.arc(wrist.x + (tipX - wrist.x) * 0.5, wrist.y + (tipY - wrist.y) * 0.5, 2, 0, Math.PI * 2);
           ctx.fill();
         }
       };
@@ -661,9 +743,9 @@ export const LiveTranslatorView: React.FC = () => {
       // ==========================================
       // 4. HOLOGRAPHIC MEDIAPIPE 3D SKELETAL OVERLAY
       // ==========================================
-      // Overlaid smoothly to demonstrate AI landmark tracking
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = 'rgba(233, 69, 96, 0.65)'; // Aurora Rose laser vectors
+      // Delicate, translucent laser lines and glowing micro-nodes
+      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = 'rgba(233, 69, 96, 0.45)'; // Sleek translucent Aurora Rose
       ctx.beginPath();
       ctx.moveTo(leftShoulder.x, leftShoulder.y);
       ctx.lineTo(rightShoulder.x, rightShoulder.y);
@@ -674,19 +756,25 @@ export const LiveTranslatorView: React.FC = () => {
       ctx.lineTo(leftWrist.x, leftWrist.y);
       ctx.stroke();
 
-      // Keypoint Nodes
+      // Keypoint Micro-Nodes
       const keypoints = [
         { x: headX, y: headY },
         leftShoulder, rightShoulder, leftElbow, rightElbow, leftWrist, rightWrist
       ];
 
       keypoints.forEach(pt => {
+        // Glowing halo
+        ctx.fillStyle = 'rgba(233, 69, 96, 0.35)';
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, 6, 0, Math.PI * 2);
+        ctx.fill();
+        // Inner core
         ctx.fillStyle = '#E94560';
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, 4, 0, Math.PI * 2);
+        ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
         ctx.fill();
         ctx.strokeStyle = '#FFFFFF';
-        ctx.lineWidth = 1.5;
+        ctx.lineWidth = 1;
         ctx.stroke();
       });
 
@@ -696,11 +784,11 @@ export const LiveTranslatorView: React.FC = () => {
         const fingerColors = ['#E94560', '#FF5E7E', '#8B5CF6', '#9D4EDD', '#00F0FF'];
 
         for (let f = 0; f < 5; f++) {
-          const angle = -0.9 + f * 0.45;
-          const fingerLen = f === 0 ? 24 : f === 2 ? 36 : 30;
+          const angle = -0.85 + f * 0.42;
+          const fingerLen = f === 0 ? 20 : f === 2 ? 32 : 26;
 
           ctx.strokeStyle = fingerColors[f];
-          ctx.lineWidth = 1.5;
+          ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(wrist.x, wrist.y);
 
@@ -720,10 +808,10 @@ export const LiveTranslatorView: React.FC = () => {
           }
           ctx.stroke();
 
-          // Luminous tip
+          // Luminous tip node
           ctx.fillStyle = fingerColors[f];
           ctx.beginPath();
-          ctx.arc(prevX, prevY, 3, 0, Math.PI * 2);
+          ctx.arc(prevX, prevY, 2.5, 0, Math.PI * 2);
           ctx.fill();
         }
       };
@@ -731,12 +819,23 @@ export const LiveTranslatorView: React.FC = () => {
       drawHoloHand(leftWrist, false);
       drawHoloHand(rightWrist, true);
 
-      // HUD Badges Over Canvas (Clean & Decluttered)
+      // Top-Left Clean HUD Badge (Glass Pill)
+      ctx.fillStyle = 'rgba(22, 13, 35, 0.85)';
+      ctx.strokeStyle = 'rgba(233, 69, 96, 0.3)';
+      ctx.lineWidth = 1;
+      ctx.roundRect(16, 16, 215, 26, 6);
+      ctx.fill();
+      ctx.stroke();
+
+      // Pulsing Green Indicator Dot
+      ctx.fillStyle = '#10B981';
+      ctx.beginPath();
+      ctx.arc(28, 29, 3.5, 0, Math.PI * 2);
+      ctx.fill();
+
       ctx.fillStyle = '#FFFFFF';
-      ctx.font = '700 11px "JetBrains Mono"';
-      ctx.fillText(`● 3D AI TRACKER: 42 LANDMARKS`, 20, 30);
-      ctx.fillStyle = '#E94560';
-      ctx.fillText(`CONF: ${activePreset.confidence}%`, width - 110, 30);
+      ctx.font = '700 10px "JetBrains Mono"';
+      ctx.fillText(`3D AI TRACKER: 42 LANDMARKS`, 38, 33);
 
       animationFrameRef.current = requestAnimationFrame(render);
     };
