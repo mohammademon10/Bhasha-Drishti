@@ -3,7 +3,7 @@
 **Event:** International AI Builders Congress (CloudCamp Bangladesh)  
 **Phase:** Idea to Unicorn — Preliminary Submission  
 **Team:** `Tensor_Titan`  
-**Lead Builder:** MD. Abdullah Hel Baki (`mohammademon10`)  
+**Lead Builder:** MD. Emon Hossain (`mohammademon10`)  
 **GitHub Repository:** `https://github.com/mohammademon10/Bhasha-Drishti`  
 **Domain:** HealthSphere AI  
 **Challenge:** SmartHospital  

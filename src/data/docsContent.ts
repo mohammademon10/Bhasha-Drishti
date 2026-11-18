@@ -316,7 +316,7 @@ export const OFFICIAL_DOCS: DocFile[] = [
 **Event:** International AI Builders Congress (CloudCamp Bangladesh)  
 **Phase:** Idea to Unicorn — Preliminary Submission  
 **Team:** Tensor_Titan  
-**Lead Builder:** MD. Abdullah Hel Baki (mohammademon10)  
+**Lead Builder:** MD. Emon Hossain (mohammademon10)  
 **Domain:** HealthSphere AI | **Challenge:** SmartHospital  
 
 ### Executive Summary
