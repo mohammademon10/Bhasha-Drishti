@@ -1,20 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="100%" height="100%">
   <defs>
-    <!-- Background Gradients -->
+    <!-- Background Royal Aurora Gradients (#3E2F58 & #E94560) -->
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#070C18"/>
-      <stop offset="40%" stop-color="#0F172A"/>
-      <stop offset="100%" stop-color="#020617"/>
+      <stop offset="0%" stop-color="#1A112A"/>
+      <stop offset="50%" stop-color="#120A1D"/>
+      <stop offset="100%" stop-color="#09050F"/>
     </linearGradient>
     
-    <linearGradient id="emeraldGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#10B981"/>
-      <stop offset="100%" stop-color="#06B6D4"/>
+    <linearGradient id="auroraGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3E2F58"/>
+      <stop offset="100%" stop-color="#E94560"/>
+    </linearGradient>
+
+    <linearGradient id="roseAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E94560"/>
+      <stop offset="100%" stop-color="#FF5E7E"/>
     </linearGradient>
 
     <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.9"/>
+      <stop offset="0%" stop-color="#241838" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#140C20" stop-opacity="0.95"/>
     </linearGradient>
 
     <!-- Filters for Neon Glow -->
@@ -32,7 +37,7 @@
   <rect width="1200" height="400" fill="url(#bgGrad)"/>
 
   <!-- Tech Grid Background Pattern -->
-  <g stroke="#334155" stroke-opacity="0.25" stroke-width="1">
+  <g stroke="#3E2F58" stroke-opacity="0.3" stroke-width="1">
     <line x1="0" y1="50" x2="1200" y2="50" />
     <line x1="0" y1="100" x2="1200" y2="100" />
     <line x1="0" y1="150" x2="1200" y2="150" />
@@ -55,23 +60,23 @@
   </g>
 
   <!-- Glowing Circular Orbs in Background -->
-  <circle cx="200" cy="180" r="160" fill="#10B981" opacity="0.08" filter="url(#glow)"/>
-  <circle cx="1000" cy="200" r="190" fill="#06B6D4" opacity="0.08" filter="url(#glow)"/>
+  <circle cx="200" cy="180" r="160" fill="#E94560" opacity="0.12" filter="url(#glow)"/>
+  <circle cx="1000" cy="200" r="190" fill="#3E2F58" opacity="0.25" filter="url(#glow)"/>
 
   <!-- Top Domain & Competition Bar -->
   <g transform="translate(60, 45)">
-    <rect width="210" height="28" rx="14" fill="#064E3B" stroke="#10B981" stroke-width="1.2"/>
-    <circle cx="16" cy="14" r="5" fill="#34D399"/>
-    <text x="32" y="19" fill="#A7F3D0" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" letter-spacing="1">HEALTHSPHERE AI DOMAIN</text>
+    <rect width="210" height="28" rx="14" fill="#241436" stroke="#E94560" stroke-width="1.2"/>
+    <circle cx="16" cy="14" r="5" fill="#E94560"/>
+    <text x="32" y="19" fill="#FF8BA7" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" letter-spacing="1">HEALTHSPHERE AI DOMAIN</text>
 
     <g transform="translate(225, 0)">
-      <rect width="215" height="28" rx="14" fill="#1E293B" stroke="#38BDF8" stroke-width="1.2"/>
-      <text x="14" y="19" fill="#38BDF8" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" letter-spacing="1">SMARTHOSPITAL CHALLENGE</text>
+      <rect width="215" height="28" rx="14" fill="#1C112C" stroke="#C084FC" stroke-width="1.2"/>
+      <text x="14" y="19" fill="#E9D5FF" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" letter-spacing="1">SMARTHOSPITAL CHALLENGE</text>
     </g>
 
     <g transform="translate(455, 0)">
-      <rect width="195" height="28" rx="14" fill="#1E1B4B" stroke="#818CF8" stroke-width="1.2"/>
-      <text x="14" y="19" fill="#C7D2FE" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" letter-spacing="1">TEAM TENSOR_TITAN</text>
+      <rect width="195" height="28" rx="14" fill="#3E2F58" stroke="#E94560" stroke-width="1.2"/>
+      <text x="14" y="19" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" letter-spacing="1">TEAM TENSOR_TITAN</text>
     </g>
   </g>
 
@@ -79,14 +84,14 @@
   <g transform="translate(60, 110)">
     <!-- Bengali Brand Icon -->
     <g transform="translate(0, 5)">
-      <rect width="70" height="70" rx="18" fill="url(#emeraldGlow)" filter="url(#softGlow)"/>
+      <rect width="70" height="70" rx="18" fill="url(#auroraGrad)" filter="url(#softGlow)"/>
       <text x="35" y="48" fill="#FFFFFF" font-family="'Hind Siliguri', 'Segoe UI', sans-serif" font-size="38" font-weight="bold" text-anchor="middle">ভা</text>
     </g>
 
     <!-- Main Headings -->
-    <text x="88" y="42" fill="#FFFFFF" font-family="'Hind Siliguri', sans-serif" font-size="44" font-weight="bold" letter-spacing="0.5">ভাষা দৃষ্টি <tspan fill="#34D399" font-family="'Inter', sans-serif" font-size="34" font-weight="800">(BHASHA DRISHTI)</tspan></text>
+    <text x="88" y="42" fill="#FFFFFF" font-family="'Hind Siliguri', sans-serif" font-size="44" font-weight="bold" letter-spacing="0.5">ভাষা দৃষ্টি <tspan fill="#E94560" font-family="'Inter', sans-serif" font-size="34" font-weight="800">(BHASHA DRISHTI)</tspan></text>
     
-    <text x="88" y="72" fill="#94A3B8" font-family="'Inter', sans-serif" font-size="15" font-weight="500">
+    <text x="88" y="72" fill="#D8B4E2" font-family="'Inter', sans-serif" font-size="15" font-weight="500">
       Real-Time AI-Powered Bengali Sign Language (BdSL) to Speech &amp; Text Translation Platform
     </text>
 
@@ -98,35 +103,35 @@
     <!-- Project Metrics Pills -->
     <g transform="translate(0, 155)">
       <!-- Pill 1 -->
-      <rect width="150" height="42" rx="10" fill="#0F172A" stroke="#10B981" stroke-width="1.2"/>
-      <text x="14" y="19" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">TOP-1 ACCURACY</text>
-      <text x="14" y="34" fill="#34D399" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold">93.4% (Held-Out)</text>
+      <rect width="150" height="42" rx="10" fill="#1C112C" stroke="#E94560" stroke-width="1.2"/>
+      <text x="14" y="19" fill="#A78BFA" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">TOP-1 ACCURACY</text>
+      <text x="14" y="34" fill="#FF5E7E" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold">93.4% (Held-Out)</text>
 
       <!-- Pill 2 -->
       <g transform="translate(160, 0)">
-        <rect width="145" height="42" rx="10" fill="#0F172A" stroke="#06B6D4" stroke-width="1.2"/>
-        <text x="14" y="19" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">TOTAL LATENCY</text>
-        <text x="14" y="34" fill="#22D3EE" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold">238ms &lt; 300ms</text>
+        <rect width="145" height="42" rx="10" fill="#1C112C" stroke="#3E2F58" stroke-width="1.2"/>
+        <text x="14" y="19" fill="#A78BFA" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">TOTAL LATENCY</text>
+        <text x="14" y="34" fill="#C084FC" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold">238ms (Sub-300)</text>
       </g>
 
       <!-- Pill 3 -->
       <g transform="translate(315, 0)">
-        <rect width="165" height="42" rx="10" fill="#0F172A" stroke="#8B5CF6" stroke-width="1.2"/>
-        <text x="14" y="19" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">BANDWIDTH REDUCTION</text>
-        <text x="14" y="34" fill="#C084FC" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold">96.2% Keypoints</text>
+        <rect width="165" height="42" rx="10" fill="#1C112C" stroke="#E94560" stroke-width="1.2"/>
+        <text x="14" y="19" fill="#A78BFA" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">BANDWIDTH REDUCTION</text>
+        <text x="14" y="34" fill="#FF8BA7" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold">96.2% Keypoints</text>
       </g>
 
       <!-- Pill 4 -->
       <g transform="translate(490, 0)">
-        <rect width="160" height="42" rx="10" fill="#0F172A" stroke="#F59E0B" stroke-width="1.2"/>
-        <text x="14" y="19" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">EDGE PRIVACY</text>
+        <rect width="160" height="42" rx="10" fill="#1C112C" stroke="#F59E0B" stroke-width="1.2"/>
+        <text x="14" y="19" fill="#A78BFA" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold">EDGE PRIVACY</text>
         <text x="14" y="34" fill="#FBBF24" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="bold">Zero-Retention RAM</text>
       </g>
     </g>
 
     <!-- Lead Builder & Attribution -->
     <g transform="translate(0, 222)">
-      <text x="0" y="0" fill="#64748B" font-family="'Inter', sans-serif" font-size="12">
+      <text x="0" y="0" fill="#94A3B8" font-family="'Inter', sans-serif" font-size="12">
         Lead Architect &amp; Builder: <tspan fill="#F8FAFC" font-weight="bold">Md Emon Hossain</tspan> (@mohammademon10) • International AI Builders Congress
       </text>
     </g>
@@ -135,49 +140,49 @@
   <!-- Right Visual Canvas: 3D Hand Skeletal & Biometric Wireframe HUD -->
   <g transform="translate(770, 70)">
     <!-- Container Card -->
-    <rect width="370" height="280" rx="20" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" filter="url(#softGlow)"/>
+    <rect width="370" height="280" rx="20" fill="url(#cardGrad)" stroke="#3E2F58" stroke-width="1.5" filter="url(#softGlow)"/>
 
     <!-- HUD Header -->
-    <rect x="20" y="18" width="8" height="8" rx="4" fill="#10B981"/>
-    <text x="36" y="26" fill="#34D399" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">LIVE INFERENCE HUD</text>
-    <text x="260" y="26" fill="#94A3B8" font-family="'JetBrains Mono', monospace" font-size="11">30 FPS | RAM OK</text>
-    <line x1="20" y1="36" x2="350" y2="36" stroke="#334155" stroke-width="1"/>
+    <rect x="20" y="18" width="8" height="8" rx="4" fill="#E94560"/>
+    <text x="36" y="26" fill="#FF5E7E" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">LIVE INFERENCE HUD</text>
+    <text x="260" y="26" fill="#A78BFA" font-family="'JetBrains Mono', monospace" font-size="11">30 FPS | RAM OK</text>
+    <line x1="20" y1="36" x2="350" y2="36" stroke="#3E2F58" stroke-width="1"/>
 
     <!-- Wireframe Hand Bones Overlay -->
     <g transform="translate(70, 60)">
       <!-- Wrist Root Node -->
-      <circle cx="115" cy="150" r="7" fill="#10B981" filter="url(#softGlow)"/>
+      <circle cx="115" cy="150" r="7" fill="#E94560" filter="url(#softGlow)"/>
 
       <!-- Palm Bones -->
-      <path d="M 115 150 L 50 110 L 40 75 L 30 50" stroke="#06B6D4" stroke-width="2.5" fill="none"/>
-      <path d="M 115 150 L 80 85 L 75 50 L 70 25" stroke="#10B981" stroke-width="2.5" fill="none"/>
-      <path d="M 115 150 L 115 80 L 115 45 L 115 15" stroke="#10B981" stroke-width="2.5" fill="none"/>
-      <path d="M 115 150 L 150 85 L 155 50 L 160 25" stroke="#38BDF8" stroke-width="2.5" fill="none"/>
+      <path d="M 115 150 L 50 110 L 40 75 L 30 50" stroke="#FF5E7E" stroke-width="2.5" fill="none"/>
+      <path d="M 115 150 L 80 85 L 75 50 L 70 25" stroke="#E94560" stroke-width="2.5" fill="none"/>
+      <path d="M 115 150 L 115 80 L 115 45 L 115 15" stroke="#E94560" stroke-width="2.5" fill="none"/>
+      <path d="M 115 150 L 150 85 L 155 50 L 160 25" stroke="#C084FC" stroke-width="2.5" fill="none"/>
       <path d="M 115 150 L 180 100 L 190 75 L 195 55" stroke="#818CF8" stroke-width="2.5" fill="none"/>
 
       <!-- Palm Cross Connectors -->
-      <path d="M 50 110 L 80 85 L 115 80 L 150 85 L 180 100" stroke="#334155" stroke-width="1.5" fill="none"/>
+      <path d="M 50 110 L 80 85 L 115 80 L 150 85 L 180 100" stroke="#3E2F58" stroke-width="1.5" fill="none"/>
 
       <!-- Landmark Nodes (Joints) -->
       <!-- Thumb -->
       <circle cx="50" cy="110" r="4" fill="#FFFFFF"/>
       <circle cx="40" cy="75" r="4" fill="#FFFFFF"/>
-      <circle cx="30" cy="50" r="5" fill="#06B6D4"/>
+      <circle cx="30" cy="50" r="5" fill="#FF5E7E"/>
 
       <!-- Index -->
       <circle cx="80" cy="85" r="4" fill="#FFFFFF"/>
       <circle cx="75" cy="50" r="4" fill="#FFFFFF"/>
-      <circle cx="70" cy="25" r="5" fill="#10B981"/>
+      <circle cx="70" cy="25" r="5" fill="#E94560"/>
 
       <!-- Middle -->
       <circle cx="115" cy="80" r="4" fill="#FFFFFF"/>
       <circle cx="115" cy="45" r="4" fill="#FFFFFF"/>
-      <circle cx="115" cy="15" r="6" fill="#10B981" filter="url(#softGlow)"/>
+      <circle cx="115" cy="15" r="6" fill="#E94560" filter="url(#softGlow)"/>
 
       <!-- Ring -->
       <circle cx="150" cy="85" r="4" fill="#FFFFFF"/>
       <circle cx="155" cy="50" r="4" fill="#FFFFFF"/>
-      <circle cx="160" cy="25" r="5" fill="#38BDF8"/>
+      <circle cx="160" cy="25" r="5" fill="#C084FC"/>
 
       <!-- Pinky -->
       <circle cx="180" cy="100" r="4" fill="#FFFFFF"/>
@@ -185,15 +190,15 @@
       <circle cx="195" cy="55" r="5" fill="#818CF8"/>
 
       <!-- Coordinate Grid Radar Callout -->
-      <circle cx="115" cy="150" r="30" stroke="#10B981" stroke-width="1" stroke-dasharray="3,3" fill="none" opacity="0.6"/>
-      <circle cx="115" cy="150" r="60" stroke="#06B6D4" stroke-width="0.8" stroke-dasharray="4,4" fill="none" opacity="0.4"/>
+      <circle cx="115" cy="150" r="30" stroke="#E94560" stroke-width="1" stroke-dasharray="3,3" fill="none" opacity="0.6"/>
+      <circle cx="115" cy="150" r="60" stroke="#3E2F58" stroke-width="0.8" stroke-dasharray="4,4" fill="none" opacity="0.4"/>
     </g>
 
     <!-- Bottom Prediction HUD Pill -->
     <g transform="translate(20, 225)">
-      <rect width="330" height="38" rx="10" fill="#070C18" stroke="#10B981" stroke-width="1"/>
+      <rect width="330" height="38" rx="10" fill="#140C20" stroke="#E94560" stroke-width="1"/>
       <text x="14" y="24" fill="#F8FAFC" font-family="'Hind Siliguri', sans-serif" font-size="14" font-weight="bold">চিহ্ন: [মাথা ব্যথা] → "ডাক্তার দেখাতে চাই"</text>
-      <text x="260" y="23" fill="#10B981" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">CONF: 96.4%</text>
+      <text x="260" y="23" fill="#FF5E7E" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold">CONF: 96.4%</text>
     </g>
   </g>
 </svg>

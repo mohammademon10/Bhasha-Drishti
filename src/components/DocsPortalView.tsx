@@ -41,10 +41,10 @@ export const DocsPortalView: React.FC = () => {
     <div className="space-y-6">
 
       {/* Top Header Banner: Dynamic & Sleek */}
-      <div className="glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-xl border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
+      <div className="glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-xl border border-aurora-rose/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
         <div>
           <div className="flex items-center space-x-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 text-[11px] font-mono font-bold">
+            <span className="px-2.5 py-0.5 rounded-full bg-aurora-rose/15 text-rose-300 border border-aurora-rose/30 text-[11px] font-mono font-bold">
               Official Whitepaper & Specs
             </span>
             <span className="text-xs text-slate-400 font-mono">CloudCamp Bangladesh</span>
@@ -60,18 +60,18 @@ export const DocsPortalView: React.FC = () => {
           </p>
         </div>
 
-        <span className="px-3.5 py-1.5 rounded-xl bg-space-850 border border-emerald-500/25 text-xs font-mono text-emerald-400 font-bold self-end md:self-auto shrink-0">
+        <span className="px-3.5 py-1.5 rounded-xl bg-royal-850 border border-aurora-rose/30 text-xs font-mono text-rose-300 font-bold self-end md:self-auto shrink-0">
           100% Faithful Specs
         </span>
       </div>
 
-      {/* Sub-Navigation Tabs: Fluid, Single-Line, Dynamic */}
-      <div className="flex items-center space-x-1.5 p-1.5 glass-panel rounded-2xl border border-white/10 overflow-x-auto scrollbar-none">
+      {/* Sub-Navigation Tabs: Fluid, Single-Line, Dynamic in Royal Aurora */}
+      <div className="flex items-center space-x-1.5 p-1.5 glass-panel rounded-2xl border border-aurora-rose/15 overflow-x-auto scrollbar-none">
         <button
           onClick={() => setActiveTab('architecture')}
           className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
             activeTab === 'architecture' 
-              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              ? 'bg-gradient-to-r from-royal-700 via-royal-600 to-aurora-rose text-white font-bold shadow-md shadow-aurora-rose/20' 
               : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
@@ -83,7 +83,7 @@ export const DocsPortalView: React.FC = () => {
           onClick={() => setActiveTab('datasets')}
           className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
             activeTab === 'datasets' 
-              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              ? 'bg-gradient-to-r from-royal-700 via-royal-600 to-aurora-rose text-white font-bold shadow-md shadow-aurora-rose/20' 
               : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
@@ -95,7 +95,7 @@ export const DocsPortalView: React.FC = () => {
           onClick={() => setActiveTab('mcp')}
           className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
             activeTab === 'mcp' 
-              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              ? 'bg-gradient-to-r from-royal-700 via-royal-600 to-aurora-rose text-white font-bold shadow-md shadow-aurora-rose/20' 
               : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
@@ -107,7 +107,7 @@ export const DocsPortalView: React.FC = () => {
           onClick={() => setActiveTab('governance')}
           className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
             activeTab === 'governance' 
-              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              ? 'bg-gradient-to-r from-royal-700 via-royal-600 to-aurora-rose text-white font-bold shadow-md shadow-aurora-rose/20' 
               : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
@@ -119,7 +119,7 @@ export const DocsPortalView: React.FC = () => {
           onClick={() => setActiveTab('prompts')}
           className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
             activeTab === 'prompts' 
-              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              ? 'bg-gradient-to-r from-royal-700 via-royal-600 to-aurora-rose text-white font-bold shadow-md shadow-aurora-rose/20' 
               : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
@@ -131,7 +131,7 @@ export const DocsPortalView: React.FC = () => {
           onClick={() => setActiveTab('markdown')}
           className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
             activeTab === 'markdown' 
-              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              ? 'bg-gradient-to-r from-royal-700 via-royal-600 to-aurora-rose text-white font-bold shadow-md shadow-aurora-rose/20' 
               : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
@@ -143,7 +143,7 @@ export const DocsPortalView: React.FC = () => {
           onClick={() => setActiveTab('qa')}
           className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
             activeTab === 'qa' 
-              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              ? 'bg-gradient-to-r from-royal-700 via-royal-600 to-aurora-rose text-white font-bold shadow-md shadow-aurora-rose/20' 
               : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >

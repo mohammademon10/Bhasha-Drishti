@@ -4,31 +4,46 @@
 
 @layer base {
   body {
-    background-color: #060913;
-    color: #f1f5f9;
+    background-color: #0c0714;
+    color: #f8fafc;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
-/* Ambient Radial Mesh Background */
+/* Ambient Radial Mesh Background in Royal Aurora Palette (#3E2F58 & #E94560) */
 .bg-mesh-glow {
   background-image: 
-    radial-gradient(at 15% 15%, rgba(99, 102, 241, 0.12) 0px, transparent 45%),
-    radial-gradient(at 85% 10%, rgba(6, 182, 212, 0.12) 0px, transparent 40%),
-    radial-gradient(at 50% 90%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
+    radial-gradient(at 15% 15%, rgba(62, 47, 88, 0.45) 0px, transparent 50%),
+    radial-gradient(at 85% 10%, rgba(233, 69, 96, 0.22) 0px, transparent 45%),
+    radial-gradient(at 50% 90%, rgba(139, 92, 246, 0.18) 0px, transparent 55%),
+    radial-gradient(at 20% 80%, rgba(62, 47, 88, 0.35) 0px, transparent 40%);
 }
 
-/* Glassmorphism Card Utility */
+/* Glassmorphism Card Utility - Royal Aurora Themed */
 .glass-panel {
-  background: rgba(16, 25, 46, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(27, 17, 43, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(233, 69, 96, 0.14);
 }
 
 .glass-panel-hover:hover {
-  background: rgba(23, 35, 63, 0.8);
-  border-color: rgba(0, 240, 255, 0.25);
+  background: rgba(37, 23, 59, 0.85);
+  border-color: rgba(233, 69, 96, 0.35);
+  box-shadow: 0 8px 32px -4px rgba(233, 69, 96, 0.15);
+}
+
+/* Royal Aurora Primary Gradient Pill/Button */
+.btn-royal-aurora {
+  background: linear-gradient(135deg, #3E2F58 0%, #E94560 100%);
+  color: #ffffff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-royal-aurora:hover {
+  opacity: 0.95;
+  box-shadow: 0 4px 20px rgba(233, 69, 96, 0.35);
+  transform: translateY(-1px);
 }
 
 /* Custom Scrollbars */
@@ -38,14 +53,15 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0b1120;
+  background: #140c20;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #2b1a42;
   border-radius: 9999px;
+  border: 1px solid rgba(233, 69, 96, 0.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00F0FF;
+  background: #e94560;
 }

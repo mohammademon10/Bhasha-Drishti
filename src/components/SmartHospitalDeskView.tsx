@@ -155,9 +155,9 @@ export const SmartHospitalDeskView: React.FC = () => {
 
   const renderHandshapeSVG = (type: string, direction: string) => {
     return (
-      <svg className="w-20 h-20 text-electric-cyan stroke-current fill-none" viewBox="0 0 100 100">
-        <rect x="5" y="5" width="90" height="90" rx="14" className="stroke-white/10 fill-space-950/80" strokeWidth="1" />
-        <path d="M35 70 C 35 55, 40 45, 50 45 C 60 45, 65 55, 65 70 Z" strokeWidth="2.5" className="stroke-electric-cyan fill-electric-cyan/20" />
+      <svg className="w-20 h-20 text-aurora-rose stroke-current fill-none" viewBox="0 0 100 100">
+        <rect x="5" y="5" width="90" height="90" rx="14" className="stroke-aurora-rose/20 fill-royal-950/80" strokeWidth="1" />
+        <path d="M35 70 C 35 55, 40 45, 50 45 C 60 45, 65 55, 65 70 Z" strokeWidth="2.5" className="stroke-aurora-rose fill-aurora-rose/20" />
         
         {type === 'flat_palm' && (
           <g strokeWidth="2.5" strokeLinecap="round">
@@ -171,8 +171,8 @@ export const SmartHospitalDeskView: React.FC = () => {
 
         {type === 'pointing' && (
           <g strokeWidth="2.5" strokeLinecap="round">
-            <line x1="50" y1="45" x2="50" y2="15" stroke="#00F0FF" strokeWidth="3" />
-            <circle cx="50" cy="15" r="3" fill="#00F0FF" />
+            <line x1="50" y1="45" x2="50" y2="15" stroke="#E94560" strokeWidth="3" />
+            <circle cx="50" cy="15" r="3" fill="#E94560" />
             <path d="M42 55 Q 38 48 45 48" stroke="#64748B" />
             <path d="M58 55 Q 62 48 55 48" stroke="#64748B" />
           </g>
@@ -190,13 +190,13 @@ export const SmartHospitalDeskView: React.FC = () => {
         )}
 
         {type === 'chest_touch' && (
-          <g strokeWidth="2" stroke="#F43F5E">
-            <circle cx="50" cy="50" r="18" fill="rgba(244,63,94,0.15)" />
-            <path d="M42 48 Q 50 40 58 48 Q 50 62 42 48" fill="#F43F5E" />
+          <g strokeWidth="2" stroke="#E94560">
+            <circle cx="50" cy="50" r="18" fill="rgba(233,69,96,0.15)" />
+            <path d="M42 48 Q 50 40 58 48 Q 50 62 42 48" fill="#E94560" />
           </g>
         )}
 
-        <path d="M50 82 L 56 88 L 44 88 Z" fill="#00F0FF" />
+        <path d="M50 82 L 56 88 L 44 88 Z" fill="#E94560" />
       </svg>
     );
   };
@@ -204,10 +204,10 @@ export const SmartHospitalDeskView: React.FC = () => {
   return (
     <div className="space-y-6">
 
-      {/* Top Banner: Dynamic, Sleek & Fluid Bar */}
-      <div className="glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4 shadow-xl border border-white/10">
+      {/* Top Banner: Dynamic, Sleek & Fluid Bar in Royal Aurora Palette */}
+      <div className="glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4 shadow-xl border border-aurora-rose/20">
         <div className="flex items-center space-x-3.5">
-          <div className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-cyan-400 to-indigo-600 text-space-950 shadow-md shadow-cyan-500/20 shrink-0">
+          <div className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-royal-700 to-aurora-rose text-white shadow-md shadow-aurora-rose/25 shrink-0">
             <Stethoscope className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
           <div className="space-y-0.5">
@@ -215,7 +215,7 @@ export const SmartHospitalDeskView: React.FC = () => {
               <h1 className="text-base sm:text-lg font-bold text-white font-bengali tracking-tight">
                 {t('স্মার্টহাসপাতাল দ্বি-মুখী যোগাযোগ ডেস্ক', 'SmartHospital Two-Way Clinical Desk')}
               </h1>
-              <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+              <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-aurora-rose/15 text-rose-300 border border-aurora-rose/30">
                 Doctor-to-Patient Reverse Mode
               </span>
             </div>
@@ -230,7 +230,7 @@ export const SmartHospitalDeskView: React.FC = () => {
 
         <button
           onClick={handleExportSummary}
-          className="flex items-center space-x-2 px-4 py-2 sm:py-2.5 rounded-xl text-xs font-mono font-bold glass-panel glass-panel-hover text-cyan-400 border border-cyan-500/30 transition shadow-md self-end md:self-auto shrink-0"
+          className="flex items-center space-x-2 px-4 py-2 sm:py-2.5 rounded-xl text-xs font-mono font-bold glass-panel glass-panel-hover text-rose-300 border border-aurora-rose/30 transition shadow-md self-end md:self-auto shrink-0"
         >
           {exported ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Download className="w-3.5 h-3.5" />}
           <span>{exported ? t('ট্রান্সক্রিপ্ট ডাউনলোড হয়েছে', 'Exported') : t('ডাউনলোড কনসালটেশন সামারি', 'Export Transcript')}</span>
@@ -244,13 +244,13 @@ export const SmartHospitalDeskView: React.FC = () => {
         <div className="lg:col-span-7 space-y-5">
 
           {/* Quick Doctor Presets */}
-          <div className="glass-panel rounded-3xl p-5 space-y-3 border border-white/10">
+          <div className="glass-panel rounded-3xl p-5 space-y-3 border border-aurora-rose/20">
             <div className="flex items-center justify-between">
               <span className="text-xs font-mono text-slate-400 uppercase tracking-wider flex items-center gap-1.5 font-semibold">
-                <Sparkles className="w-3.5 h-3.5 text-electric-cyan" />
+                <Sparkles className="w-3.5 h-3.5 text-aurora-rose" />
                 <span>{t('দ্রুত ক্লিনিক্যাল প্রশ্নমালা (Doctor Quick Presets)', 'Physician Clinical Quick Presets')}</span>
               </span>
-              <span className="text-[11px] text-electric-teal font-mono">{t('সাইন দেখতে ট্যাপ করুন', 'Tap to decompose')}</span>
+              <span className="text-[11px] text-rose-300 font-mono">{t('সাইন দেখতে ট্যাপ করুন', 'Tap to decompose')}</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -262,13 +262,13 @@ export const SmartHospitalDeskView: React.FC = () => {
                     onClick={() => handleSelectPreset(p)}
                     className={`text-left p-3.5 rounded-2xl border transition-all duration-200 ${
                       isSelected
-                        ? 'bg-gradient-to-r from-electric-indigo/30 to-electric-cyan/30 border-electric-cyan text-white shadow-lg shadow-electric-cyan/20'
-                        : 'bg-space-900/60 hover:bg-space-850 border-white/[0.06] text-slate-300'
+                        ? 'bg-gradient-to-r from-royal-800 to-royal-700/80 border-aurora-rose text-white shadow-lg shadow-aurora-rose/20 ring-1 ring-aurora-rose'
+                        : 'bg-royal-900/60 hover:bg-royal-850 border-white/[0.06] text-slate-300 hover:border-aurora-rose/30'
                     }`}
                   >
                     <p className="font-bold font-bengali text-sm text-white mb-1">{p.bengaliText}</p>
                     <p className="text-[11px] text-slate-400 italic">{p.englishText}</p>
-                    <span className="inline-block mt-2 text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-electric-teal font-mono">
+                    <span className="inline-block mt-2 text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-rose-300 font-mono">
                       {p.signs.length} {t('টি সাইন স্টেপ', 'Sign Steps')}
                     </span>
                   </button>
@@ -285,11 +285,11 @@ export const SmartHospitalDeskView: React.FC = () => {
                   onChange={(e) => setCustomInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSendCustomMessage()}
                   placeholder={t('অন্য কোনো নির্দেশনা বাংলায় লিখুন...', 'Type custom directive in Bengali...')}
-                  className="flex-1 px-4 py-3 rounded-2xl bg-space-950 border border-white/10 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-electric-cyan font-bengali"
+                  className="flex-1 px-4 py-3 rounded-2xl bg-royal-950 border border-white/10 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-aurora-rose font-bengali"
                 />
                 <button
                   onClick={handleSendCustomMessage}
-                  className="px-5 py-3 rounded-2xl bg-gradient-to-r from-electric-indigo to-electric-cyan hover:opacity-95 text-white font-bold text-xs flex items-center gap-2 transition shadow-lg shadow-electric-cyan/20"
+                  className="btn-royal-aurora px-5 py-3 rounded-2xl font-bold text-xs flex items-center gap-2 transition shadow-lg shadow-aurora-rose/20"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>{t('সাইন করুন', 'Translate')}</span>
@@ -299,15 +299,15 @@ export const SmartHospitalDeskView: React.FC = () => {
           </div>
 
           {/* Active Doctor Sentence Card */}
-          <div className="glass-panel rounded-3xl p-5 border border-electric-cyan/30 shadow-xl">
+          <div className="glass-panel rounded-3xl p-5 border border-aurora-rose/30 shadow-xl">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-mono text-electric-cyan uppercase tracking-wider flex items-center gap-1.5 font-semibold">
+              <span className="text-xs font-mono text-aurora-rose uppercase tracking-wider flex items-center gap-1.5 font-semibold">
                 <Hospital className="w-4 h-4" />
                 <span>{t('নির্বাচিত ডাক্তারের বাক্য', 'Selected Physician Directive')} ({selectedPreset.department})</span>
               </span>
               <button
                 onClick={() => speakCurrent(selectedPreset.bengaliText)}
-                className="text-xs text-electric-teal hover:text-white flex items-center gap-1.5 font-mono"
+                className="text-xs text-rose-300 hover:text-white flex items-center gap-1.5 font-mono"
               >
                 <Volume2 className="w-4 h-4" />
                 <span>{t('উচ্চারণ শুনুন', 'Listen Audio')}</span>
@@ -327,7 +327,7 @@ export const SmartHospitalDeskView: React.FC = () => {
               <h3 className="text-xs font-mono text-slate-300 uppercase tracking-wider font-semibold">
                 {t('ক্রমিক সাইন নির্দেশিকা', 'Sequential Sign Steps')} ({currentSigns.length} {t('টি সাইন', 'Steps')})
               </h3>
-              <span className="text-xs text-electric-teal font-mono">{t('বধির-বান্ধব ভিজ্যুয়াল গাইড', 'Deaf-First Visual Guide')}</span>
+              <span className="text-xs text-rose-300 font-mono">{t('বধির-বান্ধব ভিজ্যুয়াল গাইড', 'Deaf-First Visual Guide')}</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -339,21 +339,21 @@ export const SmartHospitalDeskView: React.FC = () => {
                     onClick={() => setActiveSignIndex(index)}
                     className={`cursor-pointer p-4 rounded-3xl border transition-all duration-200 ${
                       isActive
-                        ? 'bg-space-850 border-electric-cyan shadow-xl shadow-electric-cyan/15 scale-[1.01]'
-                        : 'glass-panel hover:bg-space-850 border-white/[0.08]'
+                        ? 'bg-royal-850 border-aurora-rose shadow-xl shadow-aurora-rose/20 scale-[1.01]'
+                        : 'glass-panel hover:bg-royal-850 border-white/[0.08]'
                     }`}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <div className="flex items-center space-x-2">
-                          <span className="w-6 h-6 rounded-full bg-electric-cyan/20 text-electric-cyan border border-electric-cyan/40 flex items-center justify-center text-xs font-mono font-bold">
+                          <span className="w-6 h-6 rounded-full bg-aurora-rose/20 text-rose-300 border border-aurora-rose/40 flex items-center justify-center text-xs font-mono font-bold">
                             {index + 1}
                           </span>
                           <span className="text-lg font-bold text-white font-bengali">
                             {sign.glossBn}
                           </span>
                         </div>
-                        <span className="text-xs font-mono text-electric-teal block mt-1">
+                        <span className="text-xs font-mono text-rose-300 block mt-1">
                           GLOSS: {sign.glossEn}
                         </span>
                       </div>
@@ -381,15 +381,15 @@ export const SmartHospitalDeskView: React.FC = () => {
 
         {/* RIGHT 5 COLS: 2-Way Consultation Audit Stream */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="glass-panel rounded-3xl p-5 flex flex-col h-full min-h-[580px] shadow-2xl border border-white/10">
+          <div className="glass-panel rounded-3xl p-5 flex flex-col h-full min-h-[580px] shadow-2xl border border-aurora-rose/20">
             <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
               <div className="flex items-center space-x-2">
-                <FileText className="w-4 h-4 text-electric-cyan" />
+                <FileText className="w-4 h-4 text-aurora-rose" />
                 <span className="text-xs font-mono font-semibold text-slate-200 uppercase tracking-wider">
                   {t('দ্বিমুখী কনসালটেশন লগ', '2-Way Consultation Audit Log')}
                 </span>
               </div>
-              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-electric-teal/20 text-electric-teal border border-electric-teal/40 font-mono font-semibold">
+              <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-aurora-rose/20 text-rose-300 border border-aurora-rose/40 font-mono font-semibold">
                 {t('অ্যাক্টিভ সেশন', 'Live Session')}
               </span>
             </div>
@@ -402,19 +402,19 @@ export const SmartHospitalDeskView: React.FC = () => {
                     key={msg.id}
                     className={`p-4 rounded-2xl border text-xs space-y-1.5 transition ${
                       isPatient
-                        ? 'bg-space-950/80 border-electric-cyan/40 mr-3'
-                        : 'bg-space-850/80 border-electric-indigo/40 ml-3'
+                        ? 'bg-royal-950/80 border-aurora-rose/40 mr-3'
+                        : 'bg-royal-850/80 border-royal-700/60 ml-3'
                     }`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-1.5 font-mono text-[11px]">
                         {isPatient ? (
-                          <span className="text-electric-cyan font-bold flex items-center gap-1">
+                          <span className="text-aurora-rose font-bold flex items-center gap-1">
                             <User className="w-3.5 h-3.5" />
                             <span>{t('রোগীর ইশারা (BdSL)', 'Patient BdSL')}</span>
                           </span>
                         ) : (
-                          <span className="text-electric-teal font-bold flex items-center gap-1">
+                          <span className="text-rose-300 font-bold flex items-center gap-1">
                             <Stethoscope className="w-3.5 h-3.5" />
                             <span>{t('চিকিৎসক / ডেস্ক', 'Physician')}</span>
                           </span>
@@ -435,7 +435,7 @@ export const SmartHospitalDeskView: React.FC = () => {
                       <div className="flex items-center space-x-1 pt-1 flex-wrap gap-1">
                         <span className="text-[10px] text-slate-500 font-mono">{t('টোকেন:', 'Tokens:')}</span>
                         {msg.glossTokens.map((t, i) => (
-                          <span key={i} className="text-[10px] px-1.5 py-0.2 rounded bg-white/5 text-electric-cyan font-mono">
+                          <span key={i} className="text-[10px] px-1.5 py-0.2 rounded bg-white/5 text-rose-300 font-mono">
                             [{t}]
                           </span>
                         ))}
@@ -449,13 +449,13 @@ export const SmartHospitalDeskView: React.FC = () => {
             <div className="pt-3 border-t border-white/[0.08] space-y-2">
               <div className="flex items-center justify-between text-xs font-mono text-slate-400">
                 <span>{t('রোগী আইডি:', 'Patient ID:')} <strong className="text-white">PT-BDSL-8921</strong></span>
-                <span>{t('ট্রায়াজ:', 'Triage:')} <strong className="text-electric-teal">OPD Room 4</strong></span>
+                <span>{t('ট্রায়াজ:', 'Triage:')} <strong className="text-rose-300">OPD Room 4</strong></span>
               </div>
               <button
                 onClick={handleExportSummary}
-                className="w-full py-3 rounded-2xl bg-gradient-to-r from-electric-indigo via-electric-cyan to-electric-teal text-space-950 font-bold text-xs transition flex items-center justify-center space-x-2 shadow-lg shadow-electric-cyan/20"
+                className="btn-royal-aurora w-full py-3 rounded-2xl font-bold text-xs transition flex items-center justify-center space-x-2 shadow-lg shadow-aurora-rose/20"
               >
-                <Download className="w-4 h-4 text-space-950" />
+                <Download className="w-4 h-4 text-white" />
                 <span>{t('কনসালটেশন সামারি ডাউনলোড করুন', 'Export Official Transcript (JSON)')}</span>
               </button>
             </div>

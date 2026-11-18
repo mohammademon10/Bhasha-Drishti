@@ -8,8 +8,8 @@
 </p>
 
 <p align="center">
-  <a href="https://bhasha-drishti.vercel.app"><img src="https://img.shields.io/badge/Live%20Demo-Vercel-10B981?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo on Vercel" /></a>
-  <a href="#-system-architecture--diagrams"><img src="https://img.shields.io/badge/Architecture-Mermaid%20Diagrams-06B6D4?style=for-the-badge&logo=diagramsdotnet&logoColor=white" alt="Architecture Diagrams" /></a>
+  <a href="https://bhashadrishti.vercel.app"><img src="https://img.shields.io/badge/Live%20Demo-Vercel-E94560?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo on Vercel" /></a>
+  <a href="#-visual-system-architecture--diagrams"><img src="https://img.shields.io/badge/Architecture-Mermaid%20Diagrams-3E2F58?style=for-the-badge&logo=diagramsdotnet&logoColor=white" alt="Architecture Diagrams" /></a>
   <a href="docs/"><img src="https://img.shields.io/badge/Docs%20Portal-15%20Specifications-8B5CF6?style=for-the-badge&logo=markdown&logoColor=white" alt="Docs Portal" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-F59E0B?style=for-the-badge" alt="License MIT" /></a>
 </p>
@@ -25,6 +25,7 @@
 * **Primary Domain:** `HealthSphere AI`
 * **Target Challenge:** `SmartHospital` *(Eliminating patient-doctor communication barriers for deaf patients at clinical desks)*
 * **Official Repository:** [https://github.com/mohammademon10/Bhasha-Drishti](https://github.com/mohammademon10/Bhasha-Drishti)
+* **Live Deployment:** [https://bhashadrishti.vercel.app](https://bhashadrishti.vercel.app)
 
 ---
 
@@ -56,10 +57,10 @@ The following flowchart illustrates how Bhasha Drishti seamlessly bridges patien
 
 ```mermaid
 flowchart TD
-    classDef patient fill:#064E3B,stroke:#10B981,stroke-width:2px,color:#FFFFFF;
-    classDef cv fill:#0F172A,stroke:#06B6D4,stroke-width:2px,color:#FFFFFF;
-    classDef ml fill:#1E1B4B,stroke:#8B5CF6,stroke-width:2px,color:#FFFFFF;
-    classDef doctor fill:#1E293B,stroke:#F59E0B,stroke-width:2px,color:#FFFFFF;
+    classDef patient fill:#2A1436,stroke:#E94560,stroke-width:2px,color:#FFFFFF;
+    classDef cv fill:#1E142D,stroke:#FF5E7E,stroke-width:2px,color:#FFFFFF;
+    classDef ml fill:#25173B,stroke:#8B5CF6,stroke-width:2px,color:#FFFFFF;
+    classDef doctor fill:#1A112A,stroke:#F59E0B,stroke-width:2px,color:#FFFFFF;
 
     subgraph DEAF_PATIENT["1. Deaf / Hard-of-Hearing Patient (Signing)"]
         P1["BdSL Gestures In Front of Camera"]:::patient
@@ -68,23 +69,23 @@ flowchart TD
 
     subgraph VISION_PIPELINE["2. Computer Vision & Landmark Vectorizer"]
         V1["WebRTC Camera Stream (30 FPS)"]:::cv
-        V2["MediaPipe Holistic 3D Extraction<br/>(21 Hand + Upper Body Pose = 42 Points)"]:::cv
-        V3["Wrist-Centered Coordinate Normalization<br/>& Ephemeral RAM Buffer (40 Frames)"]:::cv
+        V2["MediaPipe Holistic 3D Extraction (42 Points)"]:::cv
+        V3["Wrist-Centered Normalization (Ephemeral RAM)"]:::cv
     end
 
     subgraph AI_CORE["3. AI/ML Inference & MCP Language Engine"]
-        M1["PyTorch CNN-BiLSTM Classifier<br/>(BdSLW60 Word Gloss Prediction)"]:::ml
-        M2{"Confidence Gate<br/>Score >= 0.80?"}:::ml
-        M3["Responsible AI Abstention<br/>'দয়া করে আবার সাইন করুন'"]:::ml
-        M4["pgvector Hybrid RAG + MCP Refiner<br/>(bhasha-drishti-bdsl-mcp)"]:::ml
+        M1["PyTorch CNN-BiLSTM Classifier (BdSLW60 Prediction)"]:::ml
+        M2{"Confidence Gate: Over 0.80?"}:::ml
+        M3["Responsible AI Abstention: Re-Sign Request"]:::ml
+        M4["pgvector Hybrid RAG & MCP Refiner"]:::ml
         M5["Grammatically Reconstructed Bengali Sentence"]:::ml
     end
 
     subgraph HOSPITAL_DESK["4. SmartHospital Clinical Desk (Doctor / Nurse)"]
         D1["High-Contrast Bengali Captions on Monitor"]:::doctor
-        D2["Web Speech API Bengali Audio (bn-BD)"]:::doctor
+        D2["Dual-Engine Bengali Audio (bn-BD)"]:::doctor
         D3["Doctor Types or Selects Preset Response"]:::doctor
-        D4["Sequential BdSL Sign Decomposition Cards<br/>(Visual Hand-Shape Diagrams)"]:::doctor
+        D4["Sequential BdSL Sign Decomposition Cards"]:::doctor
     end
 
     P1 --> V1
@@ -92,9 +93,9 @@ flowchart TD
     V2 --> V3
     V3 --> M1
     M1 --> M2
-    M2 -- "No (< 0.80)" --> M3
+    M2 -- "Confidence Under 0.80" --> M3
     M3 -.-> P2
-    M2 -- "Yes (>= 0.80)" --> M4
+    M2 -- "Confidence 0.80 or Higher" --> M4
     M4 --> M5
     M5 --> D1
     M5 --> D2
@@ -109,15 +110,15 @@ Detailed tensor transformation pipeline from raw pixels to word gloss prediction
 
 ```mermaid
 flowchart LR
-    classDef nodeStyle fill:#0F172A,stroke:#38BDF8,stroke-width:2px,color:#FFFFFF;
-    classDef latencyStyle fill:#064E3B,stroke:#34D399,stroke-width:1.5px,color:#A7F3D0;
+    classDef nodeStyle fill:#1C112C,stroke:#E94560,stroke-width:2px,color:#FFFFFF;
+    classDef latencyStyle fill:#2A1436,stroke:#FF5E7E,stroke-width:1.5px,color:#FFD1DC;
 
-    A["Raw RGB Video Frame<br/>(640x480 @ 30 FPS)"]:::nodeStyle --> B["MediaPipe Holistic<br/>Landmark Detector"]:::nodeStyle
-    B --> C["42 3D Keypoints<br/>(X, Y, Z, Visibility)"]:::nodeStyle
-    C --> D["Biomechanical Normalization<br/>(Root: Wrist Anchor)"]:::nodeStyle
-    D --> E["Temporal Window Buffer<br/>Tensor Shape: [40, 42, 3]"]:::nodeStyle
-    E --> F["PyTorch 1D CNN +<br/>Bidirectional LSTM"]:::nodeStyle
-    F --> G["Softmax Top-K Gloss<br/>(e.g., 'মাথা ব্যথা' 96.4%)"]:::nodeStyle
+    A["Raw RGB Video Frame (640x480 @ 30 FPS)"]:::nodeStyle --> B["MediaPipe Holistic Landmark Detector"]:::nodeStyle
+    B --> C["42 3D Keypoints (X, Y, Z, Visibility)"]:::nodeStyle
+    C --> D["Biomechanical Normalization (Wrist Anchor)"]:::nodeStyle
+    D --> E["Temporal Window Buffer (Tensor [40, 42, 3])"]:::nodeStyle
+    E --> F["PyTorch 1D CNN + Bidirectional LSTM"]:::nodeStyle
+    F --> G["Softmax Top-K Gloss (e.g. মাথা ব্যথা 96.4%)"]:::nodeStyle
 
     L1["Latency: 18ms"]:::latencyStyle -.-> B
     L2["Latency: 65ms"]:::latencyStyle -.-> F
@@ -130,10 +131,10 @@ Our custom Model Context Protocol (`bhasha-drishti-bdsl-mcp`) server exposes 4 t
 
 ```mermaid
 flowchart TD
-    classDef client fill:#0F172A,stroke:#10B981,stroke-width:2px,color:#FFFFFF;
-    classDef mcp fill:#1E293B,stroke:#06B6D4,stroke-width:2px,color:#FFFFFF;
-    classDef tools fill:#1E1B4B,stroke:#8B5CF6,stroke-width:2px,color:#FFFFFF;
-    classDef store fill:#312E81,stroke:#EC4899,stroke-width:2px,color:#FFFFFF;
+    classDef client fill:#1C112C,stroke:#E94560,stroke-width:2px,color:#FFFFFF;
+    classDef mcp fill:#25173B,stroke:#C084FC,stroke-width:2px,color:#FFFFFF;
+    classDef tools fill:#3E2F58,stroke:#FF5E7E,stroke-width:2px,color:#FFFFFF;
+    classDef store fill:#140C20,stroke:#F59E0B,stroke-width:2px,color:#FFFFFF;
 
     subgraph CLIENT_HOSTS["MCP Clients & Runtime Hosts"]
         C1["React Frontend (Edge Web App)"]:::client
@@ -148,22 +149,32 @@ flowchart TD
     end
 
     subgraph EXPOSED_TOOLS["Exposed MCP Tool Endpoints"]
-        E1["lookup_bdsl_gloss<br/>(Dictionary & Dialect Lookup)"]:::tools
-        E2["get_medical_sign_context<br/>(Hospital Triage Protocols)"]:::tools
-        E3["validate_keypoint_sequence<br/>(Anatomical Constraint Check)"]:::tools
-        E4["synthesize_bengali_audio<br/>(bn-BD Speech Synthesis)"]:::tools
+        E1["lookup_bdsl_gloss (Dictionary & Dialects)"]:::tools
+        E2["get_medical_sign_context (Hospital Triage)"]:::tools
+        E3["validate_keypoint_sequence (Anatomy Check)"]:::tools
+        E4["synthesize_bengali_audio (bn-BD Speech)"]:::tools
     end
 
     subgraph STORAGE_LAYER["Storage & Caching Layer"]
-        S1[("PostgreSQL + pgvector<br/>(BdSL Gloss Embeddings)")]:::store
-        S2[("Redis In-Memory Cache<br/>(Frequent Translations)")]:::store
+        S1[("PostgreSQL + pgvector (HNSW Index)")]:::store
+        S2[("Redis In-Memory Cache (Fast Lookup)")]:::store
     end
 
-    C1 & C2 & C3 --> T1 & T2
-    T1 & T2 --> SEC
-    SEC --> E1 & E2 & E3 & E4
-    E1 & E2 <--> S1
-    E4 <--> S2
+    C1 --> T1
+    C1 --> T2
+    C2 --> T1
+    C2 --> T2
+    C3 --> T1
+    C3 --> T2
+    T1 --> SEC
+    T2 --> SEC
+    SEC --> E1
+    SEC --> E2
+    SEC --> E3
+    SEC --> E4
+    E1 --> S1
+    E2 --> S1
+    E4 --> S2
 ```
 
 ---
@@ -193,7 +204,7 @@ erDiagram
         string id PK "clip_9812"
         string sign_label_id FK
         string phrase_bn "মাথা ব্যথা"
-        string asset_path "/sign-clips/matha_byatha.mp4"
+        string asset_path "sign_clips_matha_byatha"
         string signer_consent_id "CNS-2026-081"
         string reviewer_status "approved"
         string license "CC-BY-4.0"
@@ -202,25 +213,25 @@ erDiagram
     BDSL_GLOSS_EMBEDDINGS {
         string id PK
         string sign_label_id FK
-        vector embedding_1536 "HNSW Indexed"
+        string embedding_1536 "1536-dim HNSW Vector"
         string clinical_context "OPD General Medicine"
     }
 
     MODEL_VERSIONS {
         string id PK "v0.4.2-bdslw60"
-        string artifact_hash "sha256_b4e9..."
+        string artifact_hash "sha256_b4e9"
         float top1_accuracy "0.934"
         float macro_f1 "0.928"
         float confidence_threshold "0.80"
-        timestamp created_at
+        string created_at "2026-11-15"
     }
 
     CONSULTATION_SESSIONS {
         string id PK "CS-2026-11"
         string patient_temp_id "PT-BDSL-8921"
         string triage_category "Normal"
-        timestamp session_start
-        timestamp session_end
+        string session_start "10:14 AM"
+        string session_end "10:20 AM"
     }
 
     RECOGNITION_LOGS {
@@ -228,7 +239,7 @@ erDiagram
         string session_id FK
         string model_version_id FK
         string recognized_glosses "আমি+মাথা+ব্যথা"
-        string reconstructed_bengali "আমার প্রচণ্ড মাথা ব্যথা করছে"
+        string reconstructed_bengali "আমার মাথা ব্যথা করছে"
         float confidence_score "0.964"
         int latency_ms "238"
     }
@@ -249,16 +260,16 @@ sequenceDiagram
     participant Desk as 🖥️ Doctor Desk Monitor
     actor Doctor as 👨‍⚕️ Hospital Doctor / Nurse
 
-    Patient->>Cam: Signs BdSL [আমি + মাথা + ব্যথা]
+    Patient->>Cam: Signs BdSL (আমি + মাথা + ব্যথা)
     Cam->>Vision: Streams 30 FPS video frames
     Vision->>Vision: Normalizes 42 3D landmarks (RAM only)
     Vision->>Model: Sends [40, 42, 3] tensor (18ms)
     Model->>Model: Predicts gloss & refines grammar (175ms)
-    Model->>Desk: Displays "আমার প্রচণ্ড মাথা ব্যথা করছে, আমি ডাক্তার দেখাতে চাই।"
+    Model->>Desk: Displays reconstructed Bengali query
     Model->>Desk: Speaks Bengali audio via Web Speech API (45ms)
-    Desk-->>Doctor: Doctor hears & reads reconstructed Bengali query
-    Doctor->>Desk: Selects preset: "আপনার অ্যাপয়েন্টমেন্ট নম্বর কত?"
-    Desk->>Desk: Decomposes into 4 BdSL Sign Cards + SVG Hand Guides
+    Desk-->>Doctor: Doctor hears and reads reconstructed query
+    Doctor->>Desk: Selects preset: আপনার অ্যাপয়েন্টমেন্ট নম্বর কত?
+    Desk->>Desk: Decomposes into 4 BdSL Sign Cards + Hand Guides
     Desk-->>Patient: Displays sequential visual sign cards to patient
     Patient->>Patient: Comprehends question and presents appointment slip
 ```
@@ -270,18 +281,18 @@ Ensuring zero hallucinations and zero biometric video retention:
 
 ```mermaid
 flowchart TD
-    classDef ram fill:#064E3B,stroke:#10B981,stroke-width:2px,color:#FFFFFF;
-    classDef decision fill:#1E293B,stroke:#F59E0B,stroke-width:2px,color:#FFFFFF;
-    classDef alert fill:#450A0A,stroke:#EF4444,stroke-width:2px,color:#FFFFFF;
-    classDef ok fill:#0F172A,stroke:#06B6D4,stroke-width:2px,color:#FFFFFF;
+    classDef ram fill:#241436,stroke:#E94560,stroke-width:2px,color:#FFFFFF;
+    classDef decision fill:#25173B,stroke:#C084FC,stroke-width:2px,color:#FFFFFF;
+    classDef alert fill:#4A1120,stroke:#FF5E7E,stroke-width:2px,color:#FFFFFF;
+    classDef ok fill:#1C112C,stroke:#10B981,stroke-width:2px,color:#FFFFFF;
 
     START["Camera Frame Ingestion in Volatile RAM"]:::ram --> EXTRACT["Extract 3D Landmarks (X, Y, Z, Visibility)"]:::ram
     EXTRACT --> PURGE["IMMEDIATELY PURGE RAW PIXEL FRAME FROM RAM<br/>(Zero Biometric Video Storage)"]:::ram
     PURGE --> INFER["Run PyTorch Inference on Landmark Coordinates"]:::ok
-    INFER --> CONF{"Softmax Confidence Score<br/>>= 0.80?"}:::decision
+    INFER --> CONF{"Softmax Confidence Score Check"}:::decision
 
-    CONF -- "Confidence < 0.80 (Ambiguous / Fast Motion)" --> ABSTAIN["ABSTENTION GATE ACTIVATED:<br/>Display 'দয়া করে পরিষ্কারভাবে আবার সাইন করুন'<br/>(Zero False Medical Predictions)"]:::alert
-    CONF -- "Confidence >= 0.80 (Verified Gesture)" --> RECONSTRUCT["pgvector RAG Grammar Reconstruction"]:::ok
+    CONF -- "Confidence Below 0.80 (Ambiguous Gesture)" --> ABSTAIN["ABSTENTION GATE ACTIVATED:<br/>Display 'দয়া করে পরিষ্কারভাবে আবার সাইন করুন'<br/>(Zero False Medical Predictions)"]:::alert
+    CONF -- "Confidence 0.80 or Higher (Verified Gesture)" --> RECONSTRUCT["pgvector RAG Grammar Reconstruction"]:::ok
     RECONSTRUCT --> TTS["Natural Bengali Speech & Text Output"]:::ok
 ```
 
@@ -289,12 +300,12 @@ flowchart TD
 
 ## 💻 Tech Stack & Engineering Artifacts
 
-* **Frontend:** React 18, TypeScript, Vite, Tailwind CSS, Lucide React.
-* **Computer Vision:** MediaPipe Holistic (21-point hand landmarker + upper-body pose), WebRTC `getUserMedia`, HTML5 Canvas 3D hardware-accelerated rendering.
+* **Frontend:** React 18, TypeScript, Vite, Tailwind CSS, Lucide React (Royal Aurora Theme).
+* **Computer Vision:** MediaPipe Holistic (21-point hand landmarker + upper-body pose), WebRTC `getUserMedia`, HTML5 Canvas 3D hardware-accelerated realistic clinical rendering.
 * **Deep Learning & Sequence Modeling:** PyTorch, ONNX Runtime Quantization (`Q4_K_M`), 1D CNN + Bidirectional LSTM, Relative Quantization Encoding (RQE).
 * **Language Refinement & RAG:** FastAPI, `pgvector` HNSW index, LangGraph state machine, sliding-window context trimming.
 * **Model Context Protocol (MCP):** Custom `bhasha-drishti-bdsl-mcp` server with Python FastMCP SDK supporting `stdio` & `Streamable HTTP`.
-* **Audio & Speech:** Web Speech API (`window.speechSynthesis` with `bn-BD` phonetics) and SVG acoustic waveform animation.
+* **Audio & Speech:** Dual-Engine Bengali Speech (gTTS Base64 Pre-rendered Native Human Audio + Web Speech API `bn-BD` synthesis fallback).
 * **Hosting & Routing:** Vercel edge deployment with `vercel.json` SPA rewrite rules.
 
 ---
@@ -323,7 +334,7 @@ npm install
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ### 3. Production Build & Test
 ```bash

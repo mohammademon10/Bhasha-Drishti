@@ -39,7 +39,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-space-950 bg-mesh-glow text-slate-100 flex flex-col font-sans selection:bg-electric-cyan selection:text-space-950">
+    <div className="min-h-screen bg-royal-950 bg-mesh-glow text-slate-100 flex flex-col font-sans selection:bg-aurora-rose selection:text-white">
       
       {/* Top Sticky Navbar */}
       <Navbar 
@@ -62,13 +62,13 @@ function AppContent() {
       />
 
       {/* High-Contrast Clinical Footer */}
-      <footer className="glass-panel border-t border-white/[0.08] py-8 px-4 sm:px-6 lg:px-8 text-xs text-slate-400 mt-12">
+      <footer className="glass-panel border-t border-aurora-rose/15 py-8 px-4 sm:px-6 lg:px-8 text-xs text-slate-400 mt-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           
           <div className="flex flex-col items-center md:items-start space-y-1">
             <div className="flex items-center space-x-2">
               <span className="font-bold text-white font-bengali text-base">ভাষা দৃষ্টি (Bhasha Drishti)</span>
-              <span className="px-2.5 py-0.5 rounded-full bg-electric-cyan/20 text-electric-cyan font-mono text-[10px]">
+              <span className="px-2.5 py-0.5 rounded-full bg-aurora-rose/20 text-rose-300 font-mono text-[10px] border border-aurora-rose/30">
                 SmartHospital Edition
               </span>
             </div>
@@ -85,7 +85,7 @@ function AppContent() {
               href="https://github.com/mohammademon10/Bhasha-Drishti"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-2 px-4 py-2 rounded-xl glass-panel glass-panel-hover text-white transition font-mono border border-white/10"
+              className="flex items-center space-x-2 px-4 py-2 rounded-xl glass-panel glass-panel-hover text-white transition font-mono border border-aurora-rose/20"
             >
               <Github className="w-4 h-4 text-white" />
               <span>GitHub Repo</span>
@@ -93,7 +93,7 @@ function AppContent() {
 
             <button
               onClick={() => handleViewChange('docs')}
-              className="px-4 py-2 rounded-xl glass-panel glass-panel-hover text-electric-cyan transition font-mono border border-electric-cyan/30"
+              className="px-4 py-2 rounded-xl glass-panel glass-panel-hover text-rose-300 transition font-mono border border-aurora-rose/30"
             >
               {t('টেকনিক্যাল /docs দেখুন', 'View /docs Specs')}
             </button>
