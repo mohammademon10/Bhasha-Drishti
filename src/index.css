@@ -4,64 +4,78 @@
 
 @layer base {
   body {
-    background-color: #0c0714;
-    color: #f8fafc;
+    background-color: #0A0F1D;
+    color: #F8FAFC;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
-/* Ambient Radial Mesh Background in Royal Aurora Palette (#3E2F58 & #E94560) */
+/* Ambient Radial Mesh Background in Clinical Navy & Teal */
 .bg-mesh-glow {
   background-image: 
-    radial-gradient(at 15% 15%, rgba(62, 47, 88, 0.45) 0px, transparent 50%),
-    radial-gradient(at 85% 10%, rgba(233, 69, 96, 0.22) 0px, transparent 45%),
-    radial-gradient(at 50% 90%, rgba(139, 92, 246, 0.18) 0px, transparent 55%),
-    radial-gradient(at 20% 80%, rgba(62, 47, 88, 0.35) 0px, transparent 40%);
+    radial-gradient(at 10% 10%, rgba(32, 182, 165, 0.08) 0px, transparent 40%),
+    radial-gradient(at 90% 15%, rgba(24, 44, 71, 0.45) 0px, transparent 50%),
+    radial-gradient(at 50% 90%, rgba(13, 148, 136, 0.06) 0px, transparent 60%),
+    radial-gradient(at 20% 80%, rgba(24, 44, 71, 0.35) 0px, transparent 45%);
 }
 
-/* Glassmorphism Card Utility - Royal Aurora Themed */
+/* Clinical SaaS Panel & Card Utility */
 .glass-panel {
-  background: rgba(27, 17, 43, 0.72);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(233, 69, 96, 0.14);
+  background: rgba(16, 24, 40, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-panel-hover:hover {
-  background: rgba(37, 23, 59, 0.85);
-  border-color: rgba(233, 69, 96, 0.35);
-  box-shadow: 0 8px 32px -4px rgba(233, 69, 96, 0.15);
+  background: rgba(20, 32, 52, 0.95);
+  border-color: rgba(32, 182, 165, 0.35);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
 }
 
-/* Royal Aurora Primary Gradient Pill/Button */
-.btn-royal-aurora {
-  background: linear-gradient(135deg, #3E2F58 0%, #E94560 100%);
+/* Primary Clinical Action Button (Teal Gradient / Solid) */
+.btn-teal-primary {
+  background: linear-gradient(135deg, #0D9488 0%, #20B6A5 100%);
   color: #ffffff;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 10px rgba(32, 182, 165, 0.25);
+}
+
+.btn-teal-primary:hover {
+  opacity: 0.95;
+  box-shadow: 0 4px 16px rgba(32, 182, 165, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Legacy button mapping for existing components */
+.btn-royal-aurora {
+  background: linear-gradient(135deg, #182C47 0%, #0D9488 100%);
+  color: #ffffff;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-royal-aurora:hover {
   opacity: 0.95;
-  box-shadow: 0 4px 20px rgba(233, 69, 96, 0.35);
+  box-shadow: 0 4px 16px rgba(32, 182, 165, 0.35);
   transform: translateY(-1px);
 }
 
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #140c20;
+  background: #0A0F1D;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2b1a42;
+  background: #182C47;
   border-radius: 9999px;
-  border: 1px solid rgba(233, 69, 96, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #e94560;
+  background: #20B6A5;
 }

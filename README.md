@@ -321,6 +321,22 @@ flowchart TD
 
 ---
 
+## 🖥️ Complete Application Navigation & Clinical Modules
+
+Bhasha-Drishti provides a comprehensive, research-grade, hospital-focused Bengali Sign Language communication platform:
+
+1. **📊 Operational Dashboard (`/dashboard`):** Real-time hospital overview, active shift stats, system diagnostics (WebRTC, PyTorch BiLSTM, Bengali Speech Synthesizer, RAM Zero-Retention Shield), and recent triage logs.
+2. **👁️ Live BdSL Vision Translator (`/translator`):** Real-time WebRTC 30 FPS camera feed, 3D anatomical skeletal keypoint tracking (42 landmarks), low-confidence abstention (<0.80), sentence builder with add/undo/copy/speech controls, and BdSLW60 gesture simulator.
+3. **💬 Communication Desk (`/desk`):** Bidirectional doctor-patient clinical interaction. Physicians speak or type in Bengali, automatically decomposing into sequential sign cards with 3D handshape guides. Includes printable hospital letterhead PDF summary and JSON export.
+4. **📖 Sign Dictionary (`/dictionary`):** Structured catalog of 60 BdSL medical and daily classes with real-time search, category filtering (Emergency, Medical, General, Daily, Action), audio pronunciation, and interactive detail modals.
+5. **🩺 Medical Phrasebook (`/phrasebook`):** Bilingual hospital communication phrasebook across 8 clinical categories (Emergency, Reception, Symptoms, Pain, Doctor Questions, Nurse Instructions, Pharmacy, Diagnostics) with 1-click "Send to Desk".
+6. **📜 Session History (`/history`):** Complete consultation logs with search, department filters, chronological dialogue transcript viewer, printable PDF export, and zero-retention privacy assurance.
+7. **📈 AI Analytics & SLA Benchmark (`/analytics`):** Research-grade metrics (93.4% Top-1 Accuracy, 0.912 Macro F1, 238ms total pipeline latency budget breakdown, category-wise precision, FastMCP tool telemetry).
+8. **⚙️ Platform Settings (`/settings`):** Language selection (বাংলা / English), camera preview mirror, speech rate/pitch tuning with live audio preview, accessibility high contrast, and local cache management.
+9. **📑 Technical Whitepaper & /docs (`/docs`):** 6 detailed technical tabs covering System Architecture, Benchmark Datasets & Metrics, FastMCP Server Tools, Responsible AI & Privacy, Prompt Library, and Competition Package Docs.
+
+---
+
 ## 🏃 Local Quickstart & Development
 
 ### 1. Clone & Install

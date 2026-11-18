@@ -7,42 +7,79 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Royal Aurora Palette
+        // Professional Healthcare & AI Design Palette
+        navy: {
+          950: '#0A0F1D', // Deepest background
+          900: '#101828', // Primary structural color
+          850: '#142034', // Panel background
+          800: '#182C47', // Secondary surfaces & cards
+          700: '#233E63', // Borders & active states
+          600: '#335582',
+          500: '#4871A5',
+          400: '#688FC0',
+        },
+        teal: {
+          950: '#042F2E',
+          900: '#0F3A3E',
+          800: '#115E59',
+          700: '#0F766E',
+          600: '#0D9488',
+          500: '#14B8A6', // Primary Action & Accent Teal
+          400: '#20B6A5', // Bright Healthcare Teal
+          300: '#5EEAD4',
+          100: '#CCFBF1',
+          50: '#E8F3F5',  // Soft Teal Background Tint
+        },
+        clinical: {
+          bg: '#0A0F1D',
+          surface: '#101828',
+          card: '#142034',
+          cardLight: '#1A2942',
+          border: 'rgba(32, 182, 165, 0.18)',
+          borderSubtle: 'rgba(255, 255, 255, 0.08)',
+          text: '#F8FAFC',
+          textMuted: '#94A3B8',
+          textDim: '#64748B',
+          accent: '#20B6A5',
+          rose: '#E11D48',
+          amber: '#F59E0B',
+          emerald: '#10B981',
+        },
+        // Compatibility Aliases with Royal Aurora theme
         royal: {
-          950: '#0C0714',
-          900: '#140C20',
-          850: '#1B112B',
-          800: '#25173B',
-          700: '#3E2F58', // Signature Royal Plum
-          600: '#533F75',
-          500: '#6C5396',
-          400: '#8E71BF',
+          950: '#0A0F1D',
+          900: '#101828',
+          850: '#142034',
+          800: '#182C47',
+          700: '#233E63',
+          600: '#335582',
+          500: '#4871A5',
+          400: '#688FC0',
         },
         aurora: {
-          rose: '#E94560',   // Signature Vibrant Coral Rose
-          pink: '#FF5E7E',
-          purple: '#8B5CF6',
-          violet: '#9D4EDD',
+          rose: '#E11D48',
+          pink: '#F43F5E',
+          purple: '#20B6A5',
+          violet: '#0D9488',
           amber: '#F59E0B',
           emerald: '#10B981',
-          cyan: '#00F0FF',
+          cyan: '#20B6A5',
         },
-        // Backwards compatibility mappings for smooth transition
         space: {
-          950: '#0C0714',
-          900: '#140C20',
-          850: '#1B112B',
-          800: '#25173B',
-          700: '#3E2F58',
+          950: '#0A0F1D',
+          900: '#101828',
+          850: '#142034',
+          800: '#182C47',
+          700: '#233E63',
         },
         electric: {
-          cyan: '#E94560',
-          teal: '#FF5E7E',
+          cyan: '#20B6A5',
+          teal: '#14B8A6',
           emerald: '#10B981',
-          indigo: '#3E2F58',
-          purple: '#9D4EDD',
+          indigo: '#182C47',
+          purple: '#233E63',
           amber: '#F59E0B',
-          rose: '#E94560',
+          rose: '#E11D48',
         }
       },
       fontFamily: {
@@ -51,19 +88,19 @@ export default {
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       boxShadow: {
-        'glow-aurora': '0 0 25px rgba(233, 69, 96, 0.25)',
-        'glow-royal': '0 0 25px rgba(62, 47, 88, 0.4)',
-        'glow-cyan': '0 0 25px rgba(233, 69, 96, 0.25)',
+        'glow-teal': '0 0 25px rgba(32, 182, 165, 0.25)',
+        'glow-navy': '0 0 25px rgba(24, 44, 71, 0.4)',
         'glow-emerald': '0 0 25px rgba(16, 185, 129, 0.25)',
+        'card-subtle': '0 4px 20px -2px rgba(0, 0, 0, 0.35)',
       },
       animation: {
         'pulse-subtle': 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'soundwave': 'soundwave 0.8s ease-in-out infinite alternate',
+        'fade-in': 'fadeIn 0.3s ease-out forwards',
       },
       keyframes: {
-        soundwave: {
-          '0%': { height: '4px' },
-          '100%': { height: '26px' }
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(6px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         }
       }
     },
