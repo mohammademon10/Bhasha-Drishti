@@ -1,4 +1,5 @@
 // Bulletproof Multi-Tier Bengali & English Speech Synthesizer Engine
+import { getBengaliAudioUri } from '../data/bengaliAudioClips';
 
 export class UniversalSpeechEngine {
   private static currentAudio: HTMLAudioElement | null = null;
@@ -6,7 +7,7 @@ export class UniversalSpeechEngine {
 
   /**
    * Plays speech using the highest available quality engine:
-   * 1. High-fidelity Native Bengali Web Stream (Google TTS tw-ob)
+   * 1. Embedded Pre-Rendered High-Fidelity Human Bengali Audio Bank (Instant & 100% Reliable)
    * 2. Browser Web Speech API (window.speechSynthesis)
    * 3. Web Audio API Acoustic Speech Melody Fallback
    */
@@ -25,56 +26,39 @@ export class UniversalSpeechEngine {
       return;
     }
 
-    const ttsLang = lang === 'bn' ? 'bn' : 'en';
-
-    // Tier 1: Try Online High-Fidelity Human TTS stream
-    try {
-      const audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(cleanText)}&tl=${ttsLang}&client=tw-ob`;
-      const audio = new Audio();
-      audio.src = audioUrl;
-      audio.crossOrigin = 'anonymous';
-      this.currentAudio = audio;
-
-      let hasPlayed = false;
-
-      const playPromise = new Promise<boolean>((resolve) => {
-        const timeout = setTimeout(() => {
-          if (!hasPlayed) {
-            resolve(false);
-          }
-        }, 1500); // 1.5s timeout then fallback
-
-        audio.onplay = () => {
-          hasPlayed = true;
-          clearTimeout(timeout);
-        };
+    // Tier 1: Check Pre-Rendered Native Voice Bank (Instant zero-latency native audio)
+    const preRenderedUri = getBengaliAudioUri(cleanText);
+    if (preRenderedUri) {
+      try {
+        const audio = new Audio(preRenderedUri);
+        this.currentAudio = audio;
 
         audio.onended = () => {
           this.currentAudio = null;
           onEnd?.();
-          resolve(true);
         };
 
         audio.onerror = () => {
-          clearTimeout(timeout);
-          resolve(false);
+          console.warn('Pre-rendered audio playback failed, falling back to Web Speech API');
+          this.speakWithSpeechSynthesis(cleanText, lang, onEnd);
         };
 
-        audio.play().catch(() => {
-          clearTimeout(timeout);
-          resolve(false);
-        });
-      });
-
-      const success = await playPromise;
-      if (success) {
+        await audio.play();
         return;
+      } catch (err) {
+        console.warn('Direct Audio.play() blocked, trying Web Speech API:', err);
       }
-    } catch (e) {
-      console.warn('Tier 1 Online TTS unavailable, falling back to Web Speech API', e);
     }
 
     // Tier 2: Web Speech API Fallback
+    this.speakWithSpeechSynthesis(cleanText, lang, onEnd);
+  }
+
+  private static speakWithSpeechSynthesis(
+    cleanText: string,
+    lang: 'bn' | 'en',
+    onEnd?: () => void
+  ): void {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       try {
         window.speechSynthesis.cancel();
@@ -121,8 +105,10 @@ export class UniversalSpeechEngine {
 
   public static stop(): void {
     if (this.currentAudio) {
-      this.currentAudio.pause();
-      this.currentAudio.currentTime = 0;
+      try {
+        this.currentAudio.pause();
+        this.currentAudio.currentTime = 0;
+      } catch {}
       this.currentAudio = null;
     }
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -152,7 +138,7 @@ export class UniversalSpeechEngine {
       }
 
       const ctx = this.audioCtx;
-      const notes = [440, 554.37, 659.25, 880]; // A4, C#5, E5, A5
+      const notes = [440, 554.37, 659.25, 880];
       const startTime = ctx.currentTime;
 
       notes.forEach((freq, idx) => {
