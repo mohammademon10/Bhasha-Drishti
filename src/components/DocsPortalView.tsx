@@ -40,19 +40,19 @@ export const DocsPortalView: React.FC = () => {
   return (
     <div className="space-y-6">
 
-      {/* Top Header Banner */}
-      <div className="glass-panel rounded-3xl p-6 shadow-xl border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      {/* Top Header Banner: Dynamic & Sleek */}
+      <div className="glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-xl border border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
         <div>
-          <div className="flex items-center space-x-2.5">
-            <span className="px-3 py-0.5 rounded-full bg-electric-cyan/20 text-electric-cyan border border-electric-cyan/30 text-xs font-mono font-semibold">
+          <div className="flex items-center space-x-2">
+            <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 text-[11px] font-mono font-bold">
               Official Whitepaper & Specs
             </span>
-            <span className="text-xs text-slate-400 font-mono">CloudCamp Bangladesh 2026</span>
+            <span className="text-xs text-slate-400 font-mono">CloudCamp Bangladesh</span>
           </div>
-          <h1 className="text-2xl font-bold text-white mt-1">
+          <h1 className="text-base sm:text-lg font-bold text-white mt-1 font-bengali tracking-tight">
             Bhasha Drishti (ভাষা দৃষ্টি) — {t('টেকনিক্যাল ডকুমেন্টেশন ও জাজ পোর্টাল', 'Technical Documentation & Judge Portal')}
           </h1>
-          <p className="text-sm text-slate-300 mt-0.5">
+          <p className="text-xs sm:text-sm text-slate-300 font-sans mt-0.5">
             {t(
               'সম্পূর্ণ সিস্টেম আর্কিটেকচার, BdSLW60 ডেটাসেট বেঞ্চমার্ক, কাস্টম MCP সার্ভার টুলস ও রেসপন্সিবল এআই গভর্ন্যান্স।',
               'End-to-end system architecture, BdSLW60 benchmarks, custom MCP server specifications, and Responsible AI governance.'
@@ -60,80 +60,94 @@ export const DocsPortalView: React.FC = () => {
           </p>
         </div>
 
-        <span className="px-4 py-2 rounded-xl bg-space-850 border border-white/10 text-xs font-mono text-electric-teal font-semibold self-end md:self-auto">
-          100% Faithful to Official Specs
+        <span className="px-3.5 py-1.5 rounded-xl bg-space-850 border border-emerald-500/25 text-xs font-mono text-emerald-400 font-bold self-end md:self-auto shrink-0">
+          100% Faithful Specs
         </span>
       </div>
 
-      {/* Sub-Navigation Tabs */}
-      <div className="flex items-center space-x-1.5 p-1.5 glass-panel rounded-2xl border border-white/10 overflow-x-auto">
+      {/* Sub-Navigation Tabs: Fluid, Single-Line, Dynamic */}
+      <div className="flex items-center space-x-1.5 p-1.5 glass-panel rounded-2xl border border-white/10 overflow-x-auto scrollbar-none">
         <button
           onClick={() => setActiveTab('architecture')}
-          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-mono font-medium whitespace-nowrap transition ${
-            activeTab === 'architecture' ? 'bg-gradient-to-r from-electric-indigo to-electric-cyan text-space-950 font-bold shadow-lg' : 'text-slate-400 hover:text-white'
+          className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
+            activeTab === 'architecture' 
+              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
-          <Layers className="w-3.5 h-3.5" />
+          <Layers className="w-3.5 h-3.5 shrink-0" />
           <span>Architecture & SLA</span>
         </button>
 
         <button
           onClick={() => setActiveTab('datasets')}
-          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-mono font-medium whitespace-nowrap transition ${
-            activeTab === 'datasets' ? 'bg-gradient-to-r from-electric-indigo to-electric-cyan text-space-950 font-bold shadow-lg' : 'text-slate-400 hover:text-white'
+          className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
+            activeTab === 'datasets' 
+              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
-          <Database className="w-3.5 h-3.5" />
+          <Database className="w-3.5 h-3.5 shrink-0" />
           <span>Datasets & Metrics (93.4%)</span>
         </button>
 
         <button
           onClick={() => setActiveTab('mcp')}
-          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-mono font-medium whitespace-nowrap transition ${
-            activeTab === 'mcp' ? 'bg-gradient-to-r from-electric-indigo to-electric-cyan text-space-950 font-bold shadow-lg' : 'text-slate-400 hover:text-white'
+          className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
+            activeTab === 'mcp' 
+              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
-          <Server className="w-3.5 h-3.5" />
+          <Server className="w-3.5 h-3.5 shrink-0" />
           <span>MCP Server (4 Tools)</span>
         </button>
 
         <button
           onClick={() => setActiveTab('governance')}
-          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-mono font-medium whitespace-nowrap transition ${
-            activeTab === 'governance' ? 'bg-gradient-to-r from-electric-indigo to-electric-cyan text-space-950 font-bold shadow-lg' : 'text-slate-400 hover:text-white'
+          className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
+            activeTab === 'governance' 
+              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
-          <Shield className="w-3.5 h-3.5" />
-          <span>Responsible AI & Privacy</span>
+          <Shield className="w-3.5 h-3.5 shrink-0" />
+          <span>Responsible AI</span>
         </button>
 
         <button
           onClick={() => setActiveTab('prompts')}
-          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-mono font-medium whitespace-nowrap transition ${
-            activeTab === 'prompts' ? 'bg-gradient-to-r from-electric-indigo to-electric-cyan text-space-950 font-bold shadow-lg' : 'text-slate-400 hover:text-white'
+          className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
+            activeTab === 'prompts' 
+              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
-          <Sparkles className="w-3.5 h-3.5" />
+          <Sparkles className="w-3.5 h-3.5 shrink-0" />
           <span>Prompt Library (9 Prompts)</span>
         </button>
 
         <button
           onClick={() => setActiveTab('markdown')}
-          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-mono font-medium whitespace-nowrap transition ${
-            activeTab === 'markdown' ? 'bg-gradient-to-r from-electric-indigo to-electric-cyan text-space-950 font-bold shadow-lg' : 'text-slate-400 hover:text-white'
+          className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
+            activeTab === 'markdown' 
+              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
-          <FileText className="w-3.5 h-3.5" />
+          <FileText className="w-3.5 h-3.5 shrink-0" />
           <span>Package Docs (15 Files)</span>
         </button>
 
         <button
           onClick={() => setActiveTab('qa')}
-          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-mono font-medium whitespace-nowrap transition ${
-            activeTab === 'qa' ? 'bg-gradient-to-r from-electric-indigo to-electric-cyan text-space-950 font-bold shadow-lg' : 'text-slate-400 hover:text-white'
+          className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all duration-200 ${
+            activeTab === 'qa' 
+              ? 'bg-gradient-to-r from-indigo-600 via-cyan-500 to-teal-400 text-space-950 font-black shadow-md shadow-cyan-500/20' 
+              : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
           }`}
         >
-          <HelpCircle className="w-3.5 h-3.5" />
+          <HelpCircle className="w-3.5 h-3.5 shrink-0" />
           <span>Judges' Q&A</span>
         </button>
       </div>

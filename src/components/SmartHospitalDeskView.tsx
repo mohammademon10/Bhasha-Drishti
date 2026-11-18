@@ -204,20 +204,22 @@ export const SmartHospitalDeskView: React.FC = () => {
   return (
     <div className="space-y-6">
 
-      {/* Top Banner */}
-      <div className="glass-panel rounded-3xl p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xl border border-white/10">
-        <div className="flex items-center space-x-4">
-          <div className="p-3 rounded-2xl bg-gradient-to-tr from-electric-indigo to-electric-teal text-white shadow-lg shadow-electric-teal/20">
-            <Stethoscope className="w-6 h-6" />
+      {/* Top Banner: Dynamic, Sleek & Fluid Bar */}
+      <div className="glass-panel rounded-2xl sm:rounded-3xl p-4 sm:p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4 shadow-xl border border-white/10">
+        <div className="flex items-center space-x-3.5">
+          <div className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-cyan-400 to-indigo-600 text-space-950 shadow-md shadow-cyan-500/20 shrink-0">
+            <Stethoscope className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
-          <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
-              <span>{t('স্মার্টহাসপাতাল দ্বি-মুখী যোগাযোগ ডেস্ক', 'SmartHospital Two-Way Clinical Desk')}</span>
-              <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-electric-teal/20 text-electric-teal border border-electric-teal/40">
+          <div className="space-y-0.5">
+            <div className="flex items-center space-x-2 flex-wrap gap-y-1">
+              <h1 className="text-base sm:text-lg font-bold text-white font-bengali tracking-tight">
+                {t('স্মার্টহাসপাতাল দ্বি-মুখী যোগাযোগ ডেস্ক', 'SmartHospital Two-Way Clinical Desk')}
+              </h1>
+              <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
                 Doctor-to-Patient Reverse Mode
               </span>
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
+            </div>
+            <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
               {t(
                 'ডাক্তার বাংলায় বললে তা স্বয়ংক্রিয়ভাবে বধির রোগীর জন্য ক্রমিক সাইন কার্ড ও হ্যান্ডশেইপ নির্দেশিকায় রূপান্তরিত হয়।',
                 'Physicians speak or type in Bengali, automatically generating step-by-step sign language cards for deaf patients.'
@@ -228,10 +230,10 @@ export const SmartHospitalDeskView: React.FC = () => {
 
         <button
           onClick={handleExportSummary}
-          className="flex items-center space-x-2 px-5 py-2.5 rounded-xl text-xs font-mono font-semibold glass-panel glass-panel-hover text-electric-cyan border border-electric-cyan/40 transition shadow-lg"
+          className="flex items-center space-x-2 px-4 py-2 sm:py-2.5 rounded-xl text-xs font-mono font-bold glass-panel glass-panel-hover text-cyan-400 border border-cyan-500/30 transition shadow-md self-end md:self-auto shrink-0"
         >
-          {exported ? <Check className="w-4 h-4 text-electric-teal" /> : <Download className="w-4 h-4" />}
-          <span>{exported ? t('ট্রান্সক্রিপ্ট ডাউনলোড হয়েছে', 'Transcript Exported') : t('ডাউনলোড কনসালটেশন সামারি', 'Export Transcript')}</span>
+          {exported ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Download className="w-3.5 h-3.5" />}
+          <span>{exported ? t('ট্রান্সক্রিপ্ট ডাউনলোড হয়েছে', 'Exported') : t('ডাউনলোড কনসালটেশন সামারি', 'Export Transcript')}</span>
         </button>
       </div>
 
